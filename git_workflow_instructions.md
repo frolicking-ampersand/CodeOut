@@ -5,7 +5,7 @@ Git Workflow
   For reference, "typeOfCommit" could equal:
     - feat
     - bugfix
-    - 
+    - ...etc
 2) Commit the files pertaining to that feature
 3) Check if there is a pull request still open that has changes to your same file
   3a) Either merge their request because it is clean, or reach out to the pull requester.
