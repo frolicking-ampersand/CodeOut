@@ -34,7 +34,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-  Since the dawn of humanity people have used simple drawings to quickly communicate with eachother, but with the advent of mass comminvation optomized for text and voice drawings have fallen by the wayside. That stops now! Molboard leverges the power of smart phones and the internet to allow realtime visual and voice comunication between multiple users
+  Since the dawn of humanity people have used simple drawings to quickly communicate with eachother, but with the advent of mass comminvation optomized for text and voice, drawings have fallen by the wayside. That stops now! Molboard leverges the power of smart phones and the internet to allow realtime visual and voice comunication between multiple users
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
