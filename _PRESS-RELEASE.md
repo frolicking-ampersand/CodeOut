@@ -18,27 +18,35 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  molboard
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  This product is for anyone who has ever wanted to whiteboard with someone who wasn't in the same room with them.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  The mobile whiteboard allow users from all over the world to white board with each other in real time over their phones.
 
 ## Problem ##
   > Describe the problem your product solves.
+  The problem is that of quickly communicating visual data from one human mind to another over long distances.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Since the dawn of humanity people have used simple drawings to quickly communicate with eachother, but with the advent of mass comminvation optomized for text and voice, drawings have fallen by the wayside. That stops now! Molboard leverges the power of smart phones and the internet to allow realtime visual and voice comunication between multiple users
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-
+  "Use it." - Benny Zhang
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Just download the app login and make a board and off you go
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "I've never been able to express my self over the phone until now!"
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  listen to Benny
