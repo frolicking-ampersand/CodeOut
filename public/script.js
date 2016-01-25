@@ -1,4 +1,5 @@
 
+
 var app = angular.module('molboard', []);
 app.controller('mainController', function ($scope, $http) {
   $scope.canvas = document.getElementById("canvas");
@@ -11,6 +12,7 @@ app.controller('mainController', function ($scope, $http) {
 
   $scope.canvas.width = 500;
   $scope.canvas.height = 500;
+
 
   $scope.putPoint = function(e){
     if ($scope.dragging){
@@ -59,3 +61,4 @@ app.controller('mainController', function ($scope, $http) {
 
 
 });
+
