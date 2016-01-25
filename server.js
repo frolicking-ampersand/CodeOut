@@ -37,8 +37,6 @@ app.get('/', function(req, res){
 
 //add a user to the database
 app.post('/users', function(req, res){
-  console.log(req.body.LastName);
-  //connection.query('INSERT INTO users VALUES (3, "cow", "moo", "pasture", "alberta") ');
   connection.query('INSERT INTO users VALUES ('+req.body.PersonID+', "'+req.body.LastName+'", "'+req.body.FirstName+'", "'+req.body.Address+'", "'+req.body.City+'") ');
   res.send('done');
 });

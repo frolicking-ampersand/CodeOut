@@ -1,11 +1,14 @@
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext('2d');
+var savedData = '';
 
 var radius = 10;
 var dragging = false;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 500;
+canvas.height = 500;
+copy.height = 500;
+copy.width = 500;
 
 var putPoint = function(e){
   if (dragging){
@@ -27,5 +30,13 @@ canvas.addEventListener('mousedown', engage);
 canvas.addEventListener('mouseup', disengage);
 canvas.addEventListener('mousemove', putPoint);
 var saveCanvas = function(){
-  console.log(canvas.toDataURL());
+  savedData = context.getImageData(0, 0, 500, 500);
 }
+var restore = function(){
+  console.log(savedData);
+  context.clearRect(0, 0, 500, 500);
+  context.putImageData(savedData,0,0);
+
+}
+
+
