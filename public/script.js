@@ -1,4 +1,8 @@
 
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext('2d');
+var savedData = '';
+
 var app = angular.module('molboard', []);
 app.controller('mainController', function ($scope, $http) {
   $scope.canvas = document.getElementById("canvas");
@@ -9,8 +13,10 @@ app.controller('mainController', function ($scope, $http) {
   $scope.radius = 10;
   $scope.dragging = false;
 
+
   $scope.canvas.width = 500;
   $scope.canvas.height = 500;
+
 
   $scope.putPoint = function(e){
     if ($scope.dragging){
