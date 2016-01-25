@@ -4,6 +4,8 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mysql      = require('mysql');
+var server = app.listen(8080);
+var io = require('socket.io').listen(server);
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -86,6 +88,25 @@ app.post('/boards', function (req, res) {
     res.send(rows);
   });
 });
+
+//***************************************************
+// *SOCKETS*
+//***************************************************
+io.on('connection', function (socket) {
+
+  socket.on('create board', function (boardName) {
+    socket.join(boardName);
+    socket.room = boardName;
+  });
+
+  socket.on('join board', function (boardName) {
+  });
+
+  socket.on('draw', function (data) {
+    io.to(socket.room).emit('draw', data);
+  });
+});
+
 
 // listen (start app with node index.js) ======================================
 app.listen(8080);
