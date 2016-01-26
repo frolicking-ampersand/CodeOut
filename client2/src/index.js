@@ -1,69 +1,116 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import DrawableCanvas from 'react-drawable-canvas';
+import ColorPicker from 'react-color';
+import ToggleDisplay from 'react-toggle-display';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+      toggleBGBox: 'Choose Background',
+      toggleColorBox: 'Pick Color',
 			brushColor: '#000000',
       lineWidth: 4,
+      displayColorPicker: false,
+      displayBGColorPicker: false,
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
       clear: false
 	  };
-	}
+    this.showColorBox = this.showColorBox.bind(this);
+	  this.chooseColor = this.chooseColor.bind(this);
+    this.showBGColorBox = this.showBGColorBox.bind(this)
+    this.handleChangeComplete = this.handleChangeComplete.bind(this);
+  }
 
 	handleOnClickClear()  {
     this.setState({
       clear: true
     });
   }
-  handleOnClickChangeColorYellow() {
-    this.setState({
-      brushColor: '#FFFF00',
-      clear: false
-    });
+
+  handleChangeComplete(color) {
+    this.setState({ background: color.hex });
   }
-  handleOnClickChangeColorBlack() {
-  	console.log(this);
-    this.setState({
-      brushColor: '#000000',
-      clear: false
-    });
+
+  showColorBox() {
+    if(!this.state.displayColorPicker){
+      this.setState({
+        displayColorPicker: !this.state.displayColorPicker,
+        toggleColorBox: "Close Box"
+      });
+    }else{
+      this.setState({
+        displayColorPicker: !this.state.displayColorPicker,
+        toggleColorBox: "Pick Color"
+      });
+    }
   }
-  handleOnClickChangBgToRed() {
+
+  showBGColorBox() {
+    if(!this.state.displayBGColorPicker) {
+      this.setState({
+        displayBGColorPicker: !this.state.displayBGColorPicker,
+        toggleBGBox: "Close Box"
+       });
+    } else {
+      this.setState({
+        displayBGColorPicker: !this.state.displayBGColorPicker,
+        toggleBGBox: "Choose Background"
+      });
+    }
+  }
+
+  chooseBG(color) {
     let newstate = this.state;
-    newstate.canvasStyle.backgroundColor = '#FF0000';
+    console.log(newstate)
+    newstate.canvasStyle.backgroundColor = '#' + color.hex;
     newstate.clear = false;
     this.setState({
       newstate
     });
   }
-  handleOnClickChangBgToBlue() {
-    let newstate = this.state;
-    newstate.canvasStyle.backgroundColor = '#00FFDC';
-    newstate.clear = false;
-    this.setState({
-      newstate
-    });
+
+  chooseColor(color) {
+    this.setState({brushColor: '#' + color.hex})
   }
 
 
 	render() {
-		return (
-		 		<div className='canvas-state' style={{height: '500px'}}>
-	        <p>Frolicking Ampersands</p>
+    let popupPosition = {
+      position: 'absolute',
+      top: '12%',
+      left: '5%',
+    };
+
+    return (
+        <div className='canvas-state' style={{height: '500px'}}>
+          <h1>Frolicking Ampersands</h1>
         <div className='button-bar'>
           <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
-          <button onClick={ this.handleOnClickChangeColorYellow.bind(this) }>Yellow</button>
-          <button onClick={ this.handleOnClickChangeColorBlack.bind(this) }>Black</button>
-          <button onClick={ this.handleOnClickChangBgToRed.bind(this) }>Change Background to Red</button>
-          <button onClick={ this.handleOnClickChangBgToBlue.bind(this) }>Change background to Blue</button>
+          <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
+          <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
+
         </div>
         <DrawableCanvas {...this.state}/>
+
+        <ToggleDisplay show={this.state.displayColorPicker}>
+          <ColorPicker
+              type="sketch"
+              positionCSS={ popupPosition }
+              color={ this.state.brushColor }
+              onChangeComplete={ this.chooseColor.bind(this) } />
+        </ToggleDisplay>
+
+        <ToggleDisplay show={this.state.displayBGColorPicker}>
+          <ColorPicker
+              type="sketch"
+              positionCSS={ popupPosition }
+              color= {this.state.canvasStyle.backgroundColor}
+              onChangeComplete={ this.chooseBG.bind(this) } />
+        </ToggleDisplay>
         </div>
 		)
 	}
