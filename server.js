@@ -43,7 +43,7 @@ app.post('/users', function(req, res){
 
 //get all users
 app.get('/users', function(req, res) {
-  connection.query('SELECT * from users', function(err, rows, fields) {
+  connection.query('SELECT * from users', function (err, rows, fields) {
    if (!err){
      res.send('rows: ', rows);
    }
@@ -54,17 +54,38 @@ app.get('/users', function(req, res) {
 });
 
 //get a specific user
-app.get('/users/:Last', function(req, res){
+app.get('/users/:Last', function (req, res){
   connection.query('SELECT * from users WHERE LastName="'+req.params.Last+'" ', function(err, rows, fields) {
-   if (!err){
-     res.send('rows: ', rows);
-   }
-   else {
+   if (err){
      res.send('Error while performing Query.');
    }
+   res.send(rows);
   });
 });
 
+//get all boards
+app.get('/boards', function (req, res) {
+  connection.query('SELECT * from boards', function(err, rows, fields) {
+    if(err){
+      res.send('error while performing Query');
+    };
+    //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
+    res.send(rows[2].thing);
+  });
+});
+
+//create a board
+app.post('/boards', function (req, res) {
+  console.log('params = ',req.params);
+  console.log('body = ', req.body[1]);
+  connection.query('INSERT INTO boards VALUES("'+req.body[0]+'")', function(err, rows, fields){
+    if(err){
+      console.log('error: ', err);
+      res.send(err);
+    }
+    res.send(rows);
+  });
+});
 
 // listen (start app with node index.js) ======================================
 app.listen(8080);
