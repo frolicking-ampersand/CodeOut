@@ -2,13 +2,13 @@
 <html ng-app='molboard'>
   <head>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 <script src='/script.js'></script>
   </head>
   <body ng-controller="mainController" style='margin: 0'>
     <canvas id="canvas"></canvas>
     <button type="button" ng-click="saveCanvas()">Save</button>
     <button type="button" ng-click="restore()">Restore</button>
-
-
   </body>
 </html>
