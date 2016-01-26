@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='molboard'>
   <head>
-
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
+<script src='/script.js'></script>
   </head>
-  <body style='margin: 0'>
+  <body ng-controller="mainController" style='margin: 0'>
     <canvas id="canvas"></canvas>
-    <button type="button" onclick="saveCanvas()">Save</button>
-    <button type="button" onclick="restore()">Restore</button>
-     <script src='/script.js'></script>
+    <button type="button" ng-click="saveCanvas()">Save</button>
+    <button type="button" ng-click="restore()">Restore</button>
+
+
   </body>
 </html>

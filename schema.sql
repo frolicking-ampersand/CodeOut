@@ -9,3 +9,7 @@ CREATE TABLE users (
  Address varchar(255),
  City varchar(255)
 );
+
+CREATE TABLE boards (
+  thing LONGBLOB
+);
