@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
-import Menu from './components/menu'
-import CanvasDraw from './components/canvasdraw'
-import Webcam from 'react-webcam';
-
+import Menu from './components/menu';
+import CanvasDraw from './components/canvasdraw';
+import axios from 'axios';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       toggleBGBox: 'Choose Background',
       toggleColorBox: 'Pick Color',
-			brushColor: '#000000',
+      brushColor: '#000000',
       lineWidth: 4,
       displayColorPicker: false,
       displayBGColorPicker: false,
@@ -21,13 +20,13 @@ class App extends Component {
         backgroundColor: '#FFFFFF'
       },
       clear: false
-	  };
+    };
     this.showColorBox = this.showColorBox.bind(this);
-	  this.chooseColor = this.chooseColor.bind(this);
+    this.chooseColor = this.chooseColor.bind(this);
     this.showBGColorBox = this.showBGColorBox.bind(this)
   }
 
-	handleOnClickClear()  {
+  handleOnClickClear()  {
     this.setState({
       clear: true
     });
@@ -75,7 +74,35 @@ class App extends Component {
     this.setState({brushColor: '#' + color.hex})
   }
 
-	render() {
+  saveAnImage () {
+    let newCanvas = document.getElementById("canvas")
+    let savedImage = new Image()
+    savedImage.src = newCanvas.toDataURL('image/png')
+    //console.log(savedImage.src);
+    axios.post('/boards', {
+        thing: savedImage.src
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  }
+
+  restoreBoard(){
+    let NewCanvas = document.getElementById("canvas");
+    let savedImage = new Image();
+    axios.get('/boards')
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  }
+
+  render() {
     let popupPosition = {
       position: 'absolute',
       top: '12%',
@@ -92,6 +119,7 @@ class App extends Component {
           <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
           <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
           <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
+          <button onClick={this.saveAnImage}> Heyyy </button>
         </div>
         <div className='canvas-style'>
         <CanvasDraw {...this.state}/>
@@ -111,7 +139,8 @@ class App extends Component {
               color= {this.state.canvasStyle.backgroundColor}
               onChangeComplete={ this.chooseBG.bind(this) } />
         </ToggleDisplay>
-        <Webcam />
+          </div>
+        </div>
         </div>
     )
   }

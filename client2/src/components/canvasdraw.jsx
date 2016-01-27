@@ -150,7 +150,7 @@ const CanvasDraw = React.createClass({
   },
   render() {
     return (
-      <canvas style = {this.canvasStyle()}
+      <canvas id="canvas" style = {this.canvasStyle()}
         onMouseDown = {this.handleOnMouseDown}
         onTouchStart = {this.handleOnMouseDown}
         onMouseMove = {this.handleOnMouseMove}
