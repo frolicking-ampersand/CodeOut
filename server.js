@@ -33,9 +33,6 @@ app.use(methodOverride());
 //////////////////////////
 
 //serve up static index.js file
-app.get('/', function(req, res){
-  res.sendFile('/index.html');
-});
 
 //add a user to the database
 app.post('/users', function(req, res){

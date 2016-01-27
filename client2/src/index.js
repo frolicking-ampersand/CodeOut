@@ -4,6 +4,8 @@ import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
 import Menu from './components/menu'
 import CanvasDraw from './components/canvasdraw'
+import Webcam from 'react-webcam';
+
 
 class App extends Component {
 	constructor(props) {
@@ -109,8 +111,7 @@ class App extends Component {
               color= {this.state.canvasStyle.backgroundColor}
               onChangeComplete={ this.chooseBG.bind(this) } />
         </ToggleDisplay>
-          </div>
-        </div>
+        <Webcam />
         </div>
     )
   }
