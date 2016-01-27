@@ -24,7 +24,7 @@ connection.connect(function(err) {
 
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client2'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
