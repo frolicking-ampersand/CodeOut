@@ -22,17 +22,12 @@ class App extends Component {
     this.showColorBox = this.showColorBox.bind(this);
 	  this.chooseColor = this.chooseColor.bind(this);
     this.showBGColorBox = this.showBGColorBox.bind(this)
-    this.handleChangeComplete = this.handleChangeComplete.bind(this);
   }
 
 	handleOnClickClear()  {
     this.setState({
       clear: true
     });
-  }
-
-  handleChangeComplete(color) {
-    this.setState({ background: color.hex });
   }
 
   showColorBox() {
