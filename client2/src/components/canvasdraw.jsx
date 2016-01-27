@@ -2,6 +2,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const PropTypes = React.PropTypes;
+import axios from 'axios';
 
 const CanvasDraw = React.createClass({
   propTypes: {
@@ -61,6 +62,9 @@ const CanvasDraw = React.createClass({
     if(nextProps.clear){
       this.resetCanvas();
     }
+    if(nextProps.reset){
+      this.restoreCanvas();
+    }
   },
   handleOnMouseDown(e){
     let rect = this.state.canvas.getBoundingClientRect();
@@ -70,8 +74,7 @@ const CanvasDraw = React.createClass({
         lastX: e.targetTouches[0].pageX - rect.left,
         lastY: e.targetTouches[0].pageY - rect.top
       });
-    }
-    else{
+    } else{
       this.setState({
         lastX: e.clientX - rect.left,
         lastY: e.clientY - rect.top
@@ -131,6 +134,23 @@ const CanvasDraw = React.createClass({
     let height = this.state.context.canvas.height;
     this.state.context.clearRect(0, 0, width, height);
   },
+  restoreCanvas(){
+    let width = this.state.context.canvas.width;
+    let height = this.state.context.canvas.height;
+    this.state.context.clearRect(0, 0, width, height);
+    let con = this.state.context;
+    let savedImage = new Image();
+    axios.get('/boards')
+      .then(function (response) {
+        console.log(response.data);
+        //savedImage.src = response.data;
+        console.log(savedImage);
+        con.drawImage(savedImage,0,0);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  },
   getDefaultStyle(){
     return {
       backgroundColor: '#FFFFFF',
@@ -150,7 +170,7 @@ const CanvasDraw = React.createClass({
   },
   render() {
     return (
-      <canvas style = {this.canvasStyle()}
+      <canvas id="canvas" style = {this.canvasStyle()}
         onMouseDown = {this.handleOnMouseDown}
         onTouchStart = {this.handleOnMouseDown}
         onMouseMove = {this.handleOnMouseMove}
