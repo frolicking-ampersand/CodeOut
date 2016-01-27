@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import DrawableCanvas from 'react-drawable-canvas';
 import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
+import Menu from './components/menu'
+import CanvasDraw from './components/canvasdraw'
 
 class App extends Component {
 	constructor(props) {
@@ -72,7 +73,6 @@ class App extends Component {
     this.setState({brushColor: '#' + color.hex})
   }
 
-
 	render() {
     let popupPosition = {
       position: 'absolute',
@@ -81,16 +81,19 @@ class App extends Component {
     };
 
     return (
-        <div className='canvas-state' style={{height: '500px'}}>
-          <h1>Frolicking Ampersands</h1>
+        <div>
+          <Menu />
+        <div>
+        <div class="col-sm-8">
+        <h1>Frolicking Ampersands</h1>
         <div className='button-bar'>
           <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
           <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
           <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
-
         </div>
-        <DrawableCanvas {...this.state}/>
-
+        <div className='canvas-style'>
+        <CanvasDraw {...this.state}/>
+        </div>
         <ToggleDisplay show={this.state.displayColorPicker}>
           <ColorPicker
               type="sketch"
@@ -106,10 +109,12 @@ class App extends Component {
               color= {this.state.canvasStyle.backgroundColor}
               onChangeComplete={ this.chooseBG.bind(this) } />
         </ToggleDisplay>
+          </div>
         </div>
-		)
-	}
+        </div>
+    )
+  }
 };
 
 
-ReactDOM.render(<App />, document.querySelector('.container'));
+ReactDOM.render(<App />, document.body);
