@@ -1,3 +1,4 @@
+
 var app = angular.module('molboard', []);
 app.controller('mainController', function ($scope, $http) {
   $scope.canvas = document.getElementById("canvas");

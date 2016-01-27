@@ -1,11 +1,12 @@
 {
-   "name": "molboard",
-   "version": "0.0.1",
-   "dependencies": {
-     "express": "^4.10.6",
-     "mysql": "^2.5.4",
-     "morgan"     : "~1.2.2",
-     "body-parser": "~1.5.2",
-     "method-override": "~2.1.2"
-   }
- }
+  "name": "molboard",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "express": "^4.10.6",
+    "method-override": "~2.1.2",
+    "morgan": "~1.2.2",
+    "mysql": "^2.5.4",
+    "socket.io": "^1.4.5"
+  }
+}

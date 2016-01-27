@@ -4,6 +4,8 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mysql      = require('mysql');
+var server = app.listen(8080);
+var io = require('socket.io').listen(server);
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -22,7 +24,7 @@ connection.connect(function(err) {
 
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client2'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
@@ -87,6 +89,30 @@ app.post('/boards', function (req, res) {
   });
 });
 
+//***************************************************
+// *SOCKETS*
+//***************************************************
+//server.listen(8080);
+io.on('connection', function (socket) {
+  console.log('socket connection');
+
+  socket.on('create board', function (boardName) {
+    console.log('creating board');
+    socket.join(boardName);
+    socket.room = boardName;
+  });
+
+  socket.on('join board', function (boardName) {
+  });
+
+  socket.on('draw', function (data) {
+    console.log('drawing');
+    socket.broadcast.to(socket.room).emit('draw', data);
+    //socket.broadcast.emit('draw', data);
+  });
+});
+
+
 // listen (start app with node index.js) ======================================
-app.listen(8080);
+//app.listen(8080);
 console.log("App listening on port 8080");
