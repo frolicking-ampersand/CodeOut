@@ -32,7 +32,12 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 //////////////////////////
 
-//serve up static index.js file
+//serve up static index.js files
+
+// app.get('/', function(req, res) {
+//   res.sendFile('/index.html');
+// });
+
 
 //add a user to the database
 app.post('/users', function(req, res){
@@ -69,19 +74,20 @@ app.get('/boards', function (req, res) {
       res.send('error while performing Query');
     };
     //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
-    res.send(rows[2].thing);
+    res.send(rows[0].thing);
   });
 });
 
 //create a board
 app.post('/boards', function (req, res) {
-  console.log('params = ',req.params);
-  console.log('body = ', req.body[1]);
-  connection.query('INSERT INTO boards VALUES("'+req.body[0]+'")', function(err, rows, fields){
+  //console.log('params = ',req.params);
+  //console.log('body = ', req.body);
+  connection.query('INSERT INTO boards VALUES("'+req.body.thing+'")', function(err, rows, fields){
     if(err){
       console.log('error: ', err);
       res.send(err);
     }
+    console.log(rows);
     res.send(rows);
   });
 });

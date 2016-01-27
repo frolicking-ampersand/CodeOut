@@ -19,7 +19,8 @@ class App extends Component {
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
-      clear: false
+      clear: false,
+      reset: false
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
@@ -27,6 +28,7 @@ class App extends Component {
   }
 
   handleOnClickClear()  {
+    console.log(this);
     this.setState({
       clear: true
     });
@@ -84,6 +86,8 @@ class App extends Component {
       })
       .then(function (response) {
         console.log(response);
+        handleOnClickClear();
+
       })
       .catch(function (response) {
         console.log(response);
@@ -91,15 +95,21 @@ class App extends Component {
   }
 
   restoreBoard(){
-    let NewCanvas = document.getElementById("canvas");
-    let savedImage = new Image();
-    axios.get('/boards')
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (response) {
-        console.log(response);
-      });
+    this.setState({
+      reset: true
+    });
+    // let newCanvas = document.getElementById("canvas");
+    // console.log('canvas ', newCanvas);
+    // let savedImage = new Image();
+    // axios.get('/boards')
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     savedImage.src = response.data;
+    //     //this.handleOnClickClear.bind(this)
+    //   })
+    //   .catch(function (response) {
+    //     console.log(response);
+    //   });
   }
 
   render() {
@@ -120,6 +130,7 @@ class App extends Component {
           <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
           <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
           <button onClick={this.saveAnImage}> Heyyy </button>
+          <button onClick={this.restoreBoard.bind(this)}> Restore </button>
         </div>
         <div className='canvas-style'>
         <CanvasDraw {...this.state}/>
