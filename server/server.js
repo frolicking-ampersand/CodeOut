@@ -18,12 +18,10 @@ var client = new pg.Client(conString);
 client.connect();
 /////////////////////////
 
-require('./utils/passport')(passport); // pass passport for configuration
-
 ///////////////////////
 // Set up middleware //
 ///////////////////////
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/../public'));
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
@@ -32,19 +30,20 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 ///////////////////////
 
-///////////////////
-// Apply routing //
-///////////////////
-// require('./routes.js')(app, express);  // Need to finish
-///////////////////
-
 ////////////////////////////////////////
-// Set up passport for authentication //
+// Set up Passport for authentication //
 ////////////////////////////////////////
+require('./utils/passport')(passport); // pass passport for configuration
 app.use(session({ secret: 'youmakemefeelgoodlalalalala' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 ////////////////////////////////////////
+
+///////////////////
+// Apply routing //
+///////////////////
+require('./routes.js')(app, express);  // Need to finish
+///////////////////
 
 //////////////////
 // Start server //

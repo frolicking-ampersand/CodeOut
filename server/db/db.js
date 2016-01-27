@@ -6,8 +6,10 @@ var db = new Sequelize("board", "", "", {
 
 // we define the models we need using js--we don't need a schema file!
 var User = db.define('User', {
-  username: Sequelize.STRING,
-  password: Sequelize.STRING
+  google_id: Sequelize.STRING,
+  google_token: Sequelize.STRING,
+  facebook_id: Sequelize.STRING,
+  facebook_token: Sequelize.STRING
 });
 
 // puts a UserId column on each Message instance
@@ -18,14 +20,9 @@ var User = db.define('User', {
 // User.hasMany(Message);
 
 
-User.sync().then(function () {
-  return User.create({
-    username: 'John_Wick',
-    password: 'asdfasdf'
-  })
-});
+User.sync();
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and message tables and make new ones.
 
-exports.User = User;
+module.exports = User;
 

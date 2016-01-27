@@ -1,4 +1,4 @@
-var path = require('path');
+var passport = require('passport');
 
 module.exports = function (app, express) {
 
@@ -16,34 +16,17 @@ module.exports = function (app, express) {
 
   //add a user to database
   app.post('/users', function(req, res){
-    console.log(req.body.LastName);
-    //connection.query('INSERT INTO users VALUES (3, "cow", "moo", "pasture", "alberta") ');
-    connection.query('INSERT INTO users VALUES ('+req.body.PersonID+', "'+req.body.LastName+'", "'+req.body.FirstName+'", "'+req.body.Address+'", "'+req.body.City+'") ');
-    res.send('done');
+    
   });
 
   //get all users
   app.get('/users', function(req, res) {
-    connection.query('SELECT * from users', function(err, rows, fields) {
-     if (!err){
-       res.send('rows: ', rows);
-     }
-     else {
-       res.send('Error while performing Query.');
-     }
-    });
+    
   });
 
   //get a specific user
-  app.get('/users/:Last', function(req, res){
-    connection.query('SELECT * from users WHERE LastName="'+req.params.Last+'" ', function(err, rows, fields) {
-     if (!err){
-       res.send('rows: ', rows);
-     }
-     else {
-       res.send('Error while performing Query.');
-     }
-    });
+  app.get('/users/:username', function(req, res){
+
   });
   //////////////////////
 
