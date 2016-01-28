@@ -20,7 +20,7 @@ class App extends Component {
         backgroundColor: '#FFFFFF'
       },
       clear: false,
-      reset: false
+      restore: false
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
@@ -96,7 +96,7 @@ class App extends Component {
 
   restoreBoard(){
     this.setState({
-      reset: true
+      restore: true
     });
     // let newCanvas = document.getElementById("canvas");
     // console.log('canvas ', newCanvas);

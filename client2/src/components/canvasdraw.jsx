@@ -62,7 +62,7 @@ const CanvasDraw = React.createClass({
     if(nextProps.clear){
       this.resetCanvas();
     }
-    if(nextProps.reset){
+    if(nextProps.restore){
       this.restoreCanvas();
     }
   },
