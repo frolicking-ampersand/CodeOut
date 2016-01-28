@@ -148,6 +148,7 @@ const CanvasDraw = React.createClass({
         console.log("response data ",response.data);
         savedImage.src = response.data;
         //console.log(savedImage);
+
         con.drawImage(savedImage,0,0);
       })
       .catch(function (response) {
