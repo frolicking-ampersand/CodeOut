@@ -71,3 +71,4 @@
 .btn-toolbar{
   text-align: center;
   @include button-variant(red, orange, blue);
+}
