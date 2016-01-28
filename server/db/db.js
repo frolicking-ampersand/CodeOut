@@ -4,6 +4,7 @@ var db = new Sequelize("board", "", "", {
   dialect: 'postgres'
 });
 
+
 // we define the models we need using js--we don't need a schema file!
 var User = db.define('User', {
   google_id: Sequelize.STRING,
@@ -20,9 +21,26 @@ var User = db.define('User', {
 // User.hasMany(Message);
 
 
-User.sync();
+User.sync()
+  .then(function() {
+    console.log('User Table has is definitely in our Postgres Database');
+  });
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and message tables and make new ones.
 
-module.exports = User;
+
+var Board = db.define('Board', {
+  thing: Sequelize.BLOB
+});
+
+Board.sync()
+  .then(function() {
+    console.log('Board Table has is definitely in our Postgres Database');
+  });
+
+
+module.exports = {
+  User: User,
+  Board: Board
+}
 
