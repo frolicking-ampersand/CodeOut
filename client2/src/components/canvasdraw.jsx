@@ -124,15 +124,10 @@ const CanvasDraw = React.createClass({
       drawing: false
     });
   },
-<<<<<<< HEAD
-  draw(lX, lY, cX, cY){
-    // console.log('drawing');
-    this.state.context.strokeStyle = this.props.brushColor;
-=======
+
   draw(lX, lY, cX, cY, color){
     console.log('drawing');
     this.state.context.strokeStyle = color || this.props.brushColor;
->>>>>>> (feat) Now with color!
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
     this.state.context.lineTo(cX,cY);
