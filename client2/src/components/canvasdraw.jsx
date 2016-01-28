@@ -87,7 +87,6 @@ const CanvasDraw = React.createClass({
     });
   },
   handleOnMouseMove(e){
-
     if(this.state.drawing){
       let rect = this.state.canvas.getBoundingClientRect();
       let lastX = this.state.lastX;
