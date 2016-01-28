@@ -51,7 +51,7 @@ io.on('connection', function (socket) {
 /////////////////////////
 // Postgres Connection //
 /////////////////////////
-var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
 
 var client = new pg.Client(conString);
 client.connect();
