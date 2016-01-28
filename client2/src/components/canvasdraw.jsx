@@ -43,7 +43,8 @@ const CanvasDraw = React.createClass({
     this.socket = io();
     this.socket.emit('create board', 'test');
     this.socket.on('draw', function (data) {
-      that.draw(data.lX, data.lY, data.cX, data.cY);
+      that.state.context.beginPath();
+      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
     });
 
     canvas.style.width = '100%';
@@ -104,11 +105,13 @@ const CanvasDraw = React.createClass({
 
 
       this.draw(lastX, lastY, currentX, currentY);
+      var that = this;
       this.socket.emit('draw', {
         lX: lastX,
         lY: lastY,
         cX: currentX,
-        cY: currentY
+        cY: currentY,
+        color: that.props.brushColor
       });
       this.setState({
         lastX: currentX,
@@ -121,9 +124,10 @@ const CanvasDraw = React.createClass({
       drawing: false
     });
   },
-  draw(lX, lY, cX, cY){
-    // console.log('drawing');
-    this.state.context.strokeStyle = this.props.brushColor;
+
+  draw(lX, lY, cX, cY, color){
+    console.log('drawing');
+    this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
     this.state.context.lineTo(cX,cY);
