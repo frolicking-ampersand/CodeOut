@@ -1,7 +1,7 @@
+import React, { Component } from 'react';
 import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
-import Menu from './components/menu';
-import CanvasDraw from './components/canvasdraw';
+import CanvasDraw from './canvasdraw';
 import axios from 'axios';
 
 class App extends Component {
@@ -117,40 +117,35 @@ class App extends Component {
       left: '5%',
     };
 
-    return (
-        <div>
-          <Menu />
-        <div>
-        <div class="col-sm-8">
+   return (
+      <div>
         <h1>Frolicking Ampersands</h1>
-        <div className='button-bar'>
-          <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
-          <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
-          <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
-          <button onClick={this.saveAnImage}> Heyyy </button>
-          <button onClick={this.restoreBoard.bind(this)}> Restore </button>
-        </div>
-        <div className='canvas-style'>
-        <CanvasDraw {...this.state}/>
-        </div>
-        <ToggleDisplay show={this.state.displayColorPicker}>
-          <ColorPicker
-              type="sketch"
-              positionCSS={ popupPosition }
-              color={ this.state.brushColor }
-              onChangeComplete={ this.chooseColor.bind(this) } />
-        </ToggleDisplay>
-
-        <ToggleDisplay show={this.state.displayBGColorPicker}>
-          <ColorPicker
-              type="sketch"
-              positionCSS={ popupPosition }
-              color= {this.state.canvasStyle.backgroundColor}
-              onChangeComplete={ this.chooseBG.bind(this) } />
-        </ToggleDisplay>
+          <div className='button-bar'>
+            <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
+            <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
+            <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
+            <button onClick={this.saveAnImage}> Heyyy </button>
           </div>
-        </div>
-        </div>
+          <div className='canvas-style'>
+            <CanvasDraw {...this.state}/>
+          </div>
+
+          <ToggleDisplay show={this.state.displayColorPicker}>
+            <ColorPicker
+                type="sketch"
+                positionCSS={ popupPosition }
+                color={ this.state.brushColor }
+                onChangeComplete={ this.chooseColor.bind(this) } />
+          </ToggleDisplay>
+
+          <ToggleDisplay show={this.state.displayBGColorPicker}>
+            <ColorPicker
+                type="sketch"
+                positionCSS={ popupPosition }
+                color= {this.state.canvasStyle.backgroundColor}
+                onChangeComplete={ this.chooseBG.bind(this) } />
+          </ToggleDisplay>
+      </div>
     )
   }
 };
