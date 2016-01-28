@@ -64,13 +64,11 @@
 
 }
 
-
-.editor {
-  float: left;
+.toolbar {
+  text-align: center;
 }
 
-.indentMe {
- padding: 5px;
- display: inline-block;
-
+.btn-toolbar{
+  text-align: center;
+  @include button-variant(red, orange, blue);
 }
