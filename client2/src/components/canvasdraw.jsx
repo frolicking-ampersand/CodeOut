@@ -122,7 +122,7 @@ const CanvasDraw = React.createClass({
     });
   },
   draw(lX, lY, cX, cY){
-    console.log('drawing');
+    // console.log('drawing');
     this.state.context.strokeStyle = this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
@@ -135,16 +135,16 @@ const CanvasDraw = React.createClass({
     this.state.context.clearRect(0, 0, width, height);
   },
   restoreCanvas(){
-    let width = this.state.context.canvas.width;
-    let height = this.state.context.canvas.height;
-    this.state.context.clearRect(0, 0, width, height);
+    // let width = this.state.context.canvas.width;
+    // let height = this.state.context.canvas.height;
+    // this.state.context.clearRect(0, 0, width, height);
     let con = this.state.context;
     let savedImage = new Image();
     axios.get('/boards')
       .then(function (response) {
-        console.log(response.data);
-        //savedImage.src = response.data;
-        console.log(savedImage);
+        console.log("response data ",response.data);
+        savedImage.src = response.data;
+        //console.log(savedImage);
         con.drawImage(savedImage,0,0);
       })
       .catch(function (response) {

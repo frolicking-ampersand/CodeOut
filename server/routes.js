@@ -1,34 +1,54 @@
 var passport = require('passport');
+var Board = require('./db/db').Board;
 
 module.exports = function (app, express) {
 
-  //////////////////////////////////
-  // Serve up static public files //
-  //////////////////////////////////
-  app.get('/', function(req, res){
-    res.sendFile('/index.html');
+  // //////////////////////////////////
+  // // Serve up static public files //
+  // //////////////////////////////////
+  // app.get('/', function(req, res){
+  //   res.sendFile('/index.html');
+  // });
+  // //////////////////////////////////
+
+  // =======================================
+  // UNDEFINED PROTECTED SECTION ===========
+  // =======================================
+  // we will want this protected so you have to be logged in to visit
+  // we will use route middleware to verify this (the isLoggedIn function)
+  // app.get('/#', isLoggedIn, function(req, res) {
+  //   res.render('/#' 
+  //     // Needs to route correctly
+  //   );
+  // });
+
+
+  // =======================================
+  // BOARD ROUTES ==========================
+  // =======================================
+  // A protected route
+
+  // get one board
+  app.get('/boards', function (req, res) {
+    Board.findOne()
+      .then(function(board) {
+        console.log(board);
+        //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
+        res.send(board.thing); 
+      });
   });
-  //////////////////////////////////
 
-  //////////////////////
-  // Database Routing //
-  //////////////////////
-
-  //add a user to database
-  app.post('/users', function(req, res){
-    
+  //create a board
+  app.post('/boards', function (req, res) {
+    Board.create({
+      thing: req.body.thing
+    }).then(function(err, board, fields) {
+      if (err) {
+        res.send(err);
+      }
+      res.send(board);
+    });
   });
-
-  //get all users
-  app.get('/users', function(req, res) {
-    
-  });
-
-  //get a specific user
-  app.get('/users/:username', function(req, res){
-
-  });
-  //////////////////////
 
   // =====================================
   // FACEBOOK ROUTES =====================

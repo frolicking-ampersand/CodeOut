@@ -1,10 +1,9 @@
 // load all the things we need
-var LocalStrategy   = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model from Postgres Database
-var User = require('../db/db');
+var User = require('../db/db').User;
 
 // load the auth variables from Facebook and Google
 var configAuth = require('./auth');
