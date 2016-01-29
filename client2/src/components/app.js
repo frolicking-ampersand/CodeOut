@@ -3,7 +3,11 @@ import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
 import CanvasDraw from './canvasdraw';
 import axios from 'axios';
-
+import { Button } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
+import {DropdownButton} from 'react-bootstrap';
+import {MenuItem} from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -85,7 +89,7 @@ class App extends Component {
       })
       .then(function (response) {
         console.log(response);
-        handleOnClickClear();
+        //handleOnClickClear();
 
       })
       .catch(function (response) {
@@ -95,20 +99,9 @@ class App extends Component {
 
   restoreBoard(){
     this.setState({
+      clear: true,
       restore: true
     });
-    // let newCanvas = document.getElementById("canvas");
-    // console.log('canvas ', newCanvas);
-    // let savedImage = new Image();
-    // axios.get('/api/boards')
-    //   .then(function (response) {
-    //     console.log(response.data);
-    //     savedImage.src = response.data;
-    //     //this.handleOnClickClear.bind(this)
-    //   })
-    //   .catch(function (response) {
-    //     console.log(response);
-    //   });
   }
 
   render() {
@@ -121,12 +114,23 @@ class App extends Component {
    return (
       <div>
         <h1>Frolicking Ampersands</h1>
-          <div className='button-bar'>
-            <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
-            <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
-            <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
-            <button onClick={this.saveAnImage}> Heyyy </button>
+          <div class = "row" className='button-bar' >
+          <ButtonToolbar>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.handleOnClickClear.bind(this) }>Clear</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showColorBox }>{this.state.toggleColorBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Heyyy </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
+            <DropdownButton bsSize="sm" title="Large button" id="dropdown-size-large">
+              <MenuItem eventKey="1">Action</MenuItem>
+              <MenuItem eventKey="2">Another action</MenuItem>
+              <MenuItem eventKey="3">Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey="4">Separated link</MenuItem>
+            </DropdownButton>
+          </ButtonToolbar>
           </div>
+
           <div className='canvas-style'>
             <CanvasDraw {...this.state}/>
           </div>

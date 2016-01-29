@@ -43,6 +43,7 @@ const CanvasDraw = React.createClass({
     this.socket = io();
     this.socket.emit('create board', 'test');
     this.socket.on('draw', function (data) {
+      console.log("listening");
       that.state.context.beginPath();
       that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
     });
