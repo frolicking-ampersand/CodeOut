@@ -153,6 +153,7 @@ const CanvasDraw = React.createClass({
         con.drawImage(savedImage,0,0);
       })
       .catch(function (response) {
+        console.log("error restoring image");
         console.log(response);
       });
   },

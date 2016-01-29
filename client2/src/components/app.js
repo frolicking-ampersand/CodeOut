@@ -93,6 +93,7 @@ class App extends Component {
 
       })
       .catch(function (response) {
+        console.log("ERROR saving");
         console.log(response);
       });
   }
