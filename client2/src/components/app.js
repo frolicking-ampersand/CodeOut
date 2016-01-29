@@ -79,7 +79,7 @@ class App extends Component {
     let savedImage = new Image()
     savedImage.src = newCanvas.toDataURL('image/png')
     //console.log(savedImage.src);
-    axios.post('/boards', {
+    axios.post('/api/boards', {
         thing: savedImage.src
       })
       .then(function (response) {
@@ -99,7 +99,7 @@ class App extends Component {
     // let newCanvas = document.getElementById("canvas");
     // console.log('canvas ', newCanvas);
     // let savedImage = new Image();
-    // axios.get('/boards')
+    // axios.get('/api/boards')
     //   .then(function (response) {
     //     console.log(response.data);
     //     savedImage.src = response.data;

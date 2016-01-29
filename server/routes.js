@@ -16,10 +16,10 @@ module.exports = function (app, express) {
   // =======================================
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
-  // app.get('/#', isLoggedIn, function(req, res) {
-  //   res.render('/#' 
-  //     // Needs to route correctly
-  //   );
+  // app.get('/canvas', isLoggedIn, function(req, res) {
+  //   res.render('/canvas', isLoggedIn, function(req, res) {
+
+  //   });
   // });
 
 
@@ -29,7 +29,7 @@ module.exports = function (app, express) {
   // A protected route
 
   // get one board
-  app.get('/boards', function (req, res) {
+  app.get('/api/boards', function (req, res) {
     Board.findOne()
       .then(function(board) {
         console.log(board);
@@ -39,7 +39,7 @@ module.exports = function (app, express) {
   });
 
   //create a board
-  app.post('/boards', function (req, res) {
+  app.post('api/boards', function (req, res) {
     Board.create({
       thing: req.body.thing
     }).then(function(err, board, fields) {
@@ -59,10 +59,10 @@ module.exports = function (app, express) {
   // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect : '/#',
+      successRedirect : '/#/canvas',
       failureRedirect : '/'
-    })
-  );
+    }));   
+
   // =====================================
 
   // =====================================
@@ -76,9 +76,9 @@ module.exports = function (app, express) {
   // the callback after google has authenticated the user
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-      successRedirect : '/#',
+      successRedirect : '/#/canvas',
       failureRedirect : '/'
-    }));    
+    }));   
   // =====================================
 
   // =====================================

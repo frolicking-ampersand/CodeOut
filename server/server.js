@@ -30,7 +30,7 @@ var io = require('socket.io').listen(server);
 //***************************************************
 //server.listen(8080);
 io.on('connection', function (socket) {
-  console.log('socket connection');
+  console.log('Socket connection has been made with id of:\n' + socket.id);
 
   socket.on('create board', function (boardName) {
     console.log('creating board');
