@@ -35,7 +35,7 @@ app.controller('mainController', function ($scope, $http) {
     $scope.savedData.src = $scope.canvas.toDataURL('image/png');
     console.log($scope.savedData.src);
     //savedData = $scope.context.getImageData(0, 0, 500, 500);
-    $http.post('/boards', [ $scope.savedData.src])
+    $http.post('/api/boards', [ $scope.savedData.src])
       .success(function (data) {
         console.log(data);
       });
@@ -46,7 +46,7 @@ app.controller('mainController', function ($scope, $http) {
   $scope.restore = function(){
     // console.log($scope.savedData.src);
     $scope.context.clearRect(0, 0, 500, 500);
-    $http.get('/boards')
+    $http.get('/api/boards')
       .success(function (data) {
         console.log(data);
         $scope.savedPic.src = data;

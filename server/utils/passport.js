@@ -47,24 +47,29 @@ module.exports = function(passport) {
   function(req, token, refreshToken, profile, done) {
 
     // asynchronous
-    process.nextTick(function() {
+    // process.nextTick(function() {
       // find the user in the database based on their facebook id
       User.findOne({where: {facebook_id: profile.id}})
-        .then(function(err, user) {
-          console.log(user);
-          if (err) {
-            return done(err);
-          }
+        .then(function(user) {
+          // console.log('The Facebook login has found an existing user and its user is: ' + user.facebook_id);
+          // console.log('The callback function is ' + done);
           if (user) {
+            console.log("THE FACEBOOK USER IS " + user.facebook_id);
             return done(null, user);
           } else {
-            User.create({
+            return User.create({
               facebook_id: profile.id,
               facebook_token: token
-            });
+            })
+              .then(function (user) {
+                return done(null, user);
+              });
           }
+        })
+        .catch(function(err) {
+          done(err);
         });
-    });
+    // });
 
   }));
 
@@ -84,18 +89,22 @@ module.exports = function(passport) {
       
       // try to find the user based on their google id
       User.findOne({where: {google_id: profile.id}})
-        .then(function(err, user) {
-          if (err) {
-            return done(err);
-          }
+        .then(function(user) {
           if (user) {
+            // console.log("THE GOOGLE USER IS " + user.google_id);
             return done(null, user);
           } else {
-            User.create({
+            return User.create({
               google_id: profile.id,
               google_token: token
+            })
+            .then(function (user) {
+              return done(null, user);
             });
           }
+        })
+        .catch(function(err) {
+          done(err);
         });
     });
 
