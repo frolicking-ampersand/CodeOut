@@ -36,13 +36,19 @@ module.exports = function (app, express) {
       console.log('App is running, server is listening on port ', app.get('port'));
   });
 
-  app.get('/api/boards', function (req, res) {
-    Board.findOne()
-      .then(function(board) {
-        console.log(board);
-        //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
-        res.send(board.thing);
-      });
+  // app.get('/api/boards', function (req, res) {
+  //   Board.findOne()
+  //     .then(function(board) {
+  //       console.log(board);
+  //       //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
+  //       res.send(board.thing);
+  //     });
+  // });
+
+  app.get('/api/boards', function(req, res) {
+    'SELECT * FROM board', function(err, rows){
+      res.send(rows);
+    }
   });
 
   //create a board
