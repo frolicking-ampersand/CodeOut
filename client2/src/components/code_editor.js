@@ -91,7 +91,7 @@ export default class CodeEditor extends Component {
 		return (
 			<div>
         <div>
-          <Navbar 
+          <Navbar
             changeLang={mode => this.setState({mode})}
             changeTheme={theme => this.setState({theme})}
             increaseSize={this.increaseSize}
@@ -105,13 +105,52 @@ export default class CodeEditor extends Component {
 					  mode={this.state.mode}
 					  theme={this.state.theme}
 					  fontSize={this.state.fontSize}
-            width="100%"
-            height="800px" 
-            float="inline" />
-				</Col>
-				<Col xs={6} md={4}>
+					  width="700"
+				</div>
+				Select Style:
+				<select onChange={this.changeTheme} >
+				  <option value="monokai"> Monokai </option>
+				  <option value="github">Github</option>
+				  <option value="tomorrow">Tomorrow</option>
+				  <option value="kuroir">Kuroir</option>
+				  <option value="twilight"> Twilight </option>
+				  <option value="xcode"> Xcode </option>
+				  <option value="textmate"> Textmate </option>
+				  <option value="solarized_dark"> Solarized Dark </option>
+				  <option value="solarized_light"> Solarized Light </option>
+				  <option value="terminal"> Terminal </option>
+				</select>
+				<div>
+				Select Language:
+				<select onChange={this.changeLang} >
+				  <option value="javascript"> Javascript </option>
+				  <option value="java"> Java </option>
+				  <option value="python"> Python </option>
+				  <option value="xml"> XML </option>
+				  <option value="ruby"> Ruby </option>
+				  <option value="sass"> SASS </option>
+				  <option value="markdown"> Markdown </option>
+				  <option value="mysql"> MySQL </option>
+				  <option value="json"> JSON </option>
+				  <option value="html"> HTML </option>
+				  <option value="handlebars"> Handlebars </option>
+				  <option value="golang"> Golang </option>
+				  <option value="csharp"> CSharp </option>
+				  <option value="coffee"> Coffee </option>
+				  <option value="css"> CSS </option>
+				</select>
+				<div>
+				<button onClick={this.increaseSize}> Enhance </button>
+				<button onClick={this.decreaseSize}> Dehance </button>
+				<button onClick={this.evaluateCode}> Run Code </button>
+				<div>
 					<b> Result: </b> {this.state.codeResult}
-				</Col>
+				</div>
+				</div>
+				</div>
+					<div>
+						<b> Result: </b> {this.state.codeResult}
+					</div>
 			</div>
 		)
 	}
