@@ -6,8 +6,8 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
-import {DropdownButton} from 'react-bootstrap';
-import {MenuItem} from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
+import { MenuItem } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -140,7 +140,7 @@ class App extends Component {
 
    return (
       <div>
-        <h1>Frolicking Ampersands</h1>
+        <h1>Frolicking Ampersand</h1>
           <div class = "row" className='button-bar' >
           <ButtonToolbar>
             <Button bsStyle = "primary" bsSize = "large" onClick={ this.handleOnClickClear.bind(this) }>Clear</Button>

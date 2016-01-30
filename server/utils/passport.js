@@ -45,31 +45,32 @@ module.exports = function(passport) {
 
   // facebook will send back the token and profile
   function(req, token, refreshToken, profile, done) {
-
+    console.log(profile);
     // asynchronous
-    // process.nextTick(function() {
+    process.nextTick(function() {
       // find the user in the database based on their facebook id
       User.findOne({where: {facebook_id: profile.id}})
         .then(function(user) {
           // console.log('The Facebook login has found an existing user and its user is: ' + user.facebook_id);
           // console.log('The callback function is ' + done);
           if (user) {
-            console.log("THE FACEBOOK USER IS " + user.facebook_id);
+            // console.log("THE FACEBOOK USER IS " + user.facebook_id);
             return done(null, user);
           } else {
             return User.create({
               facebook_id: profile.id,
-              facebook_token: token
+              facebook_token: token,
+              facebook_name: profile.displayName
             })
-              .then(function (user) {
-                return done(null, user);
-              });
+            .then(function (user) {
+              return done(null, user);
+            });
           }
         })
         .catch(function(err) {
           done(err);
         });
-    // });
+    });
 
   }));
 
@@ -86,7 +87,7 @@ module.exports = function(passport) {
   function(token, refreshToken, profile, done) {
 
     process.nextTick(function() {
-      
+      console.log(profile);
       // try to find the user based on their google id
       User.findOne({where: {google_id: profile.id}})
         .then(function(user) {
@@ -96,7 +97,8 @@ module.exports = function(passport) {
           } else {
             return User.create({
               google_id: profile.id,
-              google_token: token
+              google_token: token,
+              google_name: profile.displayName
             })
             .then(function (user) {
               return done(null, user);
