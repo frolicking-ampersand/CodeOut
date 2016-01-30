@@ -47,6 +47,9 @@ module.exports = function (app, express) {
 
   app.get('/api/boards', function(req, res) {
     'SELECT * FROM board', function(err, rows){
+      if (err){
+        res.send(err);
+      }
       res.send(rows);
     }
   });
