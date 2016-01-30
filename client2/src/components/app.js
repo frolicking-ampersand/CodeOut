@@ -120,7 +120,7 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={ this.handleOnClickClear.bind(this) }>Clear</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={ this.showColorBox }>{this.state.toggleColorBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Heyyy </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
             <DropdownButton bsSize="sm" title="Large button" id="dropdown-size-large">
               <MenuItem eventKey="1">Action</MenuItem>
