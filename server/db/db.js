@@ -17,11 +17,8 @@ if (process.env.PORT) {
 var User = db.define('User', {
   google_id: Sequelize.STRING,
   google_token: Sequelize.STRING,
-<<<<<<< 19c19556cc33f12870076b5b8d595f6cbb34f9fe
   google_name: Sequelize.STRING,
   facebook_id: Sequelize.STRING,
-=======
->>>>>>> feat/authentication working on authorization for canvas page
   facebook_token: Sequelize.STRING,
   facebook_name: Sequelize.STRING
 });
@@ -34,10 +31,10 @@ var User = db.define('User', {
 // User.hasMany(Message);
 
 
-User.sync()
-  .then(function() {
-    console.log('User Table has is definitely in our Postgres Database');
-  });
+// User.sync()
+//   .then(function() {
+//     console.log('User Table has is definitely in our Postgres Database');
+//   });
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and message tables and make new ones.
 
@@ -45,14 +42,14 @@ var Board = db.define('Board', {
   thing: Sequelize.BLOB
 });
 
-var Board = db.define('Board', {
-  thing: Sequelize.BLOB
-});
+// var Board = db.define('Board', {
+//   thing: Sequelize.BLOB
+// });
 
-Board.sync()
-  .then(function() {
-    console.log('Board Table has is definitely in our Postgres Database');
-  });
+// Board.sync()
+//   .then(function() {
+//     console.log('Board Table has is definitely in our Postgres Database');
+//   });
 
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
@@ -60,7 +57,15 @@ Board.sync()
 // });
 
 
+<<<<<<< 5d46397828f084ba18ec32a103c496035e33d3bf
 module.exports = {
   User: User,
   Board: Board
 }
+=======
+// module.exports = {
+//   User: User,
+//   Board: Board
+// }
+
+>>>>>>> attempting to get database to play nice in production
