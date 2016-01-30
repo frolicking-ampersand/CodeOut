@@ -28,7 +28,6 @@ var io = require('socket.io').listen(server);
 //***************************************************
 // *SOCKETS*
 //***************************************************
-//server.listen(8080);
 io.on('connection', function (socket) {
   console.log('Socket connection has been made with id of:\n' + socket.id);
 
