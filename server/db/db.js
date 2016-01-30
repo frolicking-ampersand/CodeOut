@@ -1,8 +1,17 @@
 var Sequelize = require("sequelize");
-var db = new Sequelize("d85rqkr8v6isif", "cyovufgurynjkv", "5Ngw22AyNMlJMGkO2XFqOnt2pG", {
-  host: 'ec2-54-225-197-30.compute-1.amazonaws.com',
-  dialect: 'postgres'
-});
+var db;
+if(process.env.PORT){
+  db = new Sequelize("d85rqkr8v6isif", "cyovufgurynjkv", "5Ngw22AyNMlJMGkO2XFqOnt2pG", {
+    host: 'ec2-54-225-197-30.compute-1.amazonaws.com',
+    dialect: 'postgres'
+  });
+} else {
+  db = new Sequelize("board", "", "", {
+    host: 'localhost',
+    dialect: 'postgres'
+  });
+
+}
 
 
 // we define the models we need using js--we don't need a schema file!
