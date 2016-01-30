@@ -17,12 +17,9 @@ if (process.env.PORT) {
 var User = db.define('User', {
   google_id: Sequelize.STRING,
   google_token: Sequelize.STRING,
-  google_name: Sequelize.STRING,
   facebook_id: Sequelize.STRING,
-  facebook_token: Sequelize.STRING,
-  facebook_name: Sequelize.STRING
+  facebook_token: Sequelize.STRING
 });
-
 
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method, available inside the .success callback
@@ -30,6 +27,7 @@ var User = db.define('User', {
 // Message.belongsTo(User);
 // enables bi-directional associations between Users and Messages
 // User.hasMany(Message);
+
 
 User.sync()
   .then(function() {
@@ -39,14 +37,13 @@ User.sync()
 // to drop any existing user and message tables and make new ones.
 
 var Board = db.define('Board', {
-  name: Sequelize.STRING,
   thing: Sequelize.BLOB
 });
 
-// Board.sync()
-//   .then(function() {
-//     console.log('Board Table has is definitely in our Postgres Database');
-//   });
+Board.sync()
+  .then(function() {
+    console.log('Board Table has is definitely in our Postgres Database');
+  });
 
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
@@ -57,6 +54,4 @@ var Board = db.define('Board', {
 module.exports = {
   User: User,
   Board: Board
- // Users_Boards
 }
-
