@@ -140,9 +140,6 @@ const CanvasDraw = React.createClass({
   },
 
   restoreCanvas(){
-    // let width = this.state.context.canvas.width;
-    // let height = this.state.context.canvas.height;
-    // this.state.context.clearRect(0, 0, width, height);
     let con = this.state.context;
     let savedImage = new Image();
     axios.get('/api/boards')

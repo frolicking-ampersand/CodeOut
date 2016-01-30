@@ -33,6 +33,7 @@ class App extends Component {
   handleOnClickClear()  {
     console.log(this);
     this.setState({
+      restore: false,
       clear: true
     });
   }
@@ -40,6 +41,7 @@ class App extends Component {
   showColorBox() {
     if(!this.state.displayColorPicker){
       this.setState({
+        clear: false,
         displayColorPicker: !this.state.displayColorPicker,
         toggleColorBox: "Close Box"
       });
@@ -54,6 +56,7 @@ class App extends Component {
   showBGColorBox() {
     if(!this.state.displayBGColorPicker) {
       this.setState({
+        clear: false,
         displayBGColorPicker: !this.state.displayBGColorPicker,
         toggleBGBox: "Close Box"
        });
@@ -71,6 +74,7 @@ class App extends Component {
     newstate.canvasStyle.backgroundColor = '#' + color.hex;
     newstate.clear = false;
     this.setState({
+      clear: false,
       newstate
     });
   }
