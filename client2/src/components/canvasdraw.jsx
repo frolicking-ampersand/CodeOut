@@ -138,6 +138,7 @@ const CanvasDraw = React.createClass({
     let height = this.state.context.canvas.height;
     this.state.context.clearRect(0, 0, width, height);
   },
+
   restoreCanvas(){
     // let width = this.state.context.canvas.width;
     // let height = this.state.context.canvas.height;
