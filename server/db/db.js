@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
-var db = new Sequelize("board", "", "", {
-  host: 'localhost',
+var db = new Sequelize("d85rqkr8v6isif", "cyovufgurynjkv", "5Ngw22AyNMlJMGkO2XFqOnt2pG", {
+  host: 'ec2-54-225-197-30.compute-1.amazonaws.com',
   dialect: 'postgres'
 });
 
