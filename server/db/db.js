@@ -42,10 +42,10 @@ var Board = db.define('Board', {
   thing: Sequelize.BLOB
 });
 
-Board.sync()
-  .then(function() {
-    console.log('Board Table has is definitely in our Postgres Database');
-  });
+// Board.sync()
+//   .then(function() {
+//     console.log('Board Table has is definitely in our Postgres Database');
+//   });
 
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
