@@ -17,8 +17,11 @@ if (process.env.PORT) {
 var User = db.define('User', {
   google_id: Sequelize.STRING,
   google_token: Sequelize.STRING,
+<<<<<<< 19c19556cc33f12870076b5b8d595f6cbb34f9fe
   google_name: Sequelize.STRING,
   facebook_id: Sequelize.STRING,
+=======
+>>>>>>> feat/authentication working on authorization for canvas page
   facebook_token: Sequelize.STRING,
   facebook_name: Sequelize.STRING
 });
@@ -61,11 +64,3 @@ module.exports = {
   User: User,
   Board: Board
 }
-<<<<<<< 765810a3d53b6536fc13c7b12cab191bd1817ced
-// module.exports = {
-//   User: User,
-//   Board: Board
-// }
-=======
-
->>>>>>> changed database
