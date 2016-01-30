@@ -51,7 +51,7 @@ io.on('connection', function (socket) {
 // Postgres Connection //
 /////////////////////////
 var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
-
+console.log(conString);
 var client = new pg.Client(conString);
 client.connect();
 /////////////////////////
@@ -60,6 +60,7 @@ client.connect();
 // Set up middleware //
 ///////////////////////
 app.use(express.static(__dirname + '/../client2'));
+
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
