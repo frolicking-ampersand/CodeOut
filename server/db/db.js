@@ -18,15 +18,8 @@ if(process.env.PORT){
 var User = db.define('User', {
   google_id: Sequelize.STRING,
   google_token: Sequelize.STRING,
-<<<<<<< HEAD
-  google_name: Sequelize.STRING,
-  facebook_id: Sequelize.STRING,
   facebook_token: Sequelize.STRING,
   facebook_name: Sequelize.STRING
-=======
-  facebook_id: Sequelize.STRING,
-  facebook_token: Sequelize.STRING
->>>>>>> changed database
 });
 
 // puts a UserId column on each Message instance
