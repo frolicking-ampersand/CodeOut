@@ -24,6 +24,7 @@ var User = db.define('User', {
   facebook_name: Sequelize.STRING
 });
 
+
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method, available inside the .success callback
 // after creating a new instance of Message
