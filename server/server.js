@@ -72,7 +72,11 @@ app.use(methodOverride());
 // Set up Passport for authentication //
 ////////////////////////////////////////
 require('./utils/passport')(passport); // pass passport for configuration
-app.use(session({ secret: 'youmakemefeelgoodlalalalala' })); // session secret
+app.use(session({
+  secret: 'youmakemefeelgoodlalalalala',
+  resave: true,
+  saveUninitialized: false
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 ////////////////////////////////////////
