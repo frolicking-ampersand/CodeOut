@@ -31,10 +31,10 @@ var User = db.define('User', {
 // User.hasMany(Message);
 
 
-// User.sync()
-//   .then(function() {
-//     console.log('User Table has is definitely in our Postgres Database');
-//   });
+User.sync()
+  .then(function() {
+    console.log('User Table has is definitely in our Postgres Database');
+  });
 // creates these tables in MySQL if they don't already exist. Pass in {force: true}
 // to drop any existing user and message tables and make new ones.
 
@@ -42,14 +42,14 @@ var Board = db.define('Board', {
   thing: Sequelize.BLOB
 });
 
-// var Board = db.define('Board', {
-//   thing: Sequelize.BLOB
-// });
+var Board = db.define('Board', {
+  thing: Sequelize.BLOB
+});
 
-// Board.sync()
-//   .then(function() {
-//     console.log('Board Table has is definitely in our Postgres Database');
-//   });
+Board.sync()
+  .then(function() {
+    console.log('Board Table has is definitely in our Postgres Database');
+  });
 
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
@@ -61,7 +61,11 @@ module.exports = {
   User: User,
   Board: Board
 }
+<<<<<<< 765810a3d53b6536fc13c7b12cab191bd1817ced
 // module.exports = {
 //   User: User,
 //   Board: Board
 // }
+=======
+
+>>>>>>> changed database
