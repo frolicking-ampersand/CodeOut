@@ -8,7 +8,6 @@ import VideoDetail from './components/video_detail';
 import DrawableCanvas from 'react-drawable-canvas';
 const API_KEY = 'AIzaSyACCRzAumvvEk2O2lCmS9CZTOVWfCJhaL0';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,17 +35,16 @@ class App extends Component {
 
   render() {
     const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
-		return (
-		 <div>
-		 		<SearchBar onSearchTermChange={videoSearch} />
-		 		<VideoDetail video={this.state.selectedVideo} />
-		 		<VideoList onVideoSelect={
-		 		selectedVideo => this.setState({selectedVideo})}
-		 		videos={this.state.videos} />
-		 </div>
-
-		)
-	}
+  return (
+     <div>
+        <SearchBar onSearchTermChange={videoSearch} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList onVideoSelect={
+        selectedVideo => this.setState({selectedVideo})}
+        videos={this.state.videos} />
+     </div>
+    )
+  }
 };
 
 
