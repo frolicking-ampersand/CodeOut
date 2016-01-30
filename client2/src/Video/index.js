@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import _ from 'underscore';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -21,9 +20,7 @@ class App extends Component {
         backgroundColor: '#FFFFFF'
       },
       clear: false
-<<<<<<< HEAD
-
-    };
+   };
     this.videoSearch('hack reactor')
   }
   videoSearch(term){
@@ -35,32 +32,19 @@ class App extends Component {
        });
     });
   }
-	render() {
-		// const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
 
-		return (
-		 // <div>
-		 		// <SearchBar onSearchTermChange={videoSearch} />
-		 		// <VideoDetail video={this.state.selectedVideo} />
-		 		// <VideoList onVideoSelect={
-		 		// selectedVideo => this.setState({selectedVideo})}
-		 		// videos={this.state.videos} />
-
-
-		 		<div className='canvas-state' style={{height: '500px'}}>
-	        <p>Frolicking Ampersands</p>
-        <div className='button-bar'>
-          <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
-          <button onClick={ this.handleOnClickChangeColorYellow.bind(this) }>Yellow</button>
-          <button onClick={ this.handleOnClickChangeColorBlack.bind(this) }>Black</button>
-          <button onClick={ this.handleOnClickChangBgToRed.bind(this) }>Change Background to Red</button>
-          <button onClick={ this.handleOnClickChangBgToBlue.bind(this) }>Change background to Blue</button>
-        </div>
-        <DrawableCanvas {...this.state}/>
-        </div>
-		 // </div>
-		)
-	}
+  render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
+    return (
+     <div>
+        <SearchBar onSearchTermChange={videoSearch} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList onVideoSelect={
+        selectedVideo => this.setState({selectedVideo})}
+        videos={this.state.videos} />
+     </div>
+    )
+  }
 };
 
 
