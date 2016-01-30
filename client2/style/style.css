@@ -63,3 +63,13 @@
   border-width: 5px;
 
 }
+
+
+.editor {
+  float: left;
+}
+
+.indentMe {
+ padding: 5px;
+ display: inline-block;
+}

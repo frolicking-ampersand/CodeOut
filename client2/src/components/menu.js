@@ -13,11 +13,11 @@ const NavBar = () => {
       <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
       <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
       <a href="/#/canvas"> Board</a>
+      <a href="/#/code"> Code Editor</a>
      </Menu>
      </div>
   	);
 }
-
 
 export default NavBar
 
