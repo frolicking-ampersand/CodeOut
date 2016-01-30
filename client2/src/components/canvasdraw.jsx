@@ -149,8 +149,6 @@ const CanvasDraw = React.createClass({
     this.state.context.clearRect(0, 0, width, height);
   },
 
-
-
   restoreCanvas(){
     let con = this.state.context;
     let savedImage = new Image();
