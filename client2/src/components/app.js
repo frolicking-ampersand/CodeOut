@@ -30,8 +30,30 @@ class App extends Component {
     this.showBGColorBox = this.showBGColorBox.bind(this)
   }
 
+  eraser() {
+    console.log(this.state.canvasStyle.backgroundColor);
+    this.setState({
+      brushColor: this.state.canvasStyle.backgroundColor
+    })
+  }
+
+  increaseSize() {
+    if (this.state.lineWidth<15){
+      this.setState({
+        lineWidth: this.state.lineWidth+=1
+      });
+    }
+  }
+
+  decreaseSize(){
+    if(this.state.lineWidth>1){
+      this.setState({
+        lineWidth: this.state.lineWidth-=1
+      })
+    }
+  }
+
   handleOnClickClear()  {
-    console.log(this);
     this.setState({
       restore: false,
       clear: true
@@ -126,13 +148,10 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
-            <DropdownButton bsSize="sm" title="Large button" id="dropdown-size-large">
-              <MenuItem eventKey="1">Action</MenuItem>
-              <MenuItem eventKey="2">Another action</MenuItem>
-              <MenuItem eventKey="3">Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey="4">Separated link</MenuItem>
-            </DropdownButton>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
+
           </ButtonToolbar>
           </div>
 

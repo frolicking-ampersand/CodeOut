@@ -29,12 +29,12 @@ module.exports = function (app, express) {
   // A protected route
 
   // get one board
-  app.get('/', function(request, response) {
-      var result = 'App is running'
-      response.send(result);
-  }).listen(app.get('port'), function() {
-      console.log('App is running, server is listening on port ', app.get('port'));
-  });
+  // app.get('/', function(request, response) {
+  //     var result = 'App is running'
+  //     response.send(result);
+  // }).listen(app.get('port'), function() {
+  //     console.log('App is running, server is listening on port ', app.get('port'));
+  // });
 
   app.get('/api/boards', function (req, res) {
     Board.findOne()
@@ -43,6 +43,14 @@ module.exports = function (app, express) {
         //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
         res.send(board.thing);
       });
+  });
+
+  app.get('/api/allBoards', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      console.log(boards[boards.length-1]);
+      res.send(boards[boards.length-1].thing);
+    })
   });
 
   // app.get('/api/boards', function(req, res) {
@@ -56,12 +64,17 @@ module.exports = function (app, express) {
 
   //create a board
   app.post('/api/boards', function (req, res) {
+    console.log('creating board');
+    console.log(req.body.thing);
     Board.create({
       thing: req.body.thing
     }).then(function(err, board, fields) {
       if (err) {
         res.send(err);
       }
+      console.log(err);
+      console.log('sending back a board');
+      console.log(board);
       res.send(board);
     });
   });
