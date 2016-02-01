@@ -49,9 +49,15 @@ Board.sync()
     console.log('Board Table has is definitely in our Postgres Database');
   });
 
+// Users_Boards = db.define('Users_Boards', {
+//   board_id,
+//   user_id
+// });
+
 
 module.exports = {
   User: User,
   Board: Board
+ // Users_Boards
 }
 

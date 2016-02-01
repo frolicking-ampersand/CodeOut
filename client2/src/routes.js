@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import Menu from './components/menu';
 import App from './components/app';
 import CodeEditor from './components/code_editor';
-import trueMenu './components/trueMenu';
+import trueMenu from './components/trueMenu';
 
 export default (
 	<div>
