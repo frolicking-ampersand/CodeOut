@@ -31,41 +31,30 @@ var User = db.define('User', {
 // User.hasMany(Message);
 
 
-// User.sync()
-//   .then(function() {
-//     console.log('User Table has is definitely in our Postgres Database');
-//   });
-// creates these tables in MySQL if they don't already exist. Pass in {force: true}
-// to drop any existing user and message tables and make new ones.
+User.sync()
+  .then(function() {
+    console.log('User Table has is definitely in our Postgres Database');
+  });
 
 var Board = db.define('Board', {
   thing: Sequelize.BLOB
 });
 
-// var Board = db.define('Board', {
-//   thing: Sequelize.BLOB
-// });
+var Board = db.define('Board', {
+  thing: Sequelize.BLOB
+});
 
-// Board.sync()
-//   .then(function() {
-//     console.log('Board Table has is definitely in our Postgres Database');
-//   });
+Board.sync()
+  .then(function() {
+    console.log('Board Table has is definitely in our Postgres Database');
+  });
 
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
 //   user_id
 // });
 
-
-<<<<<<< 5d46397828f084ba18ec32a103c496035e33d3bf
 module.exports = {
   User: User,
   Board: Board
 }
-=======
-// module.exports = {
-//   User: User,
-//   Board: Board
-// }
-
->>>>>>> attempting to get database to play nice in production

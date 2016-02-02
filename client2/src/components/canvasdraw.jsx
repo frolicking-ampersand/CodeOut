@@ -86,6 +86,9 @@ const CanvasDraw = React.createClass({
     if(nextProps.clear){
       this.resetCanvas();
     }
+    if(nextProps.all){
+      this.giveMeAllBoards();
+    }
     if(nextProps.restore){
       this.restoreCanvas();
     }
@@ -190,6 +193,25 @@ const CanvasDraw = React.createClass({
         console.log(response);
       });
   },
+
+  giveMeAllBoards(){
+    console.log('gimme gimme');
+    let con = this.state.context;
+    let savedImage = new Image();
+     axios.get('/api/allZeeBoards')
+     .then(function (response) {
+       for (var i=0; i<response.data.length; i++){
+        console.log(response.data[i]);
+       }
+     })
+     .catch(function (response) {
+       console.log("error restoring image");
+       console.log(response);
+     });
+ },
+
+
+
   getDefaultStyle(){
     return {
       backgroundColor: '#FFFFFF',

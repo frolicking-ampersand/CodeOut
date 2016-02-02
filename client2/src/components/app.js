@@ -22,6 +22,7 @@ class App extends Component {
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
+      all: false,
       clear: false,
       restore: false
     };
@@ -146,6 +147,13 @@ class App extends Component {
     });
   }
 
+  giveMeAllBoards(){
+    this.setState({
+      clear: true,
+      all: true
+    })
+  }
+
   render() {
     let popupPosition = {
       position: 'absolute',
@@ -167,6 +175,7 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> real </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.giveMeAllBoards.bind(this)}> ALLOFTHEM!! </Button>
 
           </ButtonToolbar>
           </div>

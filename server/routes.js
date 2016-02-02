@@ -41,21 +41,6 @@ module.exports = function (app, express) {
       console.log('App is running, server is listening on port ', app.get('port'));
   });
 
-<<<<<<< HEAD
-  // app.get('/api/boards', function (req, res) {
-  //   Board.findOne()
-  //     .then(function(board) {
-  //       console.log(board);
-  //       //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
-  //       res.send(board.thing);
-  //     });
-  // });
-
-  app.get('/api/boards', function(req, res) {
-    'SELECT * FROM board', function(err, rows){
-      res.send(rows);
-    }
-=======
   app.get('/api/boards', function (req, res) {
     Board.findOne()
       .then(function(board) {
@@ -63,7 +48,6 @@ module.exports = function (app, express) {
         //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
         res.send(board.thing);
       });
->>>>>>> reverted server changes
   });
 
   app.get('/api/allBoards', function (req, res) {
@@ -79,6 +63,18 @@ module.exports = function (app, express) {
     .then(function(boards){
       console.log(boards[boards.length-1]);
       res.send(boards[boards.length-1].thing);
+    })
+  });
+
+ app.get('/api/allZeeBoards', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      var arr = [];
+      for (var i=0; i<boards.length; i++){
+        arr.push(boards[i].thing.toString());
+        console.log(arr[i]);
+      }
+      res.send(arr);
     })
   });
 
