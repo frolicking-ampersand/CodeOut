@@ -142,7 +142,7 @@ const CanvasDraw = React.createClass({
   restoreCanvas(){
     let con = this.state.context;
     let savedImage = new Image();
-    axios.get('/api/allBoards')
+    axios.get('api/lastBoard')
       .then(function (response) {
         console.log("response data ",response.data);
         savedImage.src = response.data;

@@ -8,15 +8,20 @@ console.log('trueMenu');
 
 //showCreateBoard() {}
 class trueMenu extends Component {
-  constuctor(props) {
-    //super(props);
+  constructor(props) {
+    super(props);
+
     this.state = {
       displayCreateBoard: false
     };
+
+    this.handleOnCreate = this.handleOnCreate.bind(this);
   }
 
   handleOnCreate() {
-    if (!this.state.displayCreateBoard) {}
+    this.setState({
+      displayCreateBoard: !this.state.displayCreateBoard
+    });
   }
 
   render() {
@@ -24,25 +29,41 @@ class trueMenu extends Component {
     boardList = boardList.map(function(board) {
       return <li>{board}</li>
     })
-    // axios.get('api/boards').then(function(res) {
-    //   console.log('trying to get');
-    //   boardList = res.map(function(board) {
-    //     return <li>{board}</li>
+    // axios.get('api/allBoards').then(function(res) {
+    //   //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
+    //   boardList = res.data.map(function(board) {
+    //     var savedImage = new Image();
+    //     //console.log(board.thing.data);
+    //     savedImage.src = board.thing.data;
+    //     return <li>{savedImage}</li>
     //   });
-    // });
+    // })
+    // .catch(function (res) {
+    //   console.log('error retreveing Image');
+    //   console.log(res);
+    // })
   
     return (
       <div>
         <p>hello world</p>
-        <button onClick={ this.handleOnCreate.bind(this) }>create</button>
+        <ToggleDisplay show={ !this.state.displayCreateBoard }>
+          <button onClick={ this.handleOnCreate }>create</button>
+        </ToggleDisplay>
+        <ToggleDisplay show={this.state.displayCreateBoard}>
+          <input type="text"/>
+          <button onClick={ this.handleOnCreate }>back</button>
+          <button> Create</button>
+        </ToggleDisplay>  
         <a href="/#/canvas"> create board </a>
         <ul>{boardList}</ul>
       </div>
     )
   };
-
-
 };
+
+// class creation extends Component {
+
+// }
 
 // const NavBar = () => {
 //   var boardList; //= ['red', 'blue', 'green'];

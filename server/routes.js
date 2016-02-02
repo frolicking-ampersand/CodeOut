@@ -47,6 +47,14 @@ module.exports = function (app, express) {
     Board.findAll()
     .then(function(boards){
       console.log(boards[boards.length-1]);
+      res.send(boards);
+    })
+  });
+
+  app.get('/api/lastBoard', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      console.log(boards[boards.length-1]);
       res.send(boards[boards.length-1].thing);
     })
   });
