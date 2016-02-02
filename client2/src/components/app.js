@@ -42,6 +42,7 @@ class App extends Component {
   increaseSize() {
     if (this.state.lineWidth<15){
       this.setState({
+        clear: false,
         lineWidth: this.state.lineWidth+=1
       });
     }
@@ -50,6 +51,7 @@ class App extends Component {
   decreaseSize(){
     if(this.state.lineWidth>1){
       this.setState({
+        clear: false,
         lineWidth: this.state.lineWidth-=1
       })
     }
@@ -71,11 +73,24 @@ class App extends Component {
       });
     }else{
       this.setState({
+        clear: false,
         displayColorPicker: !this.state.displayColorPicker,
         toggleColorBox: "Pick Color"
       });
     }
   }
+
+  realEraser() {
+    console.log('changing tool');
+    this.setState({
+      clear: false,
+      tool: 'eraser',
+    })
+    console.log(this.state.tool)
+    console.log('eheyehehe')
+    console.log(this.state.tool)
+  }
+
 
   showBGColorBox() {
     if(!this.state.displayBGColorPicker) {
@@ -153,6 +168,7 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> real </Button>
 
           </ButtonToolbar>
           </div>

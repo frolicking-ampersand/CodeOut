@@ -12,7 +12,8 @@ const CanvasDraw = React.createClass({
       backgroundColor: PropTypes.string,
       cursor: PropTypes.string
     }),
-    clear: PropTypes.bool
+    clear: PropTypes.bool,
+    tool: PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -22,7 +23,7 @@ const CanvasDraw = React.createClass({
         backgroundColor: '#FFFFFF',
         cursor: 'pointer'
       },
-      clear: false
+      clear: false,
     };
   },
   getInitialState(){
@@ -32,6 +33,7 @@ const CanvasDraw = React.createClass({
       drawing: false,
       lastX: 0,
       lastY: 0,
+      tool: 'pen',
       history: []
     };
   },
@@ -126,18 +128,28 @@ const CanvasDraw = React.createClass({
   },
 
   draw(lX, lY, cX, cY, color){
-    console.log('drawing');
+    console.log(this.state.tool);
+    if (this.state.tool==='pen'){
+    console.log('drawing')
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
     this.state.context.lineTo(cX,cY);
     this.state.context.stroke();
+    } else {
+      console.log('erasing');
+      //this.state.context.globalCompositeOperation="destination-out";
+      this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
+      this.state.context.clearRect(lX,lY,15, 15);
+    }
   },
   resetCanvas(){
     let width = this.state.context.canvas.width;
     let height = this.state.context.canvas.height;
     this.state.context.clearRect(0, 0, width, height);
   },
+
+
 
   restoreCanvas(){
     let con = this.state.context;
