@@ -3,7 +3,6 @@ var app = express();
 var methodOverride = require('method-override');
 var pg = require('pg');
 var passport = require('passport');
-var io = require('socket.io').listen(server);
 
 var morgan = require('morgan');
 var bodyParser = require('body-parser');

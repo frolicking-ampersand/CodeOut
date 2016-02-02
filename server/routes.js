@@ -17,9 +17,7 @@ module.exports = function (app, express) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
   // app.get('/canvas', isLoggedIn, function(req, res) {
-  //   res.render('/canvas', isLoggedIn, function(req, res) {
-
-  //   });
+  //   res.send(true);
   // });
 
 
