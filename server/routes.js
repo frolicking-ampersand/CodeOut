@@ -29,23 +29,52 @@ module.exports = function (app, express) {
   // A protected route
 
   // get one board
+  // app.get('/', function(request, response) {
+  //     var result = 'App is running'
+  //     response.send(result);
+  // }).listen(app.get('port'), function() {
+  //     console.log('App is running, server is listening on port ', app.get('port'));
+  // });
+
   app.get('/api/boards', function (req, res) {
     Board.findOne()
       .then(function(board) {
         console.log(board);
         //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
-        res.send(board.thing); 
+        res.send(board.thing);
       });
   });
 
+  app.get('/api/allBoards', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      console.log(boards[boards.length-1]);
+      res.send(boards[boards.length-1].thing);
+    })
+  });
+
+  // app.get('/api/boards', function(req, res) {
+  //   'SELECT * FROM board', function(err, rows){
+  //     if (err){
+  //       res.send(err)
+  //     }
+  //     res.send(rows);
+  //   }
+  // });
+
   //create a board
-  app.post('api/boards', function (req, res) {
+  app.post('/api/boards', function (req, res) {
+    console.log('creating board');
+    console.log(req.body.thing);
     Board.create({
       thing: req.body.thing
     }).then(function(err, board, fields) {
       if (err) {
         res.send(err);
       }
+      console.log(err);
+      console.log('sending back a board');
+      console.log(board);
       res.send(board);
     });
   });
@@ -61,7 +90,7 @@ module.exports = function (app, express) {
     passport.authenticate('facebook', {
       successRedirect : '/#/canvas',
       failureRedirect : '/'
-    }));   
+    }));
 
   // =====================================
 
@@ -78,7 +107,7 @@ module.exports = function (app, express) {
     passport.authenticate('google', {
       successRedirect : '/#/canvas',
       failureRedirect : '/'
-    }));   
+    }));
   // =====================================
 
   // =====================================
@@ -95,7 +124,7 @@ module.exports = function (app, express) {
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-  // if user is authenticated in the session, carry on 
+  // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
     return next();
 

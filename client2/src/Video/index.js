@@ -9,45 +9,46 @@ import DrawableCanvas from 'react-drawable-canvas';
 const API_KEY = 'AIzaSyACCRzAumvvEk2O2lCmS9CZTOVWfCJhaL0';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			videos: [],
-			selectedVideo: null,
-			brushColor: '#000000',
+  constructor(props) {
+    super(props);
+    this.state = {
+      videos: [],
+      selectedVideo: null,
+      brushColor: '#000000',
       lineWidth: 4,
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
       clear: false
-	  };
-	  this.videoSearch('hack reactor')
-	}
-	videoSearch(term){
-		console.log(this)
-		YTSearch({key: API_KEY, term: term}, (videos) => {
-			this.setState({
-				videos: videos,
-				selectedVideo: videos[0]
-			 });
-		});
-	}
+
+    };
+    this.videoSearch('hack reactor')
+  }
+  videoSearch(term){
+    console.log(this)
+    YTSearch({key: API_KEY, term: term}, (videos) => {
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+       });
+    });
+  }
 
 
 
-	render() {
-		const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
+  render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
 
-		return (
-		 <div>
-		 		<SearchBar onSearchTermChange={videoSearch} />
-		 		<VideoDetail video={this.state.selectedVideo} />
-		 		<VideoList onVideoSelect={
-		 		selectedVideo => this.setState({selectedVideo})}
-		 		videos={this.state.videos} />
-		 </div>
-		)
-	}
+    return (
+     <div>
+        <SearchBar onSearchTermChange={videoSearch} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList onVideoSelect={
+        selectedVideo => this.setState({selectedVideo})}
+        videos={this.state.videos} />
+     </div>
+    )
+  }
 };
 
 

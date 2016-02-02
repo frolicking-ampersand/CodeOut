@@ -43,6 +43,7 @@ const CanvasDraw = React.createClass({
     this.socket = io();
     this.socket.emit('create board', 'test');
     this.socket.on('draw', function (data) {
+      console.log("listening");
       that.state.context.beginPath();
       that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
     });
@@ -137,20 +138,20 @@ const CanvasDraw = React.createClass({
     let height = this.state.context.canvas.height;
     this.state.context.clearRect(0, 0, width, height);
   },
+
   restoreCanvas(){
-    // let width = this.state.context.canvas.width;
-    // let height = this.state.context.canvas.height;
-    // this.state.context.clearRect(0, 0, width, height);
     let con = this.state.context;
     let savedImage = new Image();
-    axios.get('/api/boards')
+    axios.get('/api/allBoards')
       .then(function (response) {
         console.log("response data ",response.data);
         savedImage.src = response.data;
         //console.log(savedImage);
+
         con.drawImage(savedImage,0,0);
       })
       .catch(function (response) {
+        console.log("error restoring image");
         console.log(response);
       });
   },

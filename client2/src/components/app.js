@@ -3,7 +3,11 @@ import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
 import CanvasDraw from './canvasdraw';
 import axios from 'axios';
-
+import { Button } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
+import {DropdownButton} from 'react-bootstrap';
+import {MenuItem} from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -26,9 +30,32 @@ class App extends Component {
     this.showBGColorBox = this.showBGColorBox.bind(this)
   }
 
-  handleOnClickClear()  {
-    console.log(this);
+  eraser() {
+    console.log(this.state.canvasStyle.backgroundColor);
     this.setState({
+      brushColor: this.state.canvasStyle.backgroundColor
+    })
+  }
+
+  increaseSize() {
+    if (this.state.lineWidth<15){
+      this.setState({
+        lineWidth: this.state.lineWidth+=1
+      });
+    }
+  }
+
+  decreaseSize(){
+    if(this.state.lineWidth>1){
+      this.setState({
+        lineWidth: this.state.lineWidth-=1
+      })
+    }
+  }
+
+  handleOnClickClear()  {
+    this.setState({
+      restore: false,
       clear: true
     });
   }
@@ -36,6 +63,7 @@ class App extends Component {
   showColorBox() {
     if(!this.state.displayColorPicker){
       this.setState({
+        clear: false,
         displayColorPicker: !this.state.displayColorPicker,
         toggleColorBox: "Close Box"
       });
@@ -50,6 +78,7 @@ class App extends Component {
   showBGColorBox() {
     if(!this.state.displayBGColorPicker) {
       this.setState({
+        clear: false,
         displayBGColorPicker: !this.state.displayBGColorPicker,
         toggleBGBox: "Close Box"
        });
@@ -67,6 +96,7 @@ class App extends Component {
     newstate.canvasStyle.backgroundColor = '#' + color.hex;
     newstate.clear = false;
     this.setState({
+      clear: false,
       newstate
     });
   }
@@ -85,30 +115,20 @@ class App extends Component {
       })
       .then(function (response) {
         console.log(response);
-        handleOnClickClear();
+        //handleOnClickClear();
 
       })
       .catch(function (response) {
+        console.log("ERROR saving");
         console.log(response);
       });
   }
 
   restoreBoard(){
     this.setState({
+      clear: true,
       restore: true
     });
-    // let newCanvas = document.getElementById("canvas");
-    // console.log('canvas ', newCanvas);
-    // let savedImage = new Image();
-    // axios.get('/api/boards')
-    //   .then(function (response) {
-    //     console.log(response.data);
-    //     savedImage.src = response.data;
-    //     //this.handleOnClickClear.bind(this)
-    //   })
-    //   .catch(function (response) {
-    //     console.log(response);
-    //   });
   }
 
   render() {
@@ -121,12 +141,20 @@ class App extends Component {
    return (
       <div>
         <h1>Frolicking Ampersands</h1>
-          <div className='button-bar'>
-            <button onClick={ this.handleOnClickClear.bind(this) }>Clear</button>
-            <button onClick={ this.showColorBox }>{this.state.toggleColorBox}</button>
-            <button onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</button>
-            <button onClick={this.saveAnImage}> Heyyy </button>
+          <div class = "row" className='button-bar' >
+          <ButtonToolbar>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.handleOnClickClear.bind(this) }>Clear</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showColorBox }>{this.state.toggleColorBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
+
+          </ButtonToolbar>
           </div>
+
           <div className='canvas-style'>
             <CanvasDraw {...this.state}/>
           </div>

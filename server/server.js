@@ -28,7 +28,6 @@ var io = require('socket.io').listen(server);
 //***************************************************
 // *SOCKETS*
 //***************************************************
-//server.listen(8080);
 io.on('connection', function (socket) {
   console.log('Socket connection has been made with id of:\n' + socket.id);
 
@@ -52,7 +51,7 @@ io.on('connection', function (socket) {
 // Postgres Connection //
 /////////////////////////
 var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
-
+console.log(conString);
 var client = new pg.Client(conString);
 client.connect();
 /////////////////////////
@@ -61,6 +60,7 @@ client.connect();
 // Set up middleware //
 ///////////////////////
 app.use(express.static(__dirname + '/../client2'));
+
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
@@ -73,7 +73,11 @@ app.use(methodOverride());
 // Set up Passport for authentication //
 ////////////////////////////////////////
 require('./utils/passport')(passport); // pass passport for configuration
-app.use(session({ secret: 'youmakemefeelgoodlalalalala' })); // session secret
+app.use(session({
+  secret: 'youmakemefeelgoodlalalalala',
+  resave: true,
+  saveUninitialized: false
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 ////////////////////////////////////////
