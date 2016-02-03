@@ -93,7 +93,6 @@ export default class CodeEditor extends Component {
 						onChange={this.codeChange}
 					  mode={this.state.mode}
 					  theme={this.state.theme}
-					  fontSize={this.state.fontSize}
 					  width="700" />
 				</div>
 				Select Style:

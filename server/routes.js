@@ -27,12 +27,13 @@ module.exports = function (app, express) {
   // A protected route
 
   // get one board
-  // app.get('/', function(request, response) {
-  //     var result = 'App is running'
-  //     response.send(result);
-  // }).listen(app.get('port'), function() {
-  //     console.log('App is running, server is listening on port ', app.get('port'));
-  // });
+
+  app.get('/', function(request, response) {
+      var result = 'App is running'
+      response.send(result);
+  }).listen(app.get('port'), function() {
+      console.log('App is running, server is listening on port ', app.get('port'));
+  });
 
   app.get('/api/boards', function (req, res) {
     Board.findOne()
@@ -48,6 +49,18 @@ module.exports = function (app, express) {
     .then(function(boards){
       console.log(boards[boards.length-1]);
       res.send(boards[boards.length-1].thing);
+    })
+  });
+
+ app.get('/api/allZeeBoards', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      var arr = [];
+      for (var i=0; i<boards.length; i++){
+        arr.push(boards[i].thing.toString());
+        console.log(arr[i]);
+      }
+      res.send(arr);
     })
   });
 

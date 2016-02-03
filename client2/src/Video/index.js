@@ -20,8 +20,7 @@ class App extends Component {
         backgroundColor: '#FFFFFF'
       },
       clear: false
-
-    };
+   };
     this.videoSearch('hack reactor')
   }
   videoSearch(term){
@@ -34,12 +33,9 @@ class App extends Component {
     });
   }
 
-
-
   render() {
     const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
-
-    return (
+  return (
      <div>
         <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />

@@ -18,8 +18,6 @@ if(process.env.PORT){
 var User = db.define('User', {
   google_id: Sequelize.STRING,
   google_token: Sequelize.STRING,
-  google_name: Sequelize.STRING,
-  facebook_id: Sequelize.STRING,
   facebook_token: Sequelize.STRING,
   facebook_name: Sequelize.STRING
 });
@@ -36,8 +34,6 @@ User.sync()
   .then(function() {
     console.log('User Table has is definitely in our Postgres Database');
   });
-// creates these tables in MySQL if they don't already exist. Pass in {force: true}
-// to drop any existing user and message tables and make new ones.
 
 
 var Board = db.define('Board', {
