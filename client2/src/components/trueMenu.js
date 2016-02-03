@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const Menu = require('react-burger-menu').stack;
 import axios from 'axios';
 import ToggleDisplay from 'react-toggle-display';
+import { Router } from 'react-router';
 
 console.log('trueMenu');
 
@@ -13,11 +14,15 @@ class trueMenu extends Component {
 
     this.state = {
       displayCreateBoard: false,
-      displayJoin: false
+      displayJoin: false,
+      name: ''
     };
-
+    //this.socket = io();
     this.handleOnCreate = this.handleOnCreate.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
+    this.handleName = this.handleName.bind(this);
+    this.handleCreation = this.handleCreation.bind(this);
+    //this.mixins = [Navigation];
   }
 
   handleOnCreate() {
@@ -29,6 +34,17 @@ class trueMenu extends Component {
   handleJoin() {
     this.setState({
       displayJoin: !this.state.displayJoin
+    });
+  }
+
+  handleCreation() {
+    socket.emit('create board', this.state.name);
+    //this.transitionTo('/canvas');
+  }
+
+  handleName(event) {
+    this.setState({
+      name: event.target.value
     });
   }
 
@@ -47,7 +63,7 @@ class trueMenu extends Component {
 
         return <li><img src={board} /></li>
       });
-
+      //trueMenu.setState({ name: 'niki' });
     })
     .catch(function (res) {
       console.log('error retreveing Image');
@@ -63,9 +79,11 @@ class trueMenu extends Component {
           <button onClick={ this.handleOnCreate }>create</button>
         </ToggleDisplay>
         <ToggleDisplay show={this.state.displayCreateBoard}>
-          <input type="text"/> <br/>
+          <input type="text" value={ this.state.name }
+            onChange={ this.handleName }/> <br/>
           <button onClick={ this.handleOnCreate }>back</button>
-          <button> Create</button>
+          <button onClick={ this.handleCreation } > Create</button>
+          <span>{this.state.name}</span>
         </ToggleDisplay> 
         <ToggleDisplay show ={ !this.state.displayJoin && !this.state.displayCreateBoard }>
           <button onClick={ this.handleJoin }> Join</button>
@@ -81,6 +99,10 @@ class trueMenu extends Component {
     )
   };
 };
+
+// trueMenu.contextTypes = {
+//   router: React.PropTypes.func.isRequired
+// };
 
 // class creation extends Component {
 

@@ -40,9 +40,9 @@ const CanvasDraw = React.createClass({
 
     console.log('didMount');
     var that = this;
-    this.socket = io();
-    this.socket.emit('create board', 'test');
-    this.socket.on('draw', function (data) {
+    //this.socket = io();
+    //this.socket.emit('create board', 'test');
+    socket.on('draw', function (data) {
       console.log("listening");
       that.state.context.beginPath();
       that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
@@ -106,7 +106,7 @@ const CanvasDraw = React.createClass({
 
       this.draw(lastX, lastY, currentX, currentY);
       var that = this;
-      this.socket.emit('draw', {
+      socket.emit('draw', {
         lX: lastX,
         lY: lastY,
         cX: currentX,
