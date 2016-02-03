@@ -143,9 +143,9 @@ class App extends Component {
         <h1>Frolicking Ampersand</h1>
           <div class = "row" className='button-bar' >
           <ButtonToolbar>
-            <Button bsStyle = "primary" bsSize = "large" onClick={ this.handleOnClickClear.bind(this) }>Clear</Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showColorBox }>{this.state.toggleColorBox}</Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={ this.showBGColorBox }>{this.state.toggleBGBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.handleOnClickClear.bind(this)}>Clear</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.showColorBox}>{this.state.toggleColorBox}</Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.showBGColorBox}>{this.state.toggleBGBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
