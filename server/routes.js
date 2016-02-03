@@ -46,6 +46,17 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
+      var arr = boards.map(function (board) {
+        return board.thing.toString();
+      })
+      //console.log(boards[boards.length-1]);
+      res.send(arr);
+    })
+  });
+
+  app.get('/api/lastBoard', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
       console.log(boards[boards.length-1]);
       res.send(boards[boards.length-1].thing);
     })
