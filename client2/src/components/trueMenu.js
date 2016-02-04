@@ -3,12 +3,21 @@ const ReactDOM = require('react-dom');
 const Menu = require('react-burger-menu').stack;
 import axios from 'axios';
 import ToggleDisplay from 'react-toggle-display';
-import { Router } from 'react-router';
+import { Router, Link, browserHistory } from 'react-router';
+// import createBrowserHistory from 'history/lib/createBrowserHistory';
+// import { createHistory, useBasename } from 'history';
+// import { Router, Route, Link, History, Lifecycle } from 'react-router';
+// import reactMixin from 'react-mixin';
 
-console.log('trueMenu');
+// const history = useBasename(createHistory)({
+//   basename: '/transitions'
+// });
+// console.log('trueMenu');
 
 //showCreateBoard() {}
 class trueMenu extends Component {
+  //mixins: [Lifecycle, History],
+
   constructor(props) {
     super(props);
 
@@ -25,6 +34,11 @@ class trueMenu extends Component {
     //this.mixins = [Navigation];
   }
 
+  // contextTypes () {
+  //   return React.PropTypes.func
+  // }
+  
+
   handleOnCreate() {
     this.setState({
       displayCreateBoard: !this.state.displayCreateBoard
@@ -37,9 +51,13 @@ class trueMenu extends Component {
     });
   }
 
-  handleCreation() {
+  handleCreation(e) {
+    e.preventDefault();
+    console.log('creating');
     socket.emit('create board', this.state.name);
-    //this.transitionTo('/canvas');
+    //this.context.router.transitionTo('/#/canvas');
+    // this.props.history.push('/#/canvas');
+    console.log('gone');
   }
 
   handleName(event) {
@@ -82,7 +100,7 @@ class trueMenu extends Component {
           <input type="text" value={ this.state.name }
             onChange={ this.handleName }/> <br/>
           <button onClick={ this.handleOnCreate }>back</button>
-          <button onClick={ this.handleCreation } > Create</button>
+         <button onClick={ this.handleCreation }><Link to="/canvas"> Create </Link></button>
           <span>{this.state.name}</span>
         </ToggleDisplay> 
         <ToggleDisplay show ={ !this.state.displayJoin && !this.state.displayCreateBoard }>
@@ -99,10 +117,13 @@ class trueMenu extends Component {
     )
   };
 };
-
-// trueMenu.contextTypes = {
-//   router: React.PropTypes.func.isRequired
-// };
+// reactMixin(trueMenu.prototype, History);
+// reactMixin(trueMenu.prototype, Lifecycle);
+trueMenu.contextTypes = {
+  router: function(){
+    return React.PropTypes.func.isRequired
+  }
+};
 
 // class creation extends Component {
 
