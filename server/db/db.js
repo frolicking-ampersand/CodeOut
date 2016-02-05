@@ -41,6 +41,7 @@ User.sync()
 
 
 var Board = db.define('Board', {
+  name: Sequelize.STRING,
   thing: Sequelize.BLOB
 });
 
