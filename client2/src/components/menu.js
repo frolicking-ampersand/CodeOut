@@ -1,24 +1,20 @@
-import React from 'react';
-const ReactDOM = require("react-dom");
-const ReactDriveIn = require("react-drive-in");
-const Menu = require('react-burger-menu').stack;
+import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 
-const NavBar = () => {
+class Menu extends Component {
+
+  render() {
   	return (
   	<div>
-    <ReactDriveIn
-      show="dogwallpaper.mp4" />
-  	<Menu>
-		  <h3>Login</h3>
-      <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
-      <a href="/#/canvas"> Board</a>
-      <a href="/#/code"> Code Editor</a>
-      <a href="/#/menu"> Menu</a>
-     </Menu>
-     </div>
+    	<header>
+  		  <h3>Choose Your Room</h3>
+        <a href="/#/canvas"> Board</a>
+        <a href="/#/code"> Code Editor</a>
+        <a href="/#/menu"> Menu</a>
+      </header>
+    </div>
   	);
+  }
 }
 
-export default NavBar
-
+export default Menu;
