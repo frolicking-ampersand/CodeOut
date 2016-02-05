@@ -27,7 +27,7 @@ class App extends Component {
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
-    this.showBGColorBox = this.showBGColorBox.bind(this)
+    this.showBGColorBox = this.showBGColorBox.bind(this);
   }
 
   eraser() {

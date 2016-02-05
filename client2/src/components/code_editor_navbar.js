@@ -56,6 +56,9 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="coffee"> Coffee </MenuItem>
                 <MenuItem eventKey="css"> CSS </MenuItem>
               </NavDropdown>
+              <NavItem eventKey={3} onClick={this.props.increaseSize}>Enhance</NavItem>
+              <NavItem eventKey={4} onClick={this.props.decreaseSize}>Dehance</NavItem>
+              <NavItem eventKey={5} onClick={this.props.evaluateCode}>Run Code</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>

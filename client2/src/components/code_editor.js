@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactAce from 'react-ace';
 import brace from 'brace';
 import Navbar from './code_editor_navbar';
-
+import { Col } from 'react-bootstrap';
 
 //LANGUAGES
 import 'brace/mode/javascript';
@@ -68,7 +68,7 @@ export default class CodeEditor extends Component {
 
   increaseSize () {
   	let sizeIncreaser = this.state.fontSize;
-  	console.log(sizeIncreaser)
+  	console.log(sizeIncreaser);
   	this.setState({fontSize: sizeIncreaser + 2});
   }
 
@@ -93,20 +93,25 @@ export default class CodeEditor extends Component {
         <div>
           <Navbar 
             changeLang={mode => this.setState({mode})}
-            changeTheme={theme => this.setState({theme})}/>
+            changeTheme={theme => this.setState({theme})}
+            increaseSize={this.increaseSize}
+            decreaseSize={this.decreaseSize}
+            evaluateCode={this.evaluateCode} />
         </div>
-				<div className="editor">
+				<Col xs={12} md={8} className="editor">
 					<ReactAce
 						value={this.state.currentVal}
 						onChange={this.codeChange}
 					  mode={this.state.mode}
 					  theme={this.state.theme}
 					  fontSize={this.state.fontSize}
-					  width="100%" />
-				</div>
-					<div>
-						<b> Result: </b> {this.state.codeResult}
-					</div>
+            width="100%"
+            height="800px" 
+            float="inline" />
+				</Col>
+				<Col xs={6} md={4}>
+					<b> Result: </b> {this.state.codeResult}
+				</Col>
 			</div>
 		)
 	}
