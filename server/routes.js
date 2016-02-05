@@ -78,8 +78,9 @@ module.exports = function (app, express) {
   //create a board
   app.post('/api/boards', function (req, res) {
     console.log('creating board');
-    console.log(req.body.thing);
+    console.log(req.body.name);
     Board.create({
+      name: req.body.thing,
       thing: req.body.thing
     }).then(function(err, board, fields) {
       if (err) {
@@ -87,7 +88,7 @@ module.exports = function (app, express) {
       }
       console.log(err);
       console.log('sending back a board');
-      console.log(board);
+      //console.log(board);
       res.send(board);
     });
   });
