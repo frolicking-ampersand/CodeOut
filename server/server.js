@@ -42,7 +42,7 @@ io.on('connection', function (socket) {
     }).then(function(err, board, fields) {
       if (err) {
         //res.send(err);
-        console.log(err);
+        // console.log(err);
       }
       //console.log(err);
       //console.log('sending back a board');
@@ -52,6 +52,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('join board', function (boardName) {
+    console.log('joined board: ' + boardName);
   });
 
   socket.on('draw', function (data) {

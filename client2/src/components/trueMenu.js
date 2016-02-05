@@ -31,6 +31,7 @@ class trueMenu extends Component {
     this.handleJoin = this.handleJoin.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleCreation = this.handleCreation.bind(this);
+    this.handleJoination = this.handleJoination.bind(this);
     //this.mixins = [Navigation];
   }
 
@@ -51,6 +52,12 @@ class trueMenu extends Component {
     });
   }
 
+  handleJoination(e) {
+    e.preventDefault();
+    console.log('joining');
+    socket.emit('join board', this.state.name);
+  }
+
   handleCreation(e) {
     e.preventDefault();
     console.log('creating');
@@ -58,6 +65,16 @@ class trueMenu extends Component {
     //this.context.router.transitionTo('/#/canvas');
     // this.props.history.push('/#/canvas');
     console.log('gone');
+    // axios.post('api/boards', { 
+    //   name: this.state.name
+    // })
+    //   .then(function (responce) {
+
+    //   })
+    //   .catch(function (responce) {
+
+    //   });
+
   }
 
   handleName(event) {
@@ -71,22 +88,22 @@ class trueMenu extends Component {
     // boardList = boardList.map(function(board) {
     //   return <li>{board}</li>
     // })
-    axios.get('api/allBoards').then(function(res) {
-      //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
-      boardList = res.data.map(function(board) {
-        //var savedImage = new Image();
-        console.log(board);
-       // savedImage.src = board;
-       // console.log(savedImage);
+    // axios.get('api/allBoards').then(function(res) {
+    //   //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
+    //   boardList = res.data.map(function(board) {
+    //     //var savedImage = new Image();
+    //     console.log(board);
+    //    // savedImage.src = board;
+    //    // console.log(savedImage);
 
-        return <li><img src={board} /></li>
-      });
-      //trueMenu.setState({ name: 'niki' });
-    })
-    .catch(function (res) {
-      console.log('error retreveing Image');
-      console.log(res);
-    })
+    //     return <li><img src={board} /></li>
+    //   });
+    //   //trueMenu.setState({ name: 'niki' });
+    // })
+    // .catch(function (res) {
+    //   console.log('error retreveing Image');
+    //   console.log(res);
+    // })
 
     console.log(boardList);
   
@@ -107,9 +124,10 @@ class trueMenu extends Component {
           <button onClick={ this.handleJoin }> Join</button>
         </ToggleDisplay>
         <ToggleDisplay show={ this.state.displayJoin }>
-          <input type="text"/> <br/>
+          <input type="text" value={ this.state.name }
+            onChange={ this.handleName }/> <br/>
           <button onClick={ this.handleJoin }>back</button>
-          <button> Join</button>
+          <button onClick={ this.handleJoination }><Link to="/canvas"> Join</Link></button>
         </ToggleDisplay>
         <a href="/#/canvas"> create board </a>
         <ul>{boardList}</ul>
