@@ -55,6 +55,21 @@ io.on('connection', function (socket) {
     socket.join(boardName);
     socket.room = boardName;
     console.log('joined board: ' + boardName);
+    console.log('outgoing socket id: ' + socket.id)
+    socket.broadcast.to(socket.room).emit('newb', socket.id);
+    console.log('asking');
+    
+  });
+
+  socket.on('newbImg', function (boardImg) {
+    console.log('hearing back')
+    console.log('incomeing socket id: ' + boardImg.id);
+    console.log('current socket id: ' + socket.id);
+    //if (boardImg.id === socket.id) {
+    //console.log('matching');
+    socket.to(boardImg.id).emit('newbImg', boardImg.image);
+    //}
+
   });
 
   socket.on('draw', function (data) {

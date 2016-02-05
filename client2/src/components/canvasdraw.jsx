@@ -38,16 +38,6 @@ const CanvasDraw = React.createClass({
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this);
 
-    console.log('didMount');
-    var that = this;
-    //this.socket = io();
-    //this.socket.emit('create board', 'test');
-    socket.on('draw', function (data) {
-      console.log("listening");
-      that.state.context.beginPath();
-      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
-    });
-
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.width  = canvas.offsetWidth;
@@ -59,6 +49,36 @@ const CanvasDraw = React.createClass({
       canvas: canvas,
       context: ctx
     });
+
+    console.log('didMount');
+    var that = this;
+    //this.socket = io();
+    //this.socket.emit('create board', 'test');
+    socket.on('draw', function (data) {
+      console.log("listening");
+      that.state.context.beginPath();
+      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
+    });
+
+    socket.on('newb', function (data) {
+      console.log('being asked')
+      let newbCanvas = document.getElementById('canvas');
+      let newbImage = new Image();
+      newbImage.src = newbCanvas.toDataURL('image/png');
+      socket.emit('newbImg', {id: data, image: newbImage});
+      console.log('giving')
+    });
+
+    let con = this.state.context;
+    //let savedImage = new Image();
+    socket.on('newbImg', function (data) {
+      console.log('being given');
+      var currentImage = new Image();
+      currentImage.src = data;
+      ctx.drawImage(currentImage, 0, 0);
+    })
+
+    
   },
   componentWillReceiveProps: function(nextProps) {
     if(nextProps.clear){
@@ -137,6 +157,11 @@ const CanvasDraw = React.createClass({
     let width = this.state.context.canvas.width;
     let height = this.state.context.canvas.height;
     this.state.context.clearRect(0, 0, width, height);
+  },
+
+  drawCanvas(image){
+    let con = this.state.context;
+    con.drawImage(image, 0, 0);
   },
 
   restoreCanvas(){
