@@ -63,8 +63,8 @@ const CanvasDraw = React.createClass({
     socket.on('newb', function (data) {
       console.log('being asked')
       let newbCanvas = document.getElementById('canvas');
-      let newbImage = new Image();
-      newbImage.src = newbCanvas.toDataURL('image/png');
+      //let newbImage = new Image();
+      let newbImage = newbCanvas.toDataURL('image/png');
       socket.emit('newbImg', {id: data, image: newbImage});
       console.log('giving')
     });
