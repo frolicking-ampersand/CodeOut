@@ -16,10 +16,14 @@ module.exports = function (app, express) {
   // =======================================
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
-  // app.get('/canvas', isLoggedIn, function(req, res) {
-  //   res.send(true);
-  // });
 
+  app.get('/', isLoggedIn, function(req, res) {
+    res.redirect('main.html');
+  });
+
+  app.get('/login', function(req,res) {
+    res.redirect('login.html');
+  });
 
   // =======================================
   // BOARD ROUTES ==========================
@@ -44,6 +48,17 @@ module.exports = function (app, express) {
   });
 
   app.get('/api/allBoards', function (req, res) {
+    Board.findAll()
+    .then(function(boards){
+      var arr = boards.map(function (board) {
+        return board.thing.toString();
+      })
+      //console.log(boards[boards.length-1]);
+      res.send(arr);
+    })
+  });
+
+  app.get('/api/lastBoard', function (req, res) {
     Board.findAll()
     .then(function(boards){
       console.log(boards[boards.length-1]);
@@ -86,7 +101,7 @@ module.exports = function (app, express) {
   // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect : '/#/canvas',
+      successRedirect : '/',
       failureRedirect : '/'
     }));
 
@@ -103,7 +118,7 @@ module.exports = function (app, express) {
   // the callback after google has authenticated the user
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-      successRedirect : '/#/canvas',
+      successRedirect : '/',
       failureRedirect : '/'
     }));
   // =====================================
@@ -127,5 +142,5 @@ function isLoggedIn(req, res, next) {
     return next();
 
   // if they aren't redirect them to the home page
-  res.redirect('/');
+  res.redirect('/login');
 }

@@ -13,14 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       videos: [],
-      selectedVideo: null,
-      brushColor: '#000000',
-      lineWidth: 4,
-      canvasStyle: {
-        backgroundColor: '#FFFFFF'
-      },
-      clear: false
-
+      selectedVideo: null
     };
     this.videoSearch('hack reactor')
   }
