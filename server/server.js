@@ -52,6 +52,8 @@ io.on('connection', function (socket) {
   });
 
   socket.on('join board', function (boardName) {
+    socket.join(boardName);
+    socket.room = boardName;
     console.log('joined board: ' + boardName);
   });
 
