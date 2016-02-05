@@ -8,6 +8,7 @@ import { ButtonToolbar } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
+import Gallery from './gallery';
 
 class App extends Component {
   constructor(props) {
@@ -140,6 +141,24 @@ class App extends Component {
       });
   }
 
+  galleryDraw(){
+    let newCanvas = document.getElementById("one");
+    let savedImage = new Image();
+    savedImage.src = newCanvas.toDataURL('image/png');
+    axios.post('/api/boards', {
+        thing: savedImage.src
+      })
+      .then(function (response) {
+        console.log(response);
+        //handleOnClickClear();
+
+      })
+      .catch(function (response) {
+        console.log("ERROR saving");
+        console.log(response);
+      });
+  }
+
   restoreBoard(){
     this.setState({
       clear: true,
@@ -163,6 +182,7 @@ class App extends Component {
 
    return (
       <div>
+        <Gallery/>
         <h1>Frolicking Ampersand</h1>
           <div class = "row" className='button-bar' >
           <ButtonToolbar>
@@ -179,11 +199,9 @@ class App extends Component {
 
           </ButtonToolbar>
           </div>
-
           <div className='canvas-style'>
             <CanvasDraw {...this.state}/>
           </div>
-
           <ToggleDisplay show={this.state.displayColorPicker}>
             <ColorPicker
                 type="sketch"
@@ -191,7 +209,6 @@ class App extends Component {
                 color={ this.state.brushColor }
                 onChangeComplete={ this.chooseColor.bind(this) } />
           </ToggleDisplay>
-
           <ToggleDisplay show={this.state.displayBGColorPicker}>
             <ColorPicker
                 type="sketch"
@@ -199,6 +216,7 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
+          
       </div>
     )
   }

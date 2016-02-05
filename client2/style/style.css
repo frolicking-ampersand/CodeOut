@@ -64,11 +64,22 @@
 
 }
 
+.gallery {
+  text-align: center;
+  color: blue;
+}
+
 .toolbar {
   text-align: center;
 }
 
 .btn-toolbar{
   text-align: center;
-  @include button-variant(red, orange, blue);
+}
+
+.canvasPic{
+  width: 350px;
+  height: 100px;
+  border-style: solid;
+  border-width: 5px;
 }
