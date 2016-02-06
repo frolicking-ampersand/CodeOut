@@ -53,10 +53,11 @@ io.on('connection', function (socket) {
   });
 
   socket.on('join board', function (boardName) {
+    socket.leave(socket.room);
     socket.join(boardName);
     socket.room = boardName;
     console.log('joined board: ' + boardName);
-    console.log('outgoing socket id: ' + socket.id)
+    console.log('outgoing socket id: ' + socket.id);
     socket.broadcast.to(socket.room).emit('newb', socket.id);
     console.log('asking');
 
@@ -77,6 +78,10 @@ io.on('connection', function (socket) {
     console.log('drawing');
     socket.broadcast.to(socket.room).emit('draw', data);
     //socket.broadcast.emit('draw', data);
+  });
+
+  socket.on('disconnect', function() {
+    socket.leave(socket.room);
   });
 });
 
