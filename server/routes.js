@@ -51,8 +51,11 @@ module.exports = function (app, express) {
     Board.findAll()
     .then(function(boards){
       var arr = boards.map(function (board) {
-        return board.thing.toString();
-      })
+        return {
+          image: board.thing.toString(),
+          name: board.name 
+        }
+      });
       //console.log(boards[boards.length-1]);
       res.send(arr);
     })
