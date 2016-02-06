@@ -141,24 +141,6 @@ class App extends Component {
       });
   }
 
-  galleryDraw(){
-    let newCanvas = document.getElementById("one");
-    let savedImage = new Image();
-    savedImage.src = newCanvas.toDataURL('image/png');
-    axios.post('/api/boards', {
-        thing: savedImage.src
-      })
-      .then(function (response) {
-        console.log(response);
-        //handleOnClickClear();
-
-      })
-      .catch(function (response) {
-        console.log("ERROR saving");
-        console.log(response);
-      });
-  }
-
   restoreBoard(){
     this.setState({
       clear: true,
@@ -182,7 +164,6 @@ class App extends Component {
 
    return (
       <div>
-        <Gallery/>
         <h1>Frolicking Ampersand</h1>
           <div class = "row" className='button-bar' >
           <ButtonToolbar>
@@ -216,7 +197,7 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
-          
+          <Gallery/>
       </div>
     )
   }
