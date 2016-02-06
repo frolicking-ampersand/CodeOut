@@ -25,7 +25,8 @@ class trueMenu extends Component {
     this.state = {
       displayCreateBoard: false,
       displayJoin: false,
-      name: ''
+      name: '',
+      list: undefined
     };
     //this.socket = io();
     this.handleOnCreate = this.handleOnCreate.bind(this);
@@ -33,6 +34,8 @@ class trueMenu extends Component {
     this.handleName = this.handleName.bind(this);
     this.handleCreation = this.handleCreation.bind(this);
     this.handleJoination = this.handleJoination.bind(this);
+    this.getList = this.getList.bind(this);
+    this.getList();
     //this.mixins = [Navigation];
   }
 
@@ -84,8 +87,32 @@ class trueMenu extends Component {
     });
   }
 
+  getList() {
+    var that = this;
+    axios.get('api/allBoards').then(function(res) {
+      //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
+      var boardList = res.data.map(function(board) {
+        //var savedImage = new Image();
+        console.log(board.name);
+       // savedImage.src = board;
+       // console.log(savedImage);
+
+        return <li>board.name</li>
+      });
+      that.setState({
+        list: boardList
+      }); 
+      //trueMenu.setState({ name: 'niki' });
+    })
+    .catch(function (res) {
+      console.log('error retreveing Image');
+      console.log(res);
+    });
+
+  }
+
   render() {
-    var boardList; //= ['red', 'blue', 'green'];
+     //= ['red', 'blue', 'green'];
     // boardList = boardList.map(function(board) {
     //   return <li>{board}</li>
     // })
@@ -93,11 +120,11 @@ class trueMenu extends Component {
     //   //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
     //   boardList = res.data.map(function(board) {
     //     //var savedImage = new Image();
-    //     console.log(board);
+    //     console.log(board.name);
     //    // savedImage.src = board;
     //    // console.log(savedImage);
 
-    //     return <li><img src={board} /></li>
+    //     return <li><board.name</li>
     //   });
     //   //trueMenu.setState({ name: 'niki' });
     // })
@@ -106,14 +133,30 @@ class trueMenu extends Component {
     //   console.log(res);
     // })
 
-    console.log(boardList);
-
     return (
       <div>
-        <input type="text" value={ this.state.name }
-          onChange={ this.handleName }/>
-        <Button bsStyle="primary" bsSize="sm" onClick={ this.handleCreation }><Link to="/canvas"> Create </Link></Button>
-        <ul>{boardList}</ul>
+        <p>hello world</p>
+        <ToggleDisplay show={ !this.state.displayCreateBoard && !this.state.displayJoin }>
+          <button onClick={ this.handleOnCreate }>create</button>
+        </ToggleDisplay>
+        <ToggleDisplay show={this.state.displayCreateBoard}>
+          <input type="text" value={ this.state.name }
+            onChange={ this.handleName }/> <br/>
+          <button onClick={ this.handleOnCreate }>back</button>
+         <button onClick={ this.handleCreation }><Link to="/canvas"> Create </Link></button>
+          <span>{this.state.name}</span>
+        </ToggleDisplay> 
+        <ToggleDisplay show ={ !this.state.displayJoin && !this.state.displayCreateBoard }>
+          <button onClick={ this.handleJoin }> Join</button>
+        </ToggleDisplay>
+        <ToggleDisplay show={ this.state.displayJoin }>
+          <input type="text" value={ this.state.name }
+            onChange={ this.handleName }/> <br/>
+          <button onClick={ this.handleJoin }>back</button>
+          <button onClick={ this.handleJoination }><Link to="/canvas"> Join</Link></button>
+        </ToggleDisplay>
+        <a href="/#/canvas"> create board </a>
+        <ul>{ this.state.list }</ul>
       </div>
     )
   };

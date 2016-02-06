@@ -53,14 +53,13 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      //filter out boards that don't have an image associated with them.
-      var arr = boards.filter(function (board){
-        return board.thing;
-      }).map(function (board) {
-        //convert the image to a string so that it can be drawn on the canvas
-        return {id: board.id, img:board.thing.toString()};
-      })
-      console.log(boards[boards.length-1].thing);
+      var arr = boards.map(function (board) {
+        return {
+          image: board.thing.toString(),
+          name: board.name 
+        }
+      });
+      //console.log(boards[boards.length-1]);
       res.send(arr);
     })
   });
