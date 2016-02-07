@@ -18,6 +18,7 @@ module.exports = function (app, express) {
   // we will use route middleware to verify this (the isLoggedIn function)
 
   app.get('/', isLoggedIn, function(req, res) {
+    console.log('REQ.USER IS_________________________________________________________', req.user);
     res.redirect('main.html');
   });
 
@@ -50,6 +51,7 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
+      console.log(boards);
       var arr = boards.map(function (board) {
         return board.thing.toString();
       })
@@ -80,17 +82,11 @@ module.exports = function (app, express) {
     console.log('creating board');
     console.log(req.body.name);
     Board.create({
-      name: req.body.thing,
+      name: 'PLACEHOLDER',
       thing: req.body.thing
-    }).then(function(err, board, fields) {
-      if (err) {
-        res.send(err);
-      }
-      console.log(err);
-      console.log('sending back a board');
-      //console.log(board);
-      res.send(board);
-    });
+    }).catch(function (err) {
+      console.log('ERROR CREATING BOARD READS:', err);
+    })
   });
 
   // =====================================
