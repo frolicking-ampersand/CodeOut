@@ -25,12 +25,33 @@ class App extends Component {
       },
       all: false,
       clear: false,
-      restore: false
+      restore: false,
+      data: [],
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
     this.showBGColorBox = this.showBGColorBox.bind(this);
   }
+
+
+  componentDidMount(){
+    this.updateData();
+    setInterval(this.updateData.bind(this), 2000);
+  }
+    updateData(){
+      this.setState({
+        clear: false,
+      })
+      console.log("updateData called");
+      axios.get('api/allBoards')
+        .then(function(response){
+          this.setState({data: response.data});
+        }.bind(this))
+        .catch(function (response) {
+          console.log("error getting data");
+          console.log(response);
+        });
+    }
 
   eraser() {
     console.log(this.state.canvasStyle.backgroundColor);
@@ -165,8 +186,8 @@ class App extends Component {
    return (
       <div>
         <h1>Frolicking Ampersand</h1>
-          <div class = "row" className='button-bar' >
-          <ButtonToolbar>
+          <div class = "row" className='btn-toolbar' >
+          <ButtonToolbar className = "toolbar">
             <Button bsStyle = "primary" bsSize = "large" onClick={this.handleOnClickClear.bind(this)}>Clear</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showColorBox}>{this.state.toggleColorBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showBGColorBox}>{this.state.toggleBGBox}</Button>
@@ -176,8 +197,6 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> real </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.giveMeAllBoards.bind(this)}> ALLOFTHEM!! </Button>
-
           </ButtonToolbar>
           </div>
           <div className='canvas-style'>
@@ -197,7 +216,7 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
-          <Gallery/>
+          <Gallery data={this.state.data}/>
       </div>
     )
   }

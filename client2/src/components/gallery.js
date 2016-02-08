@@ -26,49 +26,18 @@ const picStorage = {
 
 const Picture = React.createClass({
   getInitialState () {
-    increase();
-    console.log(obj2.key);
     return {url:"src/components/images/road.png"};
   },
   componentDidMount(){
-    const that = this;
-    console.log(that.state);
-  	let canvas = ReactDOM.findDOMNode(this);
-  	let ctx = canvas.getContext('2d');
-    // console.log(canvas);
-      let savedImage = new Image();
-      //console.log(savedImage);
-      if(obj.key<5){
-    	  axios.get('api/allBoards')
-        .then(function (response) {
-        	savedImage.src = response.data[obj.key];
-          that.setState({url: picStorage[obj.key]});
-          // console.log(that.state.url);
-          // console.log(savedImage);
-          // console.log(savedImage.src);
-          //ctx.drawImage(savedImage,0,0, 200, 200);
-           obj.key++;
-        })
-        .catch(function (response) {
-          console.log("error restoring image");
-          console.log(response);
-        });
-        
-      } else {
-        that.setState({url: picStorage[obj.key]});
-      }
-  },
-
-  getImageHeight () {
-    return Math.round(50 / 2);
+    
   },
 
   getImageStyle () {
     return {
       top: 0,
       left: 0,
-      width: 500,
-      height: 500
+      width: 200,
+      height: 200
     };
   },
 
@@ -84,14 +53,14 @@ const Picture = React.createClass({
   },
 
 	render(){
-    console.log(this.props.url);
-    const surfaceWidth = 600;
-    const surfaceHeight = 600;
+    //console.log(this.props.url);
+    const surfaceWidth = 300;
+    const surfaceHeight = 300;
     const imageStyle = this.getImageStyle();
     const textStyle = this.getTextStyle();
     return (
       <Surface width={surfaceWidth} height={surfaceHeight} left={0} top={0}>
-        <Imagine style={imageStyle} src={this.state.url}/>
+        <Imagine style={imageStyle} src={this.props.url}/>
       </Surface>
     )
   }
@@ -107,17 +76,22 @@ class Gallery extends Component {
       dots: true,
       speed: 500,
       slidesToShow: 3,
-      slidesToScroll: 1
+      slidesToScroll: 3
     }
+
+    let commentNodes = this.props.data.map(function(where) {
+      return (
+        <div className="box"><Picture className = "canvasElm" url={where}/></div>
+      );
+    });
+    console.log("these are the comment nodes=======",commentNodes);
+
     return (
+      <div>
       <Slider {...settings} className="gallery">
-        <div id = "pic1"><Picture className = "canvasElm" url="src/components/images/halfdome.png"/></div>
-        <div id = "pic2"><Picture className = "canvasElm" url="src/components/images/road.png"/></div>
-        <div id = "pic3"><Picture className = "canvasElm" url="src/components/images/skateboard.jpg"/></div>
-        <div id = "pic4"><Picture className = "canvasElm" url="src/components/images/smile.png"/></div>
-        <div id = "pic5"><Picture className = "canvasElm" url="src/components/images/taco.jpg"/></div>
-        <div id = "pic6"><Picture className = "canvasElm" url="src/components/images/tiger.jpg"/></div>
+        {commentNodes}
       </Slider>
+      </div>
     );
   }
 };
