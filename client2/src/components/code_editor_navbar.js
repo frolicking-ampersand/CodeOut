@@ -21,7 +21,7 @@ export default class CodeEditorNavbar extends Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Code Pen Island</a>
+              <a href="#">Frolicking Ampersand Board</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -56,13 +56,13 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="coffee"> Coffee </MenuItem>
                 <MenuItem eventKey="css"> CSS </MenuItem>
               </NavDropdown>
-              <NavItem eventKey={3} onClick={this.props.increaseSize}>Enhance</NavItem>
-              <NavItem eventKey={4} onClick={this.props.decreaseSize}>Dehance</NavItem>
-              <NavItem eventKey={5} onClick={this.props.evaluateCode}>Run Code</NavItem>
+              <NavItem eventKey={1} onClick={this.props.increaseSize}>Enhance</NavItem>
+              <NavItem eventKey={2} onClick={this.props.decreaseSize}>Dehance</NavItem>
+              <NavItem eventKey={3} onClick={this.props.evaluateCode}>Run Code</NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>
-              <NavItem eventKey={2} href="#/video">Video</NavItem>
+              <NavItem eventKey={4} href="#/canvas">Whiteboard</NavItem>
+              <NavItem eventKey={5} href="#/video">Video</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
