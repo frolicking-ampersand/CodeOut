@@ -39,6 +39,14 @@ const CanvasDraw = React.createClass({
   },
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this);
+    var that = this;
+    this.socket = io();
+    this.socket.emit('create board', 'test');
+    this.socket.on('draw', function (data) {
+      //console.log("listening");
+      that.state.context.beginPath();
+      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
+    });
 
     canvas.style.width = '100%';
     canvas.style.height = '100%';
@@ -153,14 +161,14 @@ const CanvasDraw = React.createClass({
   draw(lX, lY, cX, cY, color){
     console.log(this.state.tool);
     if (this.state.tool==='pen'){
-    console.log('drawing')
+    //console.log('drawing')
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
     this.state.context.lineTo(cX,cY);
     this.state.context.stroke();
     } else {
-      console.log('erasing');
+      //console.log('erasing');
       //this.state.context.globalCompositeOperation="destination-out";
       this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
       this.state.context.clearRect(lX,lY,15, 15);
@@ -182,7 +190,7 @@ const CanvasDraw = React.createClass({
     let savedImage = new Image();
     axios.get('api/lastBoard')
       .then(function (response) {
-        console.log("response data ",response.data);
+        //console.log("response data ",response.data);
         savedImage.src = response.data;
         //console.log(savedImage);
 

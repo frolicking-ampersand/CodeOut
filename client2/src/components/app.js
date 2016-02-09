@@ -36,22 +36,23 @@ class App extends Component {
 
   componentDidMount(){
     this.updateData();
-    setInterval(this.updateData.bind(this), 1000);
+    setInterval(this.updateData.bind(this), 10000);
   }
-    updateData(){
-      this.setState({
-        clear: false,
-      })
-      //console.log("updateData called");
-      axios.get('api/allBoards')
-        .then(function(response){
-          this.setState({data: response.data});
-        }.bind(this))
-        .catch(function (response) {
-          console.log("error getting data");
-          console.log(response);
-        });
-    }
+
+  updateData(){
+    this.setState({
+      clear: false,
+    })
+    //console.log("updateData called");
+    axios.get('api/allBoards')
+      .then(function(response){
+        this.setState({data: response.data});
+      }.bind(this))
+      .catch(function (response) {
+        console.log("error getting data");
+        console.log(response);
+      });
+  }
 
   eraser() {
     console.log(this.state.canvasStyle.backgroundColor);
@@ -153,7 +154,6 @@ class App extends Component {
       })
       .then(function (response) {
         console.log(response);
-        this.setState({})
         //handleOnClickClear();
 
       })

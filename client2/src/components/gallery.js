@@ -25,19 +25,20 @@ const picStorage = {
 };
 
 const Painting = React.createClass({
-  getInitialState(){
-    return {
-      url:this.props.url,
-      name: "cow"
-    }
-  },
+  // getInitialState(){
+  //   return {
+  //     url:this.props.url,
+  //     name: "cow"
+  //   }
+  // },
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this);
     var that = this;
     let context = canvas.getContext("2d");
-    console.log("the context is", context);
+    //console.log("the context is", context);
     let savedImage = new Image();
-    savedImage.src=this.state.url;
+    savedImage.src=this.props.url;
+    console.log("the imageId is",this.props.imgId)
     context.drawImage(savedImage,0,0,300,150);
     // axios.get('api/lastBoard')
     //   .then(function (response) {
@@ -54,6 +55,8 @@ const Painting = React.createClass({
     //   });
   },
   render(){
+    //let thisEasy = ReactDOM.findDOMNode(this);
+    //console.log(thisEasy);
     const divStyle = {
       'border-style': 'solid',
       'border-width': '5px 5px 5px 5px',
@@ -108,9 +111,23 @@ const Picture = React.createClass({
 })
 
 class Gallery extends Component {
+  constructor (props){
+    super(props);
+
+    this.state = {
+      data: this.props.data,
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      data:nextProps.data
+    })
+  }
+
   componentDidMount(){
     let target = document.getElementById('snap');
-    console.log("the target is",target);
+    //console.log("the target is",target);
   }
 
   render () {
@@ -121,20 +138,22 @@ class Gallery extends Component {
       slidesToShow: 3,
       slidesToScroll: 3
     }
-
+    let x=0;
     let commentNodes = this.props.data.map(function(where) {
       return (
-        <div className="box"><Picture className="canvasElm" url={where}/></div>
+        <div className="box"><Picture className="canvasElm" url={where.img}/></div>
       );
     });
 
     let paintingCollection = this.props.data.map(function(where){
+      console.log("the painting id is ",where.id)
+      //always pass a key!!!
       return (
-        <div><Painting className="paintingCollection" url={where}/></div>
+        <div><Painting className="paintingCollection" key={where.id} url={where.img} imgId={where.id}/></div>
       );
     });
 
-    console.log("these are the comment nodes=======",commentNodes);
+    //console.log("these are the comment nodes=======",commentNodes);
     let road = <div>HAPPY</div>
     return (
       <Slider {...settings} className="gallery">
