@@ -17,13 +17,15 @@ module.exports = function (app, express) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
 
-  app.get('/', isLoggedIn, function(req, res) {
-    res.redirect('main.html');
-  });
+  // app.get('/', function(req, res) {
+  //   res.redirect('main.html');
+  // });
 
-  app.get('/login', function(req,res) {
-    res.redirect('login.html');
-  });
+  // app.use('/', express.static(path.join('../client2/main.html'));
+
+  // app.get('/login', function(req,res) {
+  //   res.redirect('login.html');
+  // });
 
   // =======================================
   // BOARD ROUTES ==========================
@@ -50,7 +52,6 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      console.log(boards);
       //console.log(boards[boards.length-1]);
       res.send(boards);
     })
@@ -94,9 +95,14 @@ module.exports = function (app, express) {
   // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect : '/',
-      failureRedirect : '/'
-    }));
+      failureRedirect : '/login'
+    }), function (req, res) {
+      console.log(req.user);
+      console.log(res.cookie);
+      res.cookie('token', JSON.stringify(req.user.token));
+      console.log(res.cookie);
+      res.redirect('/');
+    });
 
   // =====================================
 
@@ -111,9 +117,13 @@ module.exports = function (app, express) {
   // the callback after google has authenticated the user
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-      successRedirect : '/',
-      failureRedirect : '/'
-    }));
+      failureRedirect : '/login'
+    }), function (req, res) {
+      console.log(req.user.dataValues);
+      console.log(req.user.dataValues.google_token);
+      res.cookie('token', JSON.stringify(req.user.dataValues.google_token));
+      res.redirect('/');
+    });
   // =====================================
 
   // =====================================
@@ -131,9 +141,9 @@ module.exports = function (app, express) {
 function isLoggedIn(req, res, next) {
 
   // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()) {
     return next();
-
+  }
   // if they aren't redirect them to the home page
   res.redirect('/login');
 }

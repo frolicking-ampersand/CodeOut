@@ -4,16 +4,23 @@ import CreateRoom from "./menu_createRoom";
 import Navbar from "./menu_navbar";
 import RoomList from "./menu_roomList";
 import axios from "axios";
+import Login from "./login";
+import auth from "../auth-helper";
 
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wtf: 'wtf',
+      loggedIn: auth.loggedIn(),
       allBoards: []
     };
     this.grabBoards();
   }
+
+  componentWillMount () {
+
+  }
+
   grabBoards() {
     var component = this;
     axios.get('api/allBoards')
@@ -31,12 +38,20 @@ class Menu extends Component {
     console.log('INSIDE THE RENDER FUNCTION, this.state.allBoards READS______________________________________:', this.state.allBoards);
   	return (
     	<div>
-        <Navbar />
-        <CreateRoom />
-  		  <h3> Join Existing Room </h3>
-        <RoomList onRoomSelect={
-        selectedRoom => this.setState({selectedRoom})}
-        rooms={this.state.allBoards} />
+        <Navbar loggedIn={this.state.loggedIn} />
+        {this.state.loggedIn ? (
+          <div>
+          <CreateRoom />
+    		  <h3> Join Existing Room </h3>
+          <RoomList onRoomSelect={
+          selectedRoom => this.setState({selectedRoom})}
+          rooms={this.state.allBoards} />
+          </div>
+        ) : (
+          <div>
+          <Login />
+          </div>
+        )}
       </div>
   	);
   }

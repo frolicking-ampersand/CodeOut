@@ -25,13 +25,23 @@ export default class CodeEditorNavbar extends Component {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
-              <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>
-              <NavItem eventKey={2} href="#/code">Code Editor</NavItem>
-              <NavItem eventKey={3} href="#/video">Video</NavItem>
-            </Nav>
-          </Navbar.Collapse>
+          {this.props.loggedIn ? 
+          (
+            <Navbar.Collapse>
+              <Nav pullRight>
+                <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>
+                <NavItem eventKey={2} href="#/code">Code Editor</NavItem>
+                <NavItem eventKey={3} href="#/video">Video</NavItem>
+                <NavItem eventKey={4} href="#/logout">Logout</NavItem>
+              </Nav>
+            </Navbar.Collapse>
+          ) :          
+          (
+            <Navbar.Collapse>
+              <Nav pullRight>
+              </Nav>
+            </Navbar.Collapse>
+          )}
         </Navbar>
       </div>
     )
