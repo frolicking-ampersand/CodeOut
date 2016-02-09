@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 import ReactCanvas from 'react-canvas';
+import CanvasDraw from './canvasdraw';
 const Surface = ReactCanvas.Surface;
 const Imagine = ReactCanvas.Image;
 const Text = ReactCanvas.Text;
@@ -20,24 +21,64 @@ const picStorage = {
   "2":"src/components/images/smile.png",
   "3":"src/components/images/taco.jpg",
   "4":"src/components/images/tiger.jpg",
-  "5":"src/components/images/halfdome.jpg", 
+  "5":"src/components/images/halfdome.jpg",
 };
 
+const Painting = React.createClass({
+  getInitialState(){
+    return {
+      url:this.props.url,
+      name: "cow"
+    }
+  },
+  componentDidMount(){
+    let canvas = ReactDOM.findDOMNode(this);
+    var that = this;
+    let context = canvas.getContext("2d");
+    console.log("the context is", context);
+    let savedImage = new Image();
+    savedImage.src=this.state.url;
+    context.drawImage(savedImage,0,0,300,150);
+    // axios.get('api/lastBoard')
+    //   .then(function (response) {
+    //     console.log("response data ",response.data);
+    //     savedImage.src = response.data;
+    //     //console.log(savedImage);
+    //     context.drawImage(savedImage,0,0,300,150);
+    //     //that.setState(name:"pig")
+
+    //   })
+    //   .catch(function (response) {
+    //     console.log("error restoring image");
+    //     console.log(response);
+    //   });
+  },
+  render(){
+    const divStyle = {
+      'border-style': 'solid',
+      'border-width': '5px 5px 5px 5px',
+      'border-color': 'black',
+    }
+    return (
+      <canvas style={divStyle} id ={this.props.id}></canvas>
+    )
+  }
+})
 
 const Picture = React.createClass({
   getInitialState () {
     return {url:"src/components/images/road.png"};
   },
   componentDidMount(){
-    
+
   },
 
   getImageStyle () {
     return {
       top: 0,
       left: 0,
-      width: 200,
-      height: 200
+      width: 350,
+      height: 300
     };
   },
 
@@ -68,6 +109,8 @@ const Picture = React.createClass({
 
 class Gallery extends Component {
   componentDidMount(){
+    let target = document.getElementById('snap');
+    console.log("the target is",target);
   }
 
   render () {
@@ -81,17 +124,22 @@ class Gallery extends Component {
 
     let commentNodes = this.props.data.map(function(where) {
       return (
-        <div className="box"><Picture className = "canvasElm" url={where}/></div>
+        <div className="box"><Picture className="canvasElm" url={where}/></div>
       );
     });
-    console.log("these are the comment nodes=======",commentNodes);
 
+    let paintingCollection = this.props.data.map(function(where){
+      return (
+        <div><Painting className="paintingCollection" url={where}/></div>
+      );
+    });
+
+    console.log("these are the comment nodes=======",commentNodes);
+    let road = <div>HAPPY</div>
     return (
-      <div>
       <Slider {...settings} className="gallery">
-        {commentNodes}
-      </Slider>
-      </div>
+        {paintingCollection}
+        </Slider>
     );
   }
 };

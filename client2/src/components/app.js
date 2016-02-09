@@ -36,13 +36,13 @@ class App extends Component {
 
   componentDidMount(){
     this.updateData();
-    setInterval(this.updateData.bind(this), 2000);
+    setInterval(this.updateData.bind(this), 1000);
   }
     updateData(){
       this.setState({
         clear: false,
       })
-      console.log("updateData called");
+      //console.log("updateData called");
       axios.get('api/allBoards')
         .then(function(response){
           this.setState({data: response.data});
@@ -163,8 +163,9 @@ class App extends Component {
   }
 
   restoreBoard(){
+    let that = this;
     this.setState({
-      clear: true,
+      //clear: true,
       restore: true
     });
   }
@@ -216,7 +217,7 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
-          <Gallery data={this.state.data}/>
+          <Gallery data={this.state.data} className="painting"/>
       </div>
     )
   }

@@ -70,9 +70,11 @@
 }
 
 .gallery {
+  position: fixed;
   text-align: center;
-  margin: 10px;
-  color: black;
+  padding: 0px;
+  margin: 0px;
+  color: blue;
   border-width: 2px;
   border-style: inset;
 }
@@ -93,6 +95,12 @@
 }
 
 .canvasElm{
-  border-width: 10px;
+  border-width: 50px;
   border-style: solid;
+}
+
+.painting {
+  border-width: 500px;
+  height: 500px
+  left: 500px;
 }
