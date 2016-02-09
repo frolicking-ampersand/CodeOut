@@ -20,7 +20,8 @@ var User = db.define('User', {
   google_name: Sequelize.STRING,
   facebook_id: Sequelize.STRING,
   facebook_token: Sequelize.STRING,
-  facebook_name: Sequelize.STRING
+  facebook_name: Sequelize.STRING,
+  //BoardId: Sequelize.INTEGER
 });
 
 // puts a UserId column on each Message instance
@@ -30,22 +31,33 @@ var User = db.define('User', {
 // enables bi-directional associations between Users and Messages
 // User.hasMany(Message);
 
+console.log('pre user sync');
+
+// creates these tables in MySQL if they don't already exist. Pass in {force: true}
+// to drop any existing user and message tables and make new ones.
+
+
+var Board = db.define('Board', {
+  name: Sequelize.STRING,
+  thing: Sequelize.BLOB,
+  //UserId: Sequelize.INTEGER
+});
+
+User.belongsToMany(Board, { through: 'Users_Boards' } );
+Board.belongsToMany(User, { through: 'Users_Boards' } );
 
 User.sync()
   .then(function() {
     console.log('User Table has is definitely in our Postgres Database');
   });
 
-var Board = db.define('Board', {
-  thing: Sequelize.BLOB
-});
-
-
 Board.sync()
   .then(function() {
     console.log('Board Table has is definitely in our Postgres Database');
   });
 
+// Board.hasMany(User);
+// User.hasMany(Board);
 // Users_Boards = db.define('Users_Boards', {
 //   board_id,
 //   user_id
