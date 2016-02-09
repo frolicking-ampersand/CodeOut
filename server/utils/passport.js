@@ -48,7 +48,7 @@ module.exports = function(passport) {
 
   // facebook will send back the token and profile
   function(req, token, refreshToken, profile, done) {
-    console.log(profile);
+
     // asynchronous
     process.nextTick(function() {
       // find the user in the database based on their facebook id
@@ -90,7 +90,6 @@ module.exports = function(passport) {
   function(token, refreshToken, profile, done) {
 
     process.nextTick(function() {
-      console.log(profile);
       // try to find the user based on their google id
       User.findOne({where: {google_id: profile.id}})
         .then(function(user) {
