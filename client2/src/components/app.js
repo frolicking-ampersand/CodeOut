@@ -36,7 +36,7 @@ class App extends Component {
 
   componentDidMount(){
     this.updateData();
-    setInterval(this.updateData.bind(this), 10000);
+    setInterval(this.updateData.bind(this), 1000);
   }
 
   updateData(){
