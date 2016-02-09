@@ -110,24 +110,9 @@ class trueMenu extends Component {
   
     return (
       <div>
-        <ToggleDisplay show={ !this.state.displayCreateBoard && !this.state.displayJoin }>
-          <Button bsStyle="primary" bsSize="large" onClick={ this.handleOnCreate }>Create New Room</Button>
-        </ToggleDisplay>
-        <ToggleDisplay show={this.state.displayCreateBoard}>
-          <input type="text" value={ this.state.name }
-            onChange={ this.handleName }/> <br/>
-          <button onClick={ this.handleOnCreate }>Cancel</button>
-          <Button bsStyle="primary" bsSize="large" onClick={ this.handleCreation }><Link to="/canvas"> Create </Link></Button>
-        </ToggleDisplay> 
-        <ToggleDisplay show={ !this.state.displayJoin && !this.state.displayCreateBoard }>
-          <button onClick={ this.handleJoin }> Join</button>
-        </ToggleDisplay>
-        <ToggleDisplay show={ this.state.displayJoin }>
-          <input type="text" value={ this.state.name }
-            onChange={ this.handleName }/> <br/>
-          <button onClick={ this.handleJoin }>back</button>
-          <button onClick={ this.handleJoination }><Link to="/canvas"> Join</Link></button>
-        </ToggleDisplay>
+        <input type="text" value={ this.state.name }
+          onChange={ this.handleName }/>
+        <Button bsStyle="primary" bsSize="sm" onClick={ this.handleCreation }><Link to="/canvas"> Create </Link></Button>
         <ul>{boardList}</ul>
       </div>
     )

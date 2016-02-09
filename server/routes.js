@@ -18,7 +18,6 @@ module.exports = function (app, express) {
   // we will use route middleware to verify this (the isLoggedIn function)
 
   app.get('/', isLoggedIn, function(req, res) {
-    console.log('REQ.USER IS_________________________________________________________', req.user);
     res.redirect('main.html');
   });
 
@@ -52,11 +51,8 @@ module.exports = function (app, express) {
     Board.findAll()
     .then(function(boards){
       console.log(boards);
-      var arr = boards.map(function (board) {
-        return board.thing.toString();
-      })
       //console.log(boards[boards.length-1]);
-      res.send(arr);
+      res.send(boards);
     })
   });
 
