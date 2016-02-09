@@ -153,6 +153,7 @@ class App extends Component {
       })
       .then(function (response) {
         console.log(response);
+        this.setState({})
         //handleOnClickClear();
 
       })
@@ -160,6 +161,8 @@ class App extends Component {
         console.log("ERROR saving");
         console.log(response);
       });
+
+
   }
 
   restoreBoard(){
