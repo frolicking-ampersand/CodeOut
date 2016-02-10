@@ -60,15 +60,17 @@ class trueMenu extends Component {
 
   altJoin(name) {
     //e.preventDefault();
-    console.log('altJoining');
+    console.log('altJoining: ' + name);
     this.setState({
       name: name
     });
-    this.handleJoination();
+    socket.emit('join board', { name: name, userId: this.state.userId });
+    //this.handleJoination(null, name);
   }
 
-  handleJoination() {
-    //e.preventDefault();
+  handleJoination(e) {
+    e.preventDefault();
+
     console.log('joining');
     socket.emit('join board', { name: this.state.name, userId: this.state.userId });
   }
