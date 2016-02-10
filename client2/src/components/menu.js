@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
+import ReactDOM from "react-dom";
 import CreateRoom from "./menu_createRoom";
 import Navbar from "./menu_navbar";
 import RoomList from "./menu_roomList";
@@ -8,12 +8,6 @@ import Login from "./login";
 import auth from "../auth-helper";
 
 class Menu extends Component {
-=======
-import Webcams from './webcams'
-const Menu = require('react-burger-menu').stack;
-
-class WebCamBar extends Component {
->>>>>>> Add to video functionality
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +16,6 @@ class WebCamBar extends Component {
     };
     this.grabBoards();
   }
-<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
 
   componentWillMount () {
 
@@ -43,13 +36,13 @@ class WebCamBar extends Component {
 
   render() {
     console.log('INSIDE THE RENDER FUNCTION, this.state.allBoards READS______________________________________:', this.state.allBoards);
-  	return (
-    	<div>
+    return (
+      <div>
         <Navbar loggedIn={this.state.loggedIn} />
         {this.state.loggedIn ? (
           <div>
           <CreateRoom />
-    		  <h3> Join Existing Room </h3>
+          <h3> Join Existing Room </h3>
           <RoomList onRoomSelect={
           selectedRoom => this.setState({selectedRoom})}
           rooms={this.state.allBoards} />
@@ -60,21 +53,8 @@ class WebCamBar extends Component {
           </div>
         )}
       </div>
-  	);
-  }
-}
-=======
-  render () {
-  	return (
-    <div>
-      <Menu >
-        <Webcams />
-       </Menu>
-    </div>
-  	)
+    );
   }
 }
 
-export default WebCamBar
-
->>>>>>> Add to video functionality
+export default Menu;
