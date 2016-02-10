@@ -30,17 +30,16 @@ var User = db.define('User', {
 // enables bi-directional associations between Users and Messages
 // User.hasMany(Message);
 
+
 User.sync()
   .then(function() {
     console.log('User Table has is definitely in our Postgres Database');
   });
-// creates these tables in MySQL if they don't already exist. Pass in {force: true}
-// to drop any existing user and message tables and make new ones.
 
 var Board = db.define('Board', {
-  name: Sequelize.STRING,
   thing: Sequelize.BLOB
 });
+
 
 Board.sync()
   .then(function() {
@@ -52,10 +51,7 @@ Board.sync()
 //   user_id
 // });
 
-
 module.exports = {
   User: User,
   Board: Board
- // Users_Boards
 }
-

@@ -8,6 +8,7 @@ import { ButtonToolbar } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
+import Gallery from './gallery';
 
 class App extends Component {
   constructor(props) {
@@ -22,12 +23,35 @@ class App extends Component {
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
+      all: false,
       clear: false,
-      restore: false
+      restore: false,
+      data: [],
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
-    this.showBGColorBox = this.showBGColorBox.bind(this);
+    this.showBGColorBox = this.showBGColorBox.bind(this)
+  }
+
+
+  componentDidMount(){
+    //this.updateData();
+    //setInterval(this.updateData.bind(this), 5000);
+  }
+
+  updateData(){
+    this.setState({
+      clear: false,
+    })
+    //console.log("updateData called");
+    axios.get('api/allBoards')
+      .then(function(response){
+        this.setState({data: response.data});
+      }.bind(this))
+      .catch(function (response) {
+        console.log("error getting data");
+        console.log(response);
+      });
   }
 
   eraser() {
@@ -40,6 +64,7 @@ class App extends Component {
   increaseSize() {
     if (this.state.lineWidth<15){
       this.setState({
+        clear: false,
         lineWidth: this.state.lineWidth+=1
       });
     }
@@ -48,6 +73,7 @@ class App extends Component {
   decreaseSize(){
     if(this.state.lineWidth>1){
       this.setState({
+        clear: false,
         lineWidth: this.state.lineWidth-=1
       })
     }
@@ -69,11 +95,24 @@ class App extends Component {
       });
     }else{
       this.setState({
+        clear: false,
         displayColorPicker: !this.state.displayColorPicker,
         toggleColorBox: "Pick Color"
       });
     }
   }
+
+  realEraser() {
+    console.log('changing tool');
+    this.setState({
+      clear: false,
+      tool: 'eraser',
+    })
+    console.log(this.state.tool)
+    console.log('eheyehehe')
+    console.log(this.state.tool)
+  }
+
 
   showBGColorBox() {
     if(!this.state.displayBGColorPicker) {
@@ -122,16 +161,27 @@ class App extends Component {
         console.log("ERROR saving");
         console.log(response);
       });
+
+
   }
 
   restoreBoard(){
+    let that = this;
     this.setState({
-      clear: true,
+      //clear: true,
       restore: true
     });
   }
 
+  giveMeAllBoards(){
+    this.setState({
+      clear: true,
+      all: true
+    })
+  }
+
   render() {
+    console.log("waaaaaaaT?");
     let popupPosition = {
       position: 'absolute',
       top: '12%',
@@ -141,8 +191,8 @@ class App extends Component {
    return (
       <div>
         <h1>Frolicking Ampersand</h1>
-          <div class = "row" className='button-bar' >
-          <ButtonToolbar>
+          <div class = "row" className='btn-toolbar' >
+          <ButtonToolbar className = "toolbar">
             <Button bsStyle = "primary" bsSize = "large" onClick={this.handleOnClickClear.bind(this)}>Clear</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showColorBox}>{this.state.toggleColorBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showBGColorBox}>{this.state.toggleBGBox}</Button>
@@ -151,14 +201,12 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
-
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> real </Button>
           </ButtonToolbar>
           </div>
-
           <div className='canvas-style'>
             <CanvasDraw {...this.state}/>
           </div>
-
           <ToggleDisplay show={this.state.displayColorPicker}>
             <ColorPicker
                 type="sketch"
@@ -166,7 +214,6 @@ class App extends Component {
                 color={ this.state.brushColor }
                 onChangeComplete={ this.chooseColor.bind(this) } />
           </ToggleDisplay>
-
           <ToggleDisplay show={this.state.displayBGColorPicker}>
             <ColorPicker
                 type="sketch"
@@ -174,6 +221,7 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
+          <Gallery data={this.state.data} className="painting"/>
       </div>
     )
   }

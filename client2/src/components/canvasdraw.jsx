@@ -12,7 +12,8 @@ const CanvasDraw = React.createClass({
       backgroundColor: PropTypes.string,
       cursor: PropTypes.string
     }),
-    clear: PropTypes.bool
+    clear: PropTypes.bool,
+    tool: PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -22,7 +23,7 @@ const CanvasDraw = React.createClass({
         backgroundColor: '#FFFFFF',
         cursor: 'pointer'
       },
-      clear: false
+      clear: false,
     };
   },
   getInitialState(){
@@ -32,11 +33,21 @@ const CanvasDraw = React.createClass({
       drawing: false,
       lastX: 0,
       lastY: 0,
+      tool: 'pen',
       history: []
     };
   },
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this);
+
+    var that = this;
+    this.socket = io();
+    this.socket.emit('create board', 'test');
+    this.socket.on('draw', function (data) {
+      //console.log("listening");
+      that.state.context.beginPath();
+      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
+    });
 
     canvas.style.width = '100%';
     canvas.style.height = '100%';
@@ -49,40 +60,13 @@ const CanvasDraw = React.createClass({
       canvas: canvas,
       context: ctx
     });
-
-    console.log('didMount');
-    var that = this;
-    //this.socket = io();
-    //this.socket.emit('create board', 'test');
-    socket.on('draw', function (data) {
-      console.log("listening");
-      that.state.context.beginPath();
-      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
-    });
-
-    socket.on('newb', function (data) {
-      console.log('being asked')
-      let newbCanvas = document.getElementById('canvas');
-      let newbImage = new Image();
-      newbImage.src = newbCanvas.toDataURL('image/png');
-      socket.emit('newbImg', {id: data, image: newbImage});
-      console.log('giving')
-    });
-
-    let con = this.state.context;
-    //let savedImage = new Image();
-    socket.on('newbImg', function (data) {
-      console.log('being given');
-      var currentImage = new Image();
-      currentImage.src = data;
-      ctx.drawImage(currentImage, 0, 0);
-    })
-
-    
   },
   componentWillReceiveProps: function(nextProps) {
     if(nextProps.clear){
       this.resetCanvas();
+    }
+    if(nextProps.all){
+      this.giveMeAllBoards();
     }
     if(nextProps.restore){
       this.restoreCanvas();
@@ -126,7 +110,7 @@ const CanvasDraw = React.createClass({
 
       this.draw(lastX, lastY, currentX, currentY);
       var that = this;
-      socket.emit('draw', {
+      this.socket.emit('draw', {
         lX: lastX,
         lY: lastY,
         cX: currentX,
@@ -146,12 +130,20 @@ const CanvasDraw = React.createClass({
   },
 
   draw(lX, lY, cX, cY, color){
-    console.log('drawing');
+    console.log(this.state.tool);
+    if (this.state.tool==='pen'){
+    //console.log('drawing')
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.moveTo(lX,lY);
     this.state.context.lineTo(cX,cY);
     this.state.context.stroke();
+    } else {
+      //console.log('erasing');
+      //this.state.context.globalCompositeOperation="destination-out";
+      this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
+      this.state.context.clearRect(lX,lY,15, 15);
+    }
   },
   resetCanvas(){
     let width = this.state.context.canvas.width;
@@ -159,17 +151,12 @@ const CanvasDraw = React.createClass({
     this.state.context.clearRect(0, 0, width, height);
   },
 
-  drawCanvas(image){
-    let con = this.state.context;
-    con.drawImage(image, 0, 0);
-  },
-
   restoreCanvas(){
     let con = this.state.context;
     let savedImage = new Image();
     axios.get('api/lastBoard')
       .then(function (response) {
-        console.log("response data ",response.data);
+        //console.log("response data ",response.data);
         savedImage.src = response.data;
         //console.log(savedImage);
 
@@ -180,6 +167,25 @@ const CanvasDraw = React.createClass({
         console.log(response);
       });
   },
+
+  giveMeAllBoards(){
+    console.log('gimme gimme');
+    let con = this.state.context;
+    let savedImage = new Image();
+     axios.get('/api/allZeeBoards')
+     .then(function (response) {
+       for (var i=0; i<response.data.length; i++){
+        console.log(response.data[i]);
+       }
+     })
+     .catch(function (response) {
+       console.log("error restoring image");
+       console.log(response);
+     });
+ },
+
+
+
   getDefaultStyle(){
     return {
       backgroundColor: '#FFFFFF',
