@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import CreateRoom from "./menu_createRoom";
 import Navbar from "./menu_navbar";
 import RoomList from "./menu_roomList";
@@ -56,5 +55,3 @@ class Menu extends Component {
   	);
   }
 }
-
-export default Menu;

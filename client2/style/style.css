@@ -1,29 +1,33 @@
+
+html,body {height: 100%;}
+body {padding: 0px; margin:0px ; background-position: center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;}
+
 .search-bar {
-	margin: 20px;
-	text-align: center;
+    margin: 20px;
+    text-align: center;
 }
 
 .search-bar input {
-	width: 75%
+    width: 75%
 }
 
 .video-item img {
-	max-width: 64px;
+    max-width: 64px;
 }
 
 .video-detail .details {
-	margin-top: 10px;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .list-group-item {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .list-group-item:hover {
-	background-color: #eee
+    background-color: #eee
 }
 
 .box {
@@ -103,4 +107,17 @@
   border-width: 500px;
   height: 500px
   left: 500px;
+}
+
+.editor {
+  float: left;
+}
+
+.indentMe {
+ padding: 5px;
+ display: inline-block;
+}
+
+.searchBar {
+    border-width: 1px;
 }

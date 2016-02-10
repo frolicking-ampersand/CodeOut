@@ -40,13 +40,14 @@
     "react-drive-in": "^1.7.3",
     "react-dropdown": "^0.7.2",
     "react-mixin": "^2.0.2",
-    "react-redux": "^4.0.0",
+    "react-kit": "^0.1.14",
+    "react-page-transitions": "^1.2.0",
     "react-router": "^2.0.0-rc5",
+    "react-router-component-transition": "^0.2.0",
     "react-select": "^0.9.1",
     "react-slick": "^0.9.3",
     "react-toggle-display": "^2.0.2",
     "react-webcam": "0.0.8",
-    "redux": "^3.0.4",
     "underscore": "^1.8.3",
     "youtube-api-search": "0.0.5"
   }
