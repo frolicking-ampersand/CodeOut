@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Webcams from './webcams'
-const Menu = require('react-burger-menu').stack;
+const Menu = require('./../../react-burger-menu').stack;
 
 class Webcambar extends Component {
   constructor(props) {
