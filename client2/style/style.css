@@ -39,8 +39,8 @@ body {padding: 0px; margin:0px ; background-position: center; background-size: c
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
-  top: 36px;
+  left: 20px;
+  top: 18px;
 }
 
 .bm-burger-bars {
@@ -120,4 +120,16 @@ body {padding: 0px; margin:0px ; background-position: center; background-size: c
 
 .searchBar {
     border-width: 1px;
+<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
+=======
+}
+
+.webcams video {
+  height: 150px;
+}
+
+.centerMe  {
+  margin-left: auto;
+  margin-right: auto;
+>>>>>>> Add to video functionality
 }

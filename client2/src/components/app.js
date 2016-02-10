@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
-import CanvasDraw from './canvasdraw';
 import axios from 'axios';
+import CanvasDraw from './canvasdraw';
+import WebCamBar from './webcam-bar'
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';

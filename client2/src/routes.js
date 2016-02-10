@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Menu from './components/menu';
-import Video from './Video/'
+import Video from './components/Video/'
 import App from './components/app';
 import CodeEditor from './components/code_editor';
 import Login from './components/login';

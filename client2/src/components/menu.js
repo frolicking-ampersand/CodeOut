@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
 import CreateRoom from "./menu_createRoom";
 import Navbar from "./menu_navbar";
 import RoomList from "./menu_roomList";
@@ -7,6 +8,12 @@ import Login from "./login";
 import auth from "../auth-helper";
 
 class Menu extends Component {
+=======
+import Webcams from './webcams'
+const Menu = require('react-burger-menu').stack;
+
+class WebCamBar extends Component {
+>>>>>>> Add to video functionality
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +22,7 @@ class Menu extends Component {
     };
     this.grabBoards();
   }
+<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
 
   componentWillMount () {
 
@@ -55,3 +63,18 @@ class Menu extends Component {
   	);
   }
 }
+=======
+  render () {
+  	return (
+    <div>
+      <Menu >
+        <Webcams />
+       </Menu>
+    </div>
+  	)
+  }
+}
+
+export default WebCamBar
+
+>>>>>>> Add to video functionality

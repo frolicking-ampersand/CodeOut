@@ -80,7 +80,7 @@ const CanvasDraw = React.createClass({
         lastX: e.targetTouches[0].pageX - rect.left,
         lastY: e.targetTouches[0].pageY - rect.top
       });
-    } else{
+    } else {
       this.setState({
         lastX: e.clientX - rect.left,
         lastY: e.clientY - rect.top

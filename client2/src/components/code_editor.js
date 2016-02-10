@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactAce from 'react-ace';
 import brace from 'brace';
 import Navbar from './code_editor_navbar';
-
+import { Col } from 'react-bootstrap';
 
 //LANGUAGES
 import 'brace/mode/javascript';
@@ -53,9 +53,24 @@ export default class CodeEditor extends Component {
     this.evaluateCode = this.evaluateCode.bind(this);
   }
 
+<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
   codeChange (val) {
     this.setState({currentVal: val});
   }
+=======
+	componentDidMount() {
+		this.socket = io();
+		this.socket.on('write code', function (data) {
+			console.log(data);
+      this.setState({currentVal: data.currentVal});
+    }.bind(this));
+	}
+
+	codeChange (val) {
+		this.setState({currentVal: val});
+		this.socket.emit('type', { currentVal: val});
+	}
+>>>>>>> Add to video functionality
 
   changeTheme (e) {
     this.setState({theme: e.target.value});
@@ -93,8 +108,12 @@ export default class CodeEditor extends Component {
         <div>
           <Navbar
             changeLang={mode => this.setState({mode})}
-            changeTheme={theme => this.setState({theme})}/>
+            changeTheme={theme => this.setState({theme})}
+            increaseSize={this.increaseSize}
+            decreaseSize={this.decreaseSize}
+            evaluateCode={this.evaluateCode} />
         </div>
+<<<<<<< 668e1d4156d5759b1e6c7b25636a3b9346f114be
         <div className="editor">
           <ReactAce
             value={this.state.currentVal}
@@ -150,5 +169,24 @@ export default class CodeEditor extends Component {
       </div>
     )
   }
+=======
+				<Col xs={12} md={8} className="editor">
+					<ReactAce
+						value={this.state.currentVal}
+						onChange={this.codeChange}
+					  mode={this.state.mode}
+					  theme={this.state.theme}
+					  fontSize={this.state.fontSize}
+            width="100%"
+            height="800px"
+            float="inline" />
+				</Col>
+				<Col xs={6} md={4}>
+					<b> Result: </b> {this.state.codeResult}
+				</Col>
+			</div>
+		)
+	}
+>>>>>>> Add to video functionality
 }
 

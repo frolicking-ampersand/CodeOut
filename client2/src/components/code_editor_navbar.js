@@ -38,7 +38,7 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="solarized_dark"> Solarized Dark </MenuItem>
                 <MenuItem eventKey="solarized_light"> Solarized Light </MenuItem>
                 <MenuItem eventKey="terminal"> Terminal </MenuItem>
-              </NavDropdown>              
+              </NavDropdown>
               <NavDropdown onSelect={(e, key) => this.props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" noCaret>
                 <MenuItem eventKey="javascript"> JavaScript </MenuItem>
                 <MenuItem eventKey="java"> Java </MenuItem>

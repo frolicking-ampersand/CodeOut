@@ -1,0 +1,27 @@
+import React from 'react';
+
+const VideoListItem = ({video, onVideoSelect}) => {
+	const imageUrl = video.snippet.thumbnails.default.url;
+
+	const divStyle = {
+  'background-color': '#EEF2F7',
+  'border-radius': '0px',
+  'border-width': '.5px 0px .5px 0px',
+  'border-color': 'black',
+  'border-style': 'solid',
+	};
+	return (
+	 <li style={divStyle} onClick={() => onVideoSelect(video)} className="list-group-item">
+		<div>
+			<div className="media-left">
+				<img className="media-object" src={imageUrl} />
+			</div>
+			<div className="media-body">
+				<div className="media-heading" >{video.snippet.title}</div>
+			</div>
+		</div>
+	 </li>
+	);
+};
+
+export default VideoListItem;
