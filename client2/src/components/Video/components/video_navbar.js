@@ -16,7 +16,7 @@ export default class VideoNavbar extends Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              Video Page
+              Theater
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

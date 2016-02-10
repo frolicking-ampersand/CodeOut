@@ -21,7 +21,7 @@ class trueMenu extends Component {
 
   constructor(props) {
     super(props);
- 
+
     this.state = {
       displayCreateBoard: false,
       displayJoin: false,
@@ -39,7 +39,7 @@ class trueMenu extends Component {
   // contextTypes () {
   //   return React.PropTypes.func
   // }
-  
+
 
   handleOnCreate() {
     this.setState({
@@ -66,7 +66,7 @@ class trueMenu extends Component {
     //this.context.router.transitionTo('/#/canvas');
     // this.props.history.push('/#/canvas');
     console.log('gone');
-    // axios.post('api/boards', { 
+    // axios.post('api/boards', {
     //   name: this.state.name
     // })
     //   .then(function (responce) {
@@ -107,7 +107,7 @@ class trueMenu extends Component {
     // })
 
     console.log(boardList);
-  
+
     return (
       <div>
         <input type="text" value={ this.state.name }
@@ -142,7 +142,7 @@ trueMenu.contextTypes = {
   //   return <li>{board}</li>
   // })
 
-    
+
 //   return (
 //   <div>
 //     <p>hello world</p>
@@ -151,7 +151,7 @@ trueMenu.contextTypes = {
 //     <ul>{boardList}</ul>
 //   </div>
 //   )
-  
+
 // };
 
 export default trueMenu;

@@ -7,7 +7,7 @@ const Login = () => {
       <video autoplay id="bgvid" loop>
         <source src="dogwallpaper.mp4" type="video/mp4" />
       </video>
-  
+
       <header id="header">
         <h1>Board</h1>
         <div className="buttons">

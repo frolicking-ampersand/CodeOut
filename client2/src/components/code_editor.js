@@ -132,10 +132,11 @@ export default class CodeEditor extends Component {
             changeTheme={theme => this.setState({theme})}
             increaseSize={this.increaseSize}
             decreaseSize={this.decreaseSize}
-            evaluateCode={this.evaluateCode} />
+            evaluateCode={this.evaluateCode}
+            findToyProblem={this.findToyProblem}
+            findSolution={this.findSolution} />
+
         </div>
-        <button onClick={this.findToyProblem}>Find Toy Problem </button>
-        <button onClick={this.findSolution}>Find Solution </button>
         <Col xs={12} md={8} className="editor">
           <ReactAce
             value={this.state.currentVal}

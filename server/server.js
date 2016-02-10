@@ -19,6 +19,7 @@ var server = app.listen(port);
 console.log(port);
 //////////////////
 
+
 //////////////////////
 // Set up Socket.io //
 //////////////////////
@@ -58,7 +59,7 @@ io.on('connection', function (socket) {
     console.log('outgoing socket id: ' + socket.id)
     socket.broadcast.to(socket.room).emit('newb', socket.id);
     console.log('asking');
-    
+
   });
 
   socket.on('newbImg', function (boardImg) {
@@ -77,28 +78,6 @@ io.on('connection', function (socket) {
     socket.broadcast.to(socket.room).emit('draw', data);
     //socket.broadcast.emit('draw', data);
   });
-
-  socket.on('type', function(data){
-    socket.broadcast.emit('write code', data)
-  });
-
-  socket.on('startSearch', function(data){
-    socket.broadcast.emit('searchTyping', data)
-  });
-
-  socket.on('sendVideoSelect', function(data){
-    socket.emit('getVid', data)
-    socket.broadcast.emit('getVid', data);
-  });
-
-  socket.on('sendPlay', function(){
-    socket.broadcast.emit('recievePlay');
-  });
-
-  socket.on('sendPause', function() {
-    socket.broadcast.emit('recievePause');
-  });
-
 });
 
 /////////////////////////

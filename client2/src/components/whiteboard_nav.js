@@ -29,7 +29,7 @@ export default class WhiteboardNavbar extends Component {
               </NavDropdown>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} href="#/canvas">Code Editor</NavItem>
+              <NavItem eventKey={1} href="#/code">Code Editor</NavItem>
               <NavItem eventKey={2} href="#/video">Video</NavItem>
             </Nav>
           </Navbar.Collapse>

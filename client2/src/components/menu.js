@@ -17,10 +17,6 @@ class Menu extends Component {
     this.grabBoards();
   }
 
-  componentWillMount () {
-
-  }
-
   grabBoards() {
     var component = this;
     axios.get('api/allBoards')
