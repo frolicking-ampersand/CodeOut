@@ -53,9 +53,15 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
-
-      //console.log(boards[boards.length-1]);
-      res.send(boards);
+      //filter out boards that don't have an image associated with them.
+      var arr = boards.filter(function (board){
+        return board.thing;
+      }).map(function (board) {
+        //convert the image to a string so that it can be drawn on the canvas
+        return {id: board.id, img:board.thing.toString()};
+      })
+      console.log(boards[boards.length-1].thing);
+      res.send(arr);
     })
   });
 
@@ -97,16 +103,21 @@ module.exports = function (app, express) {
 
   //create a board
   app.post('/api/boards', function (req, res) {
-    console.log('creating board');
-    console.log(req.body.name);
-    Board.create({
-      name: 'PLACEHOLDER',
-      thing: req.body.thing
-    }).catch(function (err) {
-      console.log('ERROR CREATING BOARD READS:', err);
-    })
-    res.send('board created');
-  });
+      console.log('creating board', req.body);
+      console.log(req.body.thing);
+      Board.create({
+        thing: req.body.thing
+      }).then(function(err, board, fields) {
+        if (err) {
+          res.send(err);
+        }
+        console.log(err);
+        console.log('sending back a board');
+        console.log(board);
+        res.send(board);
+      });
+    });
+
 
   // =====================================
   // FACEBOOK ROUTES =====================

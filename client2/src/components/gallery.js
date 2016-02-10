@@ -35,7 +35,7 @@ const Painting = React.createClass({
     let canvas = ReactDOM.findDOMNode(this);
     var that = this;
     let context = canvas.getContext("2d");
-    //console.log("the context is", context);
+    console.log("the context is", context);
     let savedImage = new Image();
     savedImage.src=this.props.url;
     console.log("the imageId is",this.props.imgId)
@@ -157,9 +157,7 @@ class Gallery extends Component {
     let road = <div>HAPPY</div>
     return (
       <Slider {...settings} className="gallery">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
+        {paintingCollection}
         </Slider>
     );
   }

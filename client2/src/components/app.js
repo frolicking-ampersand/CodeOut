@@ -35,8 +35,8 @@ class App extends Component {
 
 
   componentDidMount(){
-    //this.updateData();
-    //setInterval(this.updateData.bind(this), 5000);
+    this.updateData();
+    setInterval(this.updateData.bind(this), 5000);
   }
 
   updateData(){
@@ -46,6 +46,7 @@ class App extends Component {
     //console.log("updateData called");
     axios.get('api/allBoards')
       .then(function(response){
+        console.log("the response is",response)
         this.setState({data: response.data});
       }.bind(this))
       .catch(function (response) {
