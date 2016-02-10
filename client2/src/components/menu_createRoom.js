@@ -26,7 +26,8 @@ class trueMenu extends Component {
       displayCreateBoard: false,
       displayJoin: false,
       name: '',
-      list: undefined
+      userId: 0,
+      list: []
     };
     //this.socket = io();
     this.handleOnCreate = this.handleOnCreate.bind(this);
@@ -36,6 +37,7 @@ class trueMenu extends Component {
     this.handleJoination = this.handleJoination.bind(this);
     this.getList = this.getList.bind(this);
     this.getList();
+    //this.altJoin = this.altJoin.bind(this);
     //this.mixins = [Navigation];
   }
 
@@ -56,28 +58,30 @@ class trueMenu extends Component {
     });
   }
 
-  handleJoination(e) {
-    e.preventDefault();
+  altJoin(name) {
+    //e.preventDefault();
+    console.log('altJoining');
+    this.setState({
+      name: name
+    });
+    this.handleJoination();
+  }
+
+  handleJoination() {
+    //e.preventDefault();
     console.log('joining');
-    socket.emit('join board', this.state.name);
+    socket.emit('join board', { name: this.state.name, userId: this.state.userId });
   }
 
   handleCreation(e) {
     e.preventDefault();
     console.log('creating');
-    socket.emit('create board', this.state.name);
-    //this.context.router.transitionTo('/#/canvas');
-    // this.props.history.push('/#/canvas');
+    socket.emit('create board', {name: this.state.name,
+                                 userId: this.state.userId });
+
     console.log('gone');
-    // axios.post('api/boards', {
-    //   name: this.state.name
-    // })
-    //   .then(function (responce) {
 
-    //   })
-    //   .catch(function (responce) {
-
-    //   });
+    
 
   }
 
@@ -89,18 +93,24 @@ class trueMenu extends Component {
 
   getList() {
     var that = this;
+    console.log('getting list');
     axios.get('api/allBoards').then(function(res) {
       //console.log('trying to get: ', "data:image/png;base64," + res.data[0].thing.data);
-      var boardList = res.data.map(function(board) {
+      console.log(res.data);
+      var boardList = res.data.boards.map(function(board) {
         //var savedImage = new Image();
         console.log(board.name);
        // savedImage.src = board;
        // console.log(savedImage);
 
-        return <li>board.name</li>
+        return <li><Link to='/canvas'  onClick={ that.altJoin.bind(that, board.name) }>
+        {board.name}</Link></li>
       });
+      console.log(res.data.userId);
+
       that.setState({
-        list: boardList
+        list: boardList,
+        userId: res.data.userId
       }); 
       //trueMenu.setState({ name: 'niki' });
     })
@@ -169,32 +179,5 @@ trueMenu.contextTypes = {
   }
 };
 
-// class creation extends Component {
-
-// }
-
-// const NavBar = () => {
-//   var boardList; //= ['red', 'blue', 'green'];
-//   axios.get('api/boards').then(function(res) {
-//     console.log('trying to get');
-//     boardList = res.map(function(board) {
-//       return <li>{board}</li>
-//     });
-//   });
-  // boardList = boardList.map(function(board) {
-  //   return <li>{board}</li>
-  // })
-
-
-//   return (
-//   <div>
-//     <p>hello world</p>
-//     // <ToggleDisplay show=
-//     <a href="/#/canvas"> create board </a>
-//     <ul>{boardList}</ul>
-//   </div>
-//   )
-
-// };
 
 export default trueMenu;

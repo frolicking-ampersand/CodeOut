@@ -4,6 +4,7 @@ var methodOverride = require('method-override');
 var pg = require('pg');
 var passport = require('passport');
 var Board = require('./db/db').Board;
+var User = require('./db/db').User;
 
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -33,34 +34,55 @@ io.on('connection', function (socket) {
   console.log('Socket connection has been made with id of:\n' + socket.id);
 
   socket.on('create board', function (boardName) {
-    console.log('creating board: ' + boardName);
+    console.log('creating board: ' + boardName.name);
     socket.leave(socket.room);
-    socket.join(boardName);
-    socket.room = boardName;
+    socket.join(boardName.name);
+    socket.room = boardName.name;
 
-    Board.create({
-      name: boardName,
-    }).then(function(err, board, fields) {
-      if (err) {
-        //res.send(err);
-        // console.log(err);
-      }
-      //console.log(err);
-      //console.log('sending back a board');
-      console.log('saved board');
-      //res.send(board);
+    User.findOne({
+      where: { id: boardName.userId }
+    })
+    .then(function (user) {
+      console.log('found a user');
+      Board.create({
+        name: boardName.name
+      }).then(function (board) {
+        user.addBoard(board);
+      });
+      
     });
+
+    //Board.findOne()
+
+    // Board.create({
+    //   name: boardName,
+    // }).then(function(err, board, fields) {
+    //   if (err) {
+    //     //res.send(err);
+    //     // console.log(err);
+    //   }
+    //   //console.log(err);
+    //   //console.log('sending back a board');
+    //   console.log('saved board');
+    //   //res.send(board);
+    // });
   });
 
   socket.on('join board', function (boardName) {
     socket.leave(socket.room);
-    socket.join(boardName);
-    socket.room = boardName;
-    console.log('joined board: ' + boardName);
+    socket.join(boardName.name);
+    socket.room = boardName.name;
+    console.log('joined board: ' + boardName.name);
     console.log('outgoing socket id: ' + socket.id);
-    socket.broadcast.to(socket.room).emit('newb', socket.id);
-    console.log('asking');
+    
+    var clientsCount = io.sockets.adapter.rooms[socket.room].length;
+    if (clientsCount > 1) {
+      socket.broadcast.to(socket.room).emit('newb', socket.id);
+      console.log('asking');
+    } else {
 
+    }
+    
   });
 
   socket.on('newbImg', function (boardImg) {

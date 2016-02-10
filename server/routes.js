@@ -1,5 +1,6 @@
 var passport = require('passport');
 var Board = require('./db/db').Board;
+var User = require('./db/db').User
 
 module.exports = function (app, express) {
 
@@ -51,23 +52,27 @@ module.exports = function (app, express) {
   });
 
   app.get('/api/allBoards', function (req, res) {
+    console.log('getting all boards')
     Board.findAll()
     .then(function(boards){
+      console.log('found allBoards');
       var arr = boards.map(function (board) {
+        console.log('boardname' + board.name);
         return {
-          image: board.thing.toString(),
+          //image: board.thing.toString(),
           name: board.name 
-        }
+        };
       });
-      //console.log(boards[boards.length-1]);
-      res.send(arr);
+
+      //console.log(req.user);
+      res.send({boards: arr, userId: req.user.dataValues.id});
     })
   });
 
   app.get('/api/lastBoard', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      console.log(boards[boards.length-1]);
+      console.log('*USER_DATA*****************', req.user);
       res.send(boards[boards.length-1].thing);
     })
   });
@@ -105,24 +110,36 @@ module.exports = function (app, express) {
   // });
 
   //create a board
-  app.post('/api/boards', function (req, res) {
-      console.log('creating board', req.body);
-      console.log(req.body.thing);
-      if (req.body.thing){
-        Board.create({
-          thing: req.body.thing
-        }).then(function(err, board, fields) {
-          if (err) {
-            res.send(err);
-          }
-          console.log(err);
-          console.log('sending back a board');
-          console.log(board);
-          res.send(board);
-        });
-      }
+  // app.post('/api/create', function (req, res) {
+  //   console.log('looking for user');
+  //   User.findOne({
+  //     where: { id: req.user.id }
+  //   })
+  //   .then(function (user) {
+  //     console.log('found a user');
+  //     Board.create({
+  //       name: req.body.name
+  //     }).setUsers(user);
+  //   });
 
+  // });
+
+  app.post('/api/boards', function (req, res) {
+    console.log('creating board');
+    console.log(req.body.name);
+    Board.create({
+      name: req.body.name,
+      thing: req.body.thing
+    }).then(function(err, board, fields) {
+      if (err) {
+        res.send(err);
+      }
+      console.log(err);
+      console.log('sending back a board');
+      //console.log(board);
+      res.send(board);
     });
+  });
 
 
   // =====================================
