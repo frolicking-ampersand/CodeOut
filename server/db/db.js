@@ -40,9 +40,6 @@ var Board = db.define('Board', {
   thing: Sequelize.BLOB
 });
 
-var Board = db.define('Board', {
-  thing: Sequelize.BLOB
-});
 
 Board.sync()
   .then(function() {

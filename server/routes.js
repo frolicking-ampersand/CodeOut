@@ -53,9 +53,7 @@ module.exports = function (app, express) {
   app.get('/api/allBoards', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      var arr = boards.map(function (board) {
-        return {id: board.id, img:board.thing.toString()};
-      })
+
       //console.log(boards[boards.length-1]);
       res.send(boards);
     })
@@ -107,6 +105,7 @@ module.exports = function (app, express) {
     }).catch(function (err) {
       console.log('ERROR CREATING BOARD READS:', err);
     })
+    res.send('board created');
   });
 
   // =====================================

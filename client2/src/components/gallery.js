@@ -157,7 +157,9 @@ class Gallery extends Component {
     let road = <div>HAPPY</div>
     return (
       <Slider {...settings} className="gallery">
-        {paintingCollection}
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
         </Slider>
     );
   }

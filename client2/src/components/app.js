@@ -30,13 +30,13 @@ class App extends Component {
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
-    this.showBGColorBox = this.showBGColorBox.bind(this);
+    this.showBGColorBox = this.showBGColorBox.bind(this)
   }
 
 
   componentDidMount(){
-    this.updateData();
-    setInterval(this.updateData.bind(this), 1000);
+    //this.updateData();
+    //setInterval(this.updateData.bind(this), 5000);
   }
 
   updateData(){
@@ -181,6 +181,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("waaaaaaaT?");
     let popupPosition = {
       position: 'absolute',
       top: '12%',
