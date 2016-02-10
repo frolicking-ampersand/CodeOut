@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 const PropTypes = React.PropTypes;
 import axios from 'axios';
 
+
 const CanvasDraw = React.createClass({
   propTypes: {
     brushColor: PropTypes.string,

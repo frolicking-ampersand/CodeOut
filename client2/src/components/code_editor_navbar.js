@@ -11,17 +11,13 @@ export default class CodeEditorNavbar extends Component {
     super(props);
   }
 
-  // changeLang(event, selectedKey){
-  //   this.props.changeLang(selectedKey);
-  // }
-
   render() {
     return (
       <div>
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Frolicking Ampersand Board</a>
+              Code Editor
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -59,6 +55,8 @@ export default class CodeEditorNavbar extends Component {
               <NavItem eventKey={1} onClick={this.props.increaseSize}>Enhance</NavItem>
               <NavItem eventKey={2} onClick={this.props.decreaseSize}>Dehance</NavItem>
               <NavItem eventKey={3} onClick={this.props.evaluateCode}>Run Code</NavItem>
+              <NavItem>Generate Toy Problem</NavItem>
+              <NavItem>Find Solution</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={4} href="#/canvas">Whiteboard</NavItem>

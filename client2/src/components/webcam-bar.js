@@ -9,7 +9,7 @@ class Webcambar extends Component {
   render () {
   	return (
     <div>
-      <Menu >
+      <Menu customIcon={'./images/webcam.svg'} right>
         <Webcams />
        </Menu>
     </div>

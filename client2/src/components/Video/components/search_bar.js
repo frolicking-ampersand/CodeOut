@@ -28,13 +28,14 @@ export default class SearchBar extends Component {
 		'color': 'navy',
 		'text-align': 'center',
 		'border-width': '1px',
-		'border-color': 'navy'
+		'border-color': 'navy',
+		'background': 'black'
 	}
 	 return (
 		<div className="search-bar">
 			<input
 			style={searchStyle}
-			placeholder="Search for a video to watch with a friend!"
+			placeholder="Search for a video with a friend!"
 			value={this.state.term}
 			onChange={event => this.onInputChange(event.target.value)} />
 		</div>

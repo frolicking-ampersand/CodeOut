@@ -62,8 +62,7 @@ export default class VideoDetail extends Component {
 					onPause={this.sendPauseData}
 					/>
 				</div>
-				<div className="details">
-				</div>
+
 			</div>
 		);
 		}

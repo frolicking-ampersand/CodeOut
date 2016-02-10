@@ -19,7 +19,6 @@ var server = app.listen(port);
 console.log(port);
 //////////////////
 
-
 //////////////////////
 // Set up Socket.io //
 //////////////////////
@@ -87,12 +86,17 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('searchTyping', data)
   });
 
+  socket.on('sendVideoSelect', function(data){
+    socket.emit('getVid', data)
+    socket.broadcast.emit('getVid', data);
+  });
+
   socket.on('sendPlay', function(){
     socket.broadcast.emit('recievePlay');
   });
 
   socket.on('sendPause', function() {
-    socket.broadcast.emit('recievePause')
+    socket.broadcast.emit('recievePause');
   });
 
 });

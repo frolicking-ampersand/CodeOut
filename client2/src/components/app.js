@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ColorPicker from 'react-color';
 import ToggleDisplay from 'react-toggle-display';
-import axios from 'axios';
 import CanvasDraw from './canvasdraw';
-import WebCamBar from './webcam-bar'
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
@@ -45,7 +44,7 @@ class App extends Component {
       clear: false,
     })
     //console.log("updateData called");
-    axios.get('api/allBoards')
+    axios.get('api/allZeeBoards')
       .then(function(response){
         console.log("the response is",response)
         this.setState({data: response.data});
