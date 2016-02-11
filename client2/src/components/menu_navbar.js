@@ -11,10 +11,6 @@ export default class CodeEditorNavbar extends Component {
     super(props);
   }
 
-  // changeLang(event, selectedKey){
-  //   this.props.changeLang(selectedKey);
-  // }
-
   render() {
     return (
       <div>
@@ -25,7 +21,7 @@ export default class CodeEditorNavbar extends Component {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          {this.props.loggedIn ? 
+          {this.props.loggedIn ?
           (
             <Navbar.Collapse>
               <Nav pullRight>
@@ -35,7 +31,7 @@ export default class CodeEditorNavbar extends Component {
                 <NavItem eventKey={4} href="#/logout">Logout</NavItem>
               </Nav>
             </Navbar.Collapse>
-          ) :          
+          ) :
           (
             <Navbar.Collapse>
               <Nav pullRight>

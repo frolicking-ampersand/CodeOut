@@ -59,7 +59,7 @@ io.on('connection', function (socket) {
     console.log('outgoing socket id: ' + socket.id)
     socket.broadcast.to(socket.room).emit('newb', socket.id);
     console.log('asking');
-    
+
   });
 
   socket.on('newbImg', function (boardImg) {

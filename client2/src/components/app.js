@@ -9,6 +9,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
 import Gallery from './gallery';
+import WhiteboardNav from './whiteboard_nav'
 
 class App extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class App extends Component {
       clear: false,
     })
     //console.log("updateData called");
-    axios.get('api/allBoards')
+    axios.get('api/allZeeBoards')
       .then(function(response){
         console.log("the response is",response)
         this.setState({data: response.data});
@@ -182,16 +183,19 @@ class App extends Component {
   }
 
   render() {
-    console.log("waaaaaaaT?");
     let popupPosition = {
       position: 'absolute',
       top: '12%',
       left: '5%',
     };
 
+    let indent = {
+      'margin-top': '10px'
+    }
+
    return (
       <div>
-        <h1>Frolicking Ampersand</h1>
+       <WhiteboardNav />
           <div class = "row" className='btn-toolbar' >
           <ButtonToolbar className = "toolbar">
             <Button bsStyle = "primary" bsSize = "large" onClick={this.handleOnClickClear.bind(this)}>Clear</Button>
@@ -222,7 +226,9 @@ class App extends Component {
                 color= {this.state.canvasStyle.backgroundColor}
                 onChangeComplete={ this.chooseBG.bind(this) } />
           </ToggleDisplay>
+          <div style={indent}>
           <Gallery data={this.state.data} className="painting"/>
+          </div>
       </div>
     )
   }

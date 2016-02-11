@@ -80,17 +80,21 @@ module.exports = function (app, express) {
     })
   });
 
+
  app.get('/api/allZeeBoards', function (req, res) {
-    Board.findAll()
-    .then(function(boards){
-      var arr = [];
-      for (var i=0; i<boards.length; i++){
-        arr.push(boards[i].thing.toString());
-        console.log(arr[i]);
-      }
-      res.send(arr);
-    })
-  });
+   Board.findAll()
+   .then(function(boards){
+     //filter out boards that don't have an image associated with them.
+     var arr = boards.filter(function (board){
+       return board.thing;
+     }).map(function (board) {
+       //convert the image to a string so that it can be drawn on the canvas
+       return {id: board.id, img:board.thing.toString()};
+     })
+     console.log(boards[boards.length-1].thing);
+     res.send(arr);
+   })
+ });
 
   // app.get('/api/boards', function(req, res) {
   //   'SELECT * FROM board', function(err, rows){

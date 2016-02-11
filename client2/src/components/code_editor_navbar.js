@@ -11,17 +11,13 @@ export default class CodeEditorNavbar extends Component {
     super(props);
   }
 
-  // changeLang(event, selectedKey){
-  //   this.props.changeLang(selectedKey);
-  // }
-
   render() {
     return (
       <div>
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Frolicking Ampersand Board</a>
+              Code Editor
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -38,7 +34,7 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="solarized_dark"> Solarized Dark </MenuItem>
                 <MenuItem eventKey="solarized_light"> Solarized Light </MenuItem>
                 <MenuItem eventKey="terminal"> Terminal </MenuItem>
-              </NavDropdown>              
+              </NavDropdown>
               <NavDropdown onSelect={(e, key) => this.props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" noCaret>
                 <MenuItem eventKey="javascript"> JavaScript </MenuItem>
                 <MenuItem eventKey="java"> Java </MenuItem>
@@ -59,6 +55,8 @@ export default class CodeEditorNavbar extends Component {
               <NavItem eventKey={1} onClick={this.props.increaseSize}>Enhance</NavItem>
               <NavItem eventKey={2} onClick={this.props.decreaseSize}>Dehance</NavItem>
               <NavItem eventKey={3} onClick={this.props.evaluateCode}>Run Code</NavItem>
+              <NavItem eventKey={4} onClick={this.props.findToyProblem}>Generate Toy Problem</NavItem>
+              <NavItem eventKey={5} onClick={this.props.findSolution}>Find Solution</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={4} href="#/canvas">Whiteboard</NavItem>

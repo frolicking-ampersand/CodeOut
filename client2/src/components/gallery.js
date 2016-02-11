@@ -61,6 +61,7 @@ const Painting = React.createClass({
       'border-style': 'solid',
       'border-width': '5px 5px 5px 5px',
       'border-color': 'black',
+      'background-color': 'white',
     }
     return (
       <canvas style={divStyle} id ={this.props.id}></canvas>
@@ -96,7 +97,7 @@ const Picture = React.createClass({
     };
   },
 
-	render(){
+  render(){
     //console.log(this.props.url);
     const surfaceWidth = 300;
     const surfaceHeight = 300;

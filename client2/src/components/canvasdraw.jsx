@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 const PropTypes = React.PropTypes;
 import axios from 'axios';
 
+
 const CanvasDraw = React.createClass({
   propTypes: {
     brushColor: PropTypes.string,
@@ -80,7 +81,7 @@ const CanvasDraw = React.createClass({
         lastX: e.targetTouches[0].pageX - rect.left,
         lastY: e.targetTouches[0].pageY - rect.top
       });
-    } else{
+    } else {
       this.setState({
         lastX: e.clientX - rect.left,
         lastY: e.clientY - rect.top

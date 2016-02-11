@@ -17,10 +17,6 @@ class Menu extends Component {
     this.grabBoards();
   }
 
-  componentWillMount () {
-
-  }
-
   grabBoards() {
     var component = this;
     axios.get('api/allBoards')
@@ -36,13 +32,13 @@ class Menu extends Component {
 
   render() {
     console.log('INSIDE THE RENDER FUNCTION, this.state.allBoards READS______________________________________:', this.state.allBoards);
-  	return (
-    	<div>
+    return (
+      <div>
         <Navbar loggedIn={this.state.loggedIn} />
         {this.state.loggedIn ? (
           <div>
           <CreateRoom />
-    		  <h3> Join Existing Room </h3>
+          <h3> Join Existing Room </h3>
           <RoomList onRoomSelect={
           selectedRoom => this.setState({selectedRoom})}
           rooms={this.state.allBoards} />
@@ -53,7 +49,7 @@ class Menu extends Component {
           </div>
         )}
       </div>
-  	);
+    );
   }
 }
 
