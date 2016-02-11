@@ -76,7 +76,7 @@ module.exports = function (app, express) {
    app.get('/api/firstBoard', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      res.send(boards[1].thing);
+      res.send(boards[0].thing);
     })
   });
 
@@ -109,17 +109,20 @@ module.exports = function (app, express) {
   app.post('/api/boards', function (req, res) {
       console.log('creating board', req.body);
       console.log(req.body.thing);
-      Board.create({
-        thing: req.body.thing
-      }).then(function(err, board, fields) {
-        if (err) {
-          res.send(err);
-        }
-        console.log(err);
-        console.log('sending back a board');
-        console.log(board);
-        res.send(board);
-      });
+      if (req.body.thing){
+        Board.create({
+          thing: req.body.thing
+        }).then(function(err, board, fields) {
+          if (err) {
+            res.send(err);
+          }
+          console.log(err);
+          console.log('sending back a board');
+          console.log(board);
+          res.send(board);
+        });
+      }
+
     });
 
 

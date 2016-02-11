@@ -131,8 +131,8 @@ const CanvasDraw = React.createClass({
   },
 
   draw(lX, lY, cX, cY, color){
-    console.log(this.state.tool);
-    if (this.state.tool==='pen'){
+    console.log(this.props.tool);
+    if (this.props.tool==='pen'){
     //console.log('drawing')
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
@@ -143,7 +143,7 @@ const CanvasDraw = React.createClass({
       //console.log('erasing');
       //this.state.context.globalCompositeOperation="destination-out";
       this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
-      this.state.context.clearRect(lX,lY,15, 15);
+      this.state.context.clearRect(lX,lY,50, 50);
     }
   },
   resetCanvas(){
@@ -153,13 +153,18 @@ const CanvasDraw = React.createClass({
   },
 
   restoreCanvas(){
+    console.log("restore canvas called");
+    this.setState({
+      clear:false,
+    })
+    console.log('got to here');
     let con = this.state.context;
     let savedImage = new Image();
     axios.get('api/lastBoard')
       .then(function (response) {
-        //console.log("response data ",response.data);
+        console.log("response data ",response);
         savedImage.src = response.data;
-        //console.log(savedImage);
+        console.log(savedImage);
 
         con.drawImage(savedImage,0,0);
       })

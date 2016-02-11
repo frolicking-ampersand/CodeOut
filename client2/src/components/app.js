@@ -27,27 +27,26 @@ class App extends Component {
       all: false,
       clear: false,
       restore: false,
+      tool: "pen",
       data: [],
     };
     this.showColorBox = this.showColorBox.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
     this.showBGColorBox = this.showBGColorBox.bind(this)
+    this.saveAnImage = this.saveAnImage.bind(this);
   }
 
 
   componentDidMount(){
     this.updateData();
-    //setInterval(this.updateData.bind(this), 5000);
   }
 
   updateData(){
     this.setState({
       clear: false,
     })
-    //console.log("updateData called");
     axios.get('api/allZeeBoards')
       .then(function(response){
-        console.log("this is",this)
         this.setState({data: response.data});
       }.bind(this))
       .catch(function (response) {
@@ -57,7 +56,6 @@ class App extends Component {
   }
 
   eraser() {
-    console.log(this.state.canvasStyle.backgroundColor);
     this.setState({
       brushColor: this.state.canvasStyle.backgroundColor
     })
@@ -105,14 +103,18 @@ class App extends Component {
   }
 
   realEraser() {
-    console.log('changing tool');
-    this.setState({
-      clear: false,
-      tool: 'eraser',
-    })
-    console.log(this.state.tool)
-    console.log('eheyehehe')
-    console.log(this.state.tool)
+    if(this.state.tool==="pen"){
+      this.setState({
+        clear: false,
+        restore: false,
+        tool: 'eraser',
+      })
+    } else {
+      this.setState({
+        clear: false,
+        tool: 'pen',
+      })
+    }
   }
 
 
@@ -133,7 +135,6 @@ class App extends Component {
 
   chooseBG(color) {
     let newstate = this.state;
-    console.log(newstate)
     newstate.canvasStyle.backgroundColor = '#' + color.hex;
     newstate.clear = false;
     this.setState({
@@ -147,19 +148,16 @@ class App extends Component {
   }
 
   saveAnImage () {
+
+    let that = this;
     let newCanvas = document.getElementById("canvas")
     let savedImage = new Image()
     savedImage.src = newCanvas.toDataURL('image/png')
-    //console.log(savedImage.src);
     axios.post('/api/boards', {
         thing: savedImage.src
       })
       .then(function (response) {
-        console.log('response is ', this);
-        //this.setState({data: response.data});
-        this.updateData();
-        //handleOnClickClear();
-
+        that.updateData();
       })
       .catch(function (response) {
         console.log("ERROR saving");
