@@ -82,7 +82,7 @@ module.exports = function (app, express) {
    app.get('/api/firstBoard', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      res.send(boards[0].thing);
+      res.send(boards[1].thing);
     })
   });
 

@@ -55,11 +55,6 @@ class App extends Component {
       });
   }
 
-  eraser() {
-    this.setState({
-      brushColor: this.state.canvasStyle.backgroundColor
-    })
-  }
 
   increaseSize() {
     if (this.state.lineWidth<15){
@@ -79,11 +74,40 @@ class App extends Component {
     }
   }
 
-  handleOnClickClear()  {
+  fan(){
     this.setState({
-      restore: false,
-      clear: true
-    });
+      tool: 'fan',
+    })
+  }
+
+  pen() {
+    this.setState({
+      tool: 'pen',
+    })
+  }
+
+  circle() {
+    this.setState({
+      tool: 'circle',
+    })
+  }
+
+  donut() {
+    this.setState({
+      tool: 'donut',
+    })
+  }
+
+  tunnel() {
+    this.setState({
+      tool: 'tunnel',
+    })
+  }
+
+  realEraser() {
+    this.setState({
+      tool: 'eraser',
+    })
   }
 
   showColorBox() {
@@ -101,22 +125,6 @@ class App extends Component {
       });
     }
   }
-
-  realEraser() {
-    if(this.state.tool==="pen"){
-      this.setState({
-        clear: false,
-        restore: false,
-        tool: 'eraser',
-      })
-    } else {
-      this.setState({
-        clear: false,
-        tool: 'pen',
-      })
-    }
-  }
-
 
   showBGColorBox() {
     if(!this.state.displayBGColorPicker) {
@@ -147,6 +155,37 @@ class App extends Component {
     this.setState({brushColor: '#' + color.hex})
   }
 
+  Destroy() {
+    let newCanvas = document.getElementById("canvas");
+    let context = newCanvas.getContext("2d");
+    let savedImage = new Image();
+    let width = newCanvas.width;
+    let height = newCanvas.height;
+    context.clearRect(0, 0, width, height);
+  }
+
+  bringBack() {
+    let newCanvas = document.getElementById("canvas");
+    let context = newCanvas.getContext("2d");
+    let savedImage = new Image();
+    let width = newCanvas.width;
+    let height = newCanvas.height;
+
+    axios.get('api/lastBoard')
+      .then(function (response) {
+        console.log("response data ",response);
+        savedImage.src = response.data;
+        if(response.data){
+          context.clearRect(0, 0, width, height);
+          context.drawImage(savedImage,0,0);
+        }
+      })
+      .catch(function (response) {
+        console.log("error restoring image");
+        console.log(response);
+      });
+  }
+
   saveAnImage () {
 
     let that = this;
@@ -168,21 +207,6 @@ class App extends Component {
 
   }
 
-  restoreBoard(){
-    let that = this;
-    this.setState({
-      //clear: true,
-      restore: true
-    });
-  }
-
-  giveMeAllBoards(){
-    this.setState({
-      clear: true,
-      all: true
-    })
-  }
-
   render() {
     let popupPosition = {
       position: 'absolute',
@@ -199,15 +223,19 @@ class App extends Component {
        <WhiteboardNav />
           <div class = "row" className='btn-toolbar' >
           <ButtonToolbar className = "toolbar">
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.handleOnClickClear.bind(this)}>Clear</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showColorBox}>{this.state.toggleColorBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.showBGColorBox}>{this.state.toggleBGBox}</Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.restoreBoard.bind(this)}> Restore </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> thicker </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> thinner </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.eraser.bind(this)}> eraser </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> real </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> Thicker </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> Thinner </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> Eraser </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.Destroy.bind(this)}> Destroy </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.bringBack.bind(this)}> BringBack </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.fan.bind(this)}> Fan </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.pen.bind(this)}> Pen </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.circle.bind(this)}> Circle </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.donut.bind(this)}> Donut </Button>
+            <Button bsStyle = "primary" bsSize = "large" onClick={this.tunnel.bind(this)}> Tunnel </Button>
           </ButtonToolbar>
           </div>
           <div className='canvas-style'>

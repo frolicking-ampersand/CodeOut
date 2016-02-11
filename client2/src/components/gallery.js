@@ -38,19 +38,6 @@ const Painting = React.createClass({
     let savedImage = new Image();
     savedImage.src=this.props.url;
     context.drawImage(savedImage,0,0,300,150);
-    // axios.get('api/lastBoard')
-    //   .then(function (response) {
-    //     console.log("response data ",response.data);
-    //     savedImage.src = response.data;
-    //     //console.log(savedImage);
-    //     context.drawImage(savedImage,0,0,300,150);
-    //     //that.setState(name:"pig")
-
-    //   })
-    //   .catch(function (response) {
-    //     console.log("error restoring image");
-    //     console.log(response);
-    //   });
   },
   render(){
     //let thisEasy = ReactDOM.findDOMNode(this);

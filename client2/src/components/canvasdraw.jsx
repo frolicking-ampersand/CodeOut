@@ -92,17 +92,7 @@ const CanvasDraw = React.createClass({
 
     
   },
-  componentWillReceiveProps: function(nextProps) {
-    if(nextProps.clear){
-      this.resetCanvas();
-    }
-    if(nextProps.all){
-      this.giveMeAllBoards();
-    }
-    if(nextProps.restore){
-      this.restoreCanvas();
-    }
-  },
+
   handleOnMouseDown(e){
     let rect = this.state.canvas.getBoundingClientRect();
     this.state.context.beginPath();
@@ -162,47 +152,60 @@ const CanvasDraw = React.createClass({
 
   draw(lX, lY, cX, cY, color){
     console.log(this.props.tool);
-    if (this.props.tool==='pen'){
-    //console.log('drawing')
-    this.state.context.strokeStyle = color || this.props.brushColor;
-    this.state.context.lineWidth = this.props.lineWidth;
-    this.state.context.moveTo(lX,lY);
-    this.state.context.lineTo(cX,cY);
-    this.state.context.stroke();
-    } else {
+    if (this.props.tool==='pen'||this.props.tool==='fan'){
+      console.log('drawing')
+      this.state.context.strokeStyle = color || this.props.brushColor;
+      this.state.context.lineWidth = this.props.lineWidth;
+      this.state.context.moveTo(lX,lY);
+      this.state.context.lineTo(cX,cY);
+      this.state.context.stroke();
+      this.state.context.beginPath();
+      if(this.props.tool==='fan'){
+        ctx.fillRect(lX,lY,cX,cY);
+      }
+    } else if(this.props.tool==='eraser') {
       //console.log('erasing');
       //this.state.context.globalCompositeOperation="destination-out";
       this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
       this.state.context.clearRect(lX,lY,50, 50);
+    } else if (this.props.tool === 'donut' || 'circle') {
+      this.state.context.arc(lX,lY,100,0,Math.PI*2,true);
+      if (this.props.tool === 'tunnel'){
+        this.state.context.arc(lX,lY,lX,0,Math.PI*2,true);
+      }
+      this.state.context.stroke();
+      if (this.props.tool === 'circle') {
+        ctx.fillRect(lX,lY,cX,cY);
+      }
     }
   },
-  resetCanvas(){
-    let width = this.state.context.canvas.width;
-    let height = this.state.context.canvas.height;
-    this.state.context.clearRect(0, 0, width, height);
-  },
+  // resetCanvas(){
+  //   let width = this.state.context.canvas.width;
+  //   let height = this.state.context.canvas.height;
+  //   this.state.context.clearRect(0, 0, width, height);
+  // },
 
-  restoreCanvas(){
-    console.log("restore canvas called");
-    this.setState({
-      clear:false,
-    })
-    console.log('got to here');
-    let con = this.state.context;
-    let savedImage = new Image();
-    axios.get('api/lastBoard')
-      .then(function (response) {
-        console.log("response data ",response);
-        savedImage.src = response.data;
-        console.log(savedImage);
+  // restoreCanvas(){
+  //   console.log("restore canvas called");
+  //   this.setState({
+  //     clear:false,
+  //   })
+  //   console.log('got to here');
+  //   let con = this.state.context;
+  //   let savedImage = new Image();
+  //   axios.get('api/lastBoard')
+  //     .then(function (response) {
+  //       console.log("response data ",response);
+  //       savedImage.src = response.data;
+  //       console.log(savedImage);
 
-        con.drawImage(savedImage,0,0);
-      })
-      .catch(function (response) {
-        console.log("error restoring image");
-        console.log(response);
-      });
-  },
+  //       con.drawImage(savedImage,0,0);
+  //     })
+  //     .catch(function (response) {
+  //       console.log("error restoring image");
+  //       console.log(response);
+  //     });
+  // },
 
   giveMeAllBoards(){
     console.log('gimme gimme');
