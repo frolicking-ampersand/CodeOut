@@ -35,10 +35,8 @@ const Painting = React.createClass({
     let canvas = ReactDOM.findDOMNode(this);
     var that = this;
     let context = canvas.getContext("2d");
-    console.log("the context is", context);
     let savedImage = new Image();
     savedImage.src=this.props.url;
-    console.log("the imageId is",this.props.imgId)
     context.drawImage(savedImage,0,0,300,150);
     // axios.get('api/lastBoard')
     //   .then(function (response) {
@@ -147,7 +145,6 @@ class Gallery extends Component {
     });
 
     let paintingCollection = this.props.data.map(function(where){
-      console.log("the painting id is ",where.id)
       //always pass a key!!!
       return (
         <div><Painting className="paintingCollection" key={where.id} url={where.img} imgId={where.id}/></div>
