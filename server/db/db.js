@@ -38,15 +38,23 @@ console.log('pre user sync');
 
 
 var Board = db.define('Board', {
-  name: {type: Sequelize.STRING, unique: true },
-  thing: Sequelize.BLOB,
+  thing: Sequelize.BLOB
   //UserId: Sequelize.INTEGER
 });
 
-var Users_Boards = db.define('Users_Boards', {});
+var Room = db.define('Room', {
+  name: {type: Sequelize.STRING, unique: true }
+})
 
-User.belongsToMany(Board, { through: 'Users_Boards' } );
-Board.belongsToMany(User, { through: 'Users_Boards' } );
+// var Users_Boards = db.define('Users_Boards', {});
+
+// User.belongsToMany(Board, { through: 'Users_Boards' } );
+// Board.belongsToMany(User, { through: 'Users_Boards' } );
+
+Room.sync()
+  .then(function() {
+    console.log('Room Table has is definitely in our Postgres Database');
+  });
 
 User.sync()
   .then(function() {
@@ -58,10 +66,10 @@ Board.sync()
     console.log('Board Table has is definitely in our Postgres Database');
   });
 
-Users_Boards.sync()
-  .then(function() {
-    console.log('Users_Boards Table has is definitely in our Database');
-  })
+// Users_Boards.sync()
+//   .then(function() {
+//     console.log('Users_Boards Table has is definitely in our Database');
+//   })
 // Board.hasMany(User);
 // User.hasMany(Board);
 // Users_Boards = db.define('Users_Boards', {
@@ -72,5 +80,5 @@ Users_Boards.sync()
 module.exports = {
   User: User,
   Board: Board,
-  Users_Boards: Users_Boards
+  Room: Room
 }

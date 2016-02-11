@@ -1,6 +1,7 @@
 var passport = require('passport');
 var Board = require('./db/db').Board;
-var User = require('./db/db').User
+var User = require('./db/db').User;
+var Room = require('./db/db').Room;
 
 module.exports = function (app, express) {
 
@@ -54,7 +55,7 @@ module.exports = function (app, express) {
 
   app.get('/api/allBoards', function (req, res) {
     console.log('getting all boards')
-    Board.findAll()
+    Room.findAll()
     .then(function(boards){
       console.log('found allBoards');
       var arr = boards.map(function (board) {
