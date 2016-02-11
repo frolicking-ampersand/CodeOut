@@ -35,6 +35,7 @@ module.exports = function (app, express) {
 
   // get one board
 
+
   app.get('/', function(request, response) {
       var result = 'App is running'
       response.send(result);
@@ -140,6 +141,10 @@ module.exports = function (app, express) {
       res.send(board);
     });
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> (fix) Fixing problems from latest rebase.
 
 
   // =====================================
@@ -190,8 +195,7 @@ module.exports = function (app, express) {
     res.redirect('/');
   });
   // =====================================
-
-}
+};
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
@@ -202,4 +206,4 @@ function isLoggedIn(req, res, next) {
   }
   // if they aren't redirect them to the home page
   res.redirect('/login');
-}
+};

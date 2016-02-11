@@ -39,18 +39,23 @@ io.on('connection', function (socket) {
     socket.join(boardName.name);
     socket.room = boardName.name;
 
-    User.findOne({
-      where: { id: boardName.userId }
-    })
-    .then(function (user) {
-      console.log('found a user');
-      Board.create({
-        name: boardName.name
-      }).then(function (board) {
-        user.addBoard(board);
-      });
+    Board.create({
+      name: boardName.name
+    }).then();
+
+    // User.findOne({
+    //   where: { id: boardName.userId }
+    // })
+    // .then(function (user) {
+    //   console.log('found a user');
+    //   Board.create({
+    //     name: boardName.name
+    //   }).then(function (board) {
+    //     user.addBoard(board);
+    //   });
       
-    });
+    // });
+
 
     //Board.findOne()
 
