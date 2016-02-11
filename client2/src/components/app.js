@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ColorPicker from 'react-color';
-import ToggleDisplay from 'react-toggle-display';
 import CanvasDraw from './canvasdraw';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
@@ -9,18 +7,20 @@ import { ButtonGroup } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
 import Gallery from './gallery';
-import WhiteboardNav from './whiteboard_nav'
+import WhiteboardNav from './whiteboard_nav';
+import Webcams from './webcam-bar';
+import PickColor from './canvas/colorbox';
+import PickBackground from './canvas/bgcolorbox';
+import auth from "../auth-helper";
+import Login from "./login";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleBGBox: 'Choose Background',
-      toggleColorBox: 'Pick Color',
       brushColor: '#000000',
+      loggedIn: auth.loggedIn(),
       lineWidth: 4,
-      displayColorPicker: false,
-      displayBGColorPicker: false,
       canvasStyle: {
         backgroundColor: '#FFFFFF'
       },
@@ -30,12 +30,12 @@ class App extends Component {
       tool: "pen",
       data: [],
     };
-    this.showColorBox = this.showColorBox.bind(this);
-    this.chooseColor = this.chooseColor.bind(this);
-    this.showBGColorBox = this.showBGColorBox.bind(this)
     this.saveAnImage = this.saveAnImage.bind(this);
+    this.chooseBG = this.chooseBG.bind(this);
+    this.handleOnClickClear = this.handleOnClickClear.bind(this);
+    this.restoreBoard = this.restoreBoard.bind(this);
+    this.changeColors = this.changeColors.bind(this)
   }
-
 
   componentDidMount(){
     this.updateData();
@@ -45,6 +45,7 @@ class App extends Component {
     this.setState({
       clear: false,
     })
+
     axios.get('api/allZeeBoards')
       .then(function(response){
         this.setState({data: response.data});
@@ -55,6 +56,9 @@ class App extends Component {
       });
   }
 
+  changeColors (color) {
+    this.setState({brushColor: color.target.value })
+  }
 
   increaseSize() {
     if (this.state.lineWidth<15){
@@ -104,50 +108,15 @@ class App extends Component {
     })
   }
 
-  showColorBox() {
-    if(!this.state.displayColorPicker){
-      this.setState({
-        clear: false,
-        displayColorPicker: !this.state.displayColorPicker,
-        toggleColorBox: "Close Box"
-      });
-    }else{
-      this.setState({
-        clear: false,
-        displayColorPicker: !this.state.displayColorPicker,
-        toggleColorBox: "Pick Color"
-      });
-    }
-  }
-
-  showBGColorBox() {
-    if(!this.state.displayBGColorPicker) {
-      this.setState({
-        clear: false,
-        displayBGColorPicker: !this.state.displayBGColorPicker,
-        toggleBGBox: "Close Box"
-       });
-    } else {
-      this.setState({
-        displayBGColorPicker: !this.state.displayBGColorPicker,
-        toggleBGBox: "Choose Background"
-      });
-    }
-  }
 
   chooseBG(color) {
     let newstate = this.state;
-    newstate.canvasStyle.backgroundColor = '#' + color.hex;
-    newstate.clear = false;
+    newstate.canvasStyle.backgroundColor = color.target.value;
     this.setState({
-      clear: false,
       newstate
     });
   }
 
-  chooseColor(color) {
-    this.setState({brushColor: '#' + color.hex})
-  }
 
   Destroy() {
     let newCanvas = document.getElementById("canvas");
@@ -180,6 +149,7 @@ class App extends Component {
       });
   }
 
+
   saveAnImage () {
 
     let that = this;
@@ -197,8 +167,6 @@ class App extends Component {
         console.log("ERROR saving");
         console.log(response);
       });
-
-
   }
 
   render() {
@@ -214,44 +182,42 @@ class App extends Component {
 
    return (
       <div>
-       <WhiteboardNav />
-          <div class = "row" className='btn-toolbar' >
-          <ButtonToolbar className = "toolbar">
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.showColorBox}>{this.state.toggleColorBox}</Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.showBGColorBox}>{this.state.toggleBGBox}</Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.saveAnImage}> Save </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.increaseSize.bind(this)}> Thicker </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.decreaseSize.bind(this)}> Thinner </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.realEraser.bind(this)}> Eraser </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.Destroy.bind(this)}> Destroy </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.bringBack.bind(this)}> BringBack </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.fan.bind(this)}> Fan </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.pen.bind(this)}> Pen </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.donut.bind(this)}> Donut </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.tunnel.bind(this)}> Tunnel </Button>
-          </ButtonToolbar>
-          </div>
-          <div className='canvas-style'>
-            <CanvasDraw {...this.state}/>
-          </div>
-          <ToggleDisplay show={this.state.displayColorPicker}>
-            <ColorPicker
-                type="sketch"
-                positionCSS={ popupPosition }
-                color={ this.state.brushColor }
-                onChangeComplete={ this.chooseColor.bind(this) } />
-          </ToggleDisplay>
-          <ToggleDisplay show={this.state.displayBGColorPicker}>
-            <ColorPicker
-                type="sketch"
-                positionCSS={ popupPosition }
-                color= {this.state.canvasStyle.backgroundColor}
-                onChangeComplete={ this.chooseBG.bind(this) } />
-          </ToggleDisplay>
-          <div style={indent}>
-          <Gallery data={this.state.data} className="painting"/>
-          </div>
+      {this.state.loggedIn ? (
+      <div>
+      <Webcams />
+
+      <WhiteboardNav
+        eraser={this.eraser}
+        clear={this.handleOnClickClear}
+        restore={this.restoreBoard}
+        save={this.saveAnImage}
+        restore={this.restoreBoard}
+      />
+
+      <PickColor
+        brushColor={this.state.brushColor}
+        changeParentColor={this.changeColors}
+      />
+
+      <PickBackground
+        backgroundColor={this.state.backgroundColor}
+        chooseBGParentColor={this.chooseBG}
+      />
+
+      <div className='canvas-style'>
+        <CanvasDraw {...this.state}/>
       </div>
+
+      <div style={indent}>
+      <Gallery data={this.state.data} className="painting"/>
+      </div>
+      </div>
+      ) : (
+        <div>
+        <Login />
+        </div>
+      )}
+    </div>
     )
   }
 };

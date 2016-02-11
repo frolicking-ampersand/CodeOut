@@ -23,14 +23,21 @@ export default class WhiteboardNavbar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavDropdown onSelect={(e, key) => this.props.changeTheme(key)} eventKey={1} title="Tools" id="basic-nav-dropdown" noCaret>
-                <MenuItem eventKey="monokai"> Pencil </MenuItem>
-                <MenuItem eventKey="github"> Eraser </MenuItem>
+              <NavDropdown id="basic-nav-dropdown" title="Tools" noCaret>
+                <MenuItem eventKey={1}> Pencil </MenuItem>
+                <MenuItem eventKey={2} onSelect={this.props.eraser}> Eraser </MenuItem>
               </NavDropdown>
+
+            <NavDropdown title="Options" id="basic-nav-dropdown" noCaret>
+              <MenuItem eventKey={3} onSelect={this.props.clear}>Clear</MenuItem>
+              <MenuItem eventKey={4} onSelect={this.props.save}>Save</MenuItem>
+              <MenuItem eventKey={5} onSelect={this.props.restore}>restore</MenuItem>
+            </NavDropdown>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1} href="#/code">Code Editor</NavItem>
               <NavItem eventKey={2} href="#/video">Video</NavItem>
+              <NavItem eventKey={8} href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -7,6 +7,8 @@ import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import Navbar from './components/video_navbar';
 import Webcams from '../webcam-bar';
+import auth from "../../auth-helper";
+import Login from "../login";
 
 const API_KEY = 'AIzaSyACCRzAumvvEk2O2lCmS9CZTOVWfCJhaL0';
 
@@ -15,6 +17,7 @@ class Video extends Component {
     super(props);
     this.state = {
       videos: [],
+      loggedIn: auth.loggedIn(),
       selectedVideo: null
     };
     this.sendVideoSelectData.bind(this);
@@ -46,6 +49,8 @@ class Video extends Component {
     const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
     return (
      <div>
+      {this.state.loggedIn ? (
+        <div>
         <Webcams />
         <Navbar />
         <SearchBar onSearchTermChange={videoSearch} />
@@ -53,6 +58,12 @@ class Video extends Component {
         selectedVideo => this.sendVideoSelectData({selectedVideo})}
         videos={this.state.videos} />
         <VideoDetail video={this.state.selectedVideo} />
+        </div>
+        ) : (
+        <div>
+        <Login />
+        </div>
+      )}
      </div>
     )
   }

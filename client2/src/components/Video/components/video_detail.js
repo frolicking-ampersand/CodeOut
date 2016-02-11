@@ -46,9 +46,15 @@ export default class VideoDetail extends Component {
   }
 
 	render() {
+		let loadingStyles = {
+			'display': 'block',
+    	'margin-left': 'auto',
+    	'margin-right': 'auto'
+		}
+
 		if(!this.props.video){
 			return (
-			<img className="centerMe" src="./spinner.gif" />
+			<img style={loadingStyles} src="./images/spinner.gif" />
 			)
 		}
 

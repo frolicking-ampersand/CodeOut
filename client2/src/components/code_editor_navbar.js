@@ -59,8 +59,9 @@ export default class CodeEditorNavbar extends Component {
               <NavItem eventKey={5} onClick={this.props.findSolution}>Find Solution</NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={4} href="#/canvas">Whiteboard</NavItem>
-              <NavItem eventKey={5} href="#/video">Video</NavItem>
+              <NavItem eventKey={6} href="#/canvas">Whiteboard</NavItem>
+              <NavItem eventKey={7} href="#/video">Video</NavItem>
+              <NavItem eventKey={8} href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-const Menu = require('react-burger-menu').stack;
 import axios from 'axios';
 import ToggleDisplay from 'react-toggle-display';
 import { Router, Link, browserHistory } from 'react-router';

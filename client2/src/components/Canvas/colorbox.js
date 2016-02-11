@@ -5,42 +5,24 @@ export default class Colorbox extends Component {
   constructor(props){
     super(props)
     this.state = {
-      color: '#3599db'
+      color: this.props.color
     }
-    this._onChange.bind(this);
-    this._onColorChange.bind(this);
   }
 
   render() {
     return (
       <div className="app">
-        <div className="target" style={{width:100,height:100,background:this.state.color}}></div>
-        <span>{'color value: ' + this.state.color}</span>
-        <br/><br/>
+        Tool Color:
+        <p>
         <input
           type="color"
-          value={this.state.color}
+          value={this.props.brushColor}
           defaultValue="#345678"
-          onChange={this._onColorChange.bind(this)}
+          onChange={this.props.changeParentColor}
         />
-        <br/><br/>
-        <InputColor
-          value={this.state.color}
-          defaultValue="#345678"
-          onChange={this._onChange.bind(this)}
-        />
+        </p>
+
       </div>
     );
-  }
-  _onChange(color) {
-    this.setState({
-      color: color
-    });
-  }
-
-  _onColorChange(e) {
-    this.setState({
-      color: e.target.value
-    });
   }
 }

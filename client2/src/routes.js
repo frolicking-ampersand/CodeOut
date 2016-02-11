@@ -16,5 +16,6 @@ export default (
     <Route path="/login" component={Login} />
 		<Route path="/code" component={CodeEditor} />
 		<Route path="/video" component={Video} />
+		<Route path="/logout" component={Menu} />
 	</div>
 );
