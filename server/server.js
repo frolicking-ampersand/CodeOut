@@ -5,6 +5,7 @@ var pg = require('pg');
 var passport = require('passport');
 var Board = require('./db/db').Board;
 var User = require('./db/db').User;
+var Room = require('./db/db').Room;
 
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -39,7 +40,7 @@ io.on('connection', function (socket) {
     socket.join(boardName.name);
     socket.room = boardName.name;
 
-    Board.create({
+    Room.create({
       name: boardName.name
     }).then();
 
