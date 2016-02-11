@@ -58,7 +58,7 @@ module.exports = function (app, express) {
     .then(function(boards){
       console.log('found allBoards');
       var arr = boards.map(function (board) {
-        console.log('boardname' + board.name);
+       // console.log('boardname' + board.name);
         return {
           //image: board.thing.toString(),
           name: board.name 
@@ -97,7 +97,7 @@ module.exports = function (app, express) {
        //convert the image to a string so that it can be drawn on the canvas
        return {id: board.id, img:board.thing.toString()};
      })
-     console.log(boards[boards.length-1].thing);
+     //console.log(boards[boards.length-1].thing);
      res.send(arr);
    })
  });

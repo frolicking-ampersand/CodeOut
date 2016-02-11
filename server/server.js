@@ -81,12 +81,13 @@ io.on('connection', function (socket) {
     console.log('outgoing socket id: ' + socket.id);
     
     var clientsCount = io.sockets.adapter.rooms[socket.room].length;
-    if (clientsCount > 1) {
-      socket.broadcast.to(socket.room).emit('newb', socket.id);
-      console.log('asking');
-    } else {
+    console.log(clientsCount);
+    // if (clientsCount > 1) {
+    socket.broadcast.to(socket.room).emit('newb', socket.id);
+    console.log('asking');
+    // } else {
 
-    }
+    // }
     
   });
 
