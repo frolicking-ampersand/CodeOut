@@ -37,7 +37,7 @@ class App extends Component {
 
   componentDidMount(){
     this.updateData();
-    setInterval(this.updateData.bind(this), 5000);
+    //setInterval(this.updateData.bind(this), 5000);
   }
 
   updateData(){
@@ -47,7 +47,7 @@ class App extends Component {
     //console.log("updateData called");
     axios.get('api/allZeeBoards')
       .then(function(response){
-        console.log("the response is",response)
+        console.log("this is",this)
         this.setState({data: response.data});
       }.bind(this))
       .catch(function (response) {
@@ -155,7 +155,9 @@ class App extends Component {
         thing: savedImage.src
       })
       .then(function (response) {
-        console.log(response);
+        console.log('response is ', this);
+        //this.setState({data: response.data});
+        this.updateData();
         //handleOnClickClear();
 
       })
