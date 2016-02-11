@@ -142,10 +142,6 @@ module.exports = function (app, express) {
       res.send(board);
     });
   });
-<<<<<<< HEAD
-=======
-
->>>>>>> (fix) Fixing problems from latest rebase.
 
 
   // =====================================
