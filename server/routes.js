@@ -66,7 +66,8 @@ module.exports = function (app, express) {
       });
 
       //console.log(req.user);
-      res.send({boards: arr, userId: req.user.dataValues.id});
+      var userId = req.user.dataValues.id || 0;
+      res.send({boards: arr, userId: userId});
     })
   });
 

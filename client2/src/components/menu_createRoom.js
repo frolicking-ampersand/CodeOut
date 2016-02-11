@@ -147,7 +147,6 @@ class trueMenu extends Component {
 
     return (
       <div>
-        <p>hello world</p>
         <ToggleDisplay show={ !this.state.displayCreateBoard && !this.state.displayJoin }>
           <button onClick={ this.handleOnCreate }>create</button>
         </ToggleDisplay>
