@@ -86,12 +86,6 @@ class App extends Component {
     })
   }
 
-  circle() {
-    this.setState({
-      tool: 'circle',
-    })
-  }
-
   donut() {
     this.setState({
       tool: 'donut',
@@ -233,7 +227,6 @@ class App extends Component {
             <Button bsStyle = "primary" bsSize = "large" onClick={this.bringBack.bind(this)}> BringBack </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.fan.bind(this)}> Fan </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.pen.bind(this)}> Pen </Button>
-            <Button bsStyle = "primary" bsSize = "large" onClick={this.circle.bind(this)}> Circle </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.donut.bind(this)}> Donut </Button>
             <Button bsStyle = "primary" bsSize = "large" onClick={this.tunnel.bind(this)}> Tunnel </Button>
           </ButtonToolbar>

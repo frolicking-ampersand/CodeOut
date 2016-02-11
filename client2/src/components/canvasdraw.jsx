@@ -43,7 +43,7 @@ const CanvasDraw = React.createClass({
 
     var that = this;
     this.socket = io();
-    //this.socket.emit('create board', 'test');
+    this.socket.emit('create board', 'test');
     this.socket.on('draw', function (data) {
       //console.log("listening");
       that.state.context.beginPath();
@@ -61,36 +61,6 @@ const CanvasDraw = React.createClass({
       canvas: canvas,
       context: ctx
     });
-
-    console.log('didMount');
-    var that = this;
-    //this.socket = io();
-    //this.socket.emit('create board', 'test');
-    socket.on('draw', function (data) {
-      console.log("listening");
-      that.state.context.beginPath();
-      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
-    });
-
-    socket.on('newb', function (data) {
-      console.log('being asked')
-      let newbCanvas = document.getElementById('canvas');
-      //let newbImage = new Image();
-      let newbImage = newbCanvas.toDataURL('image/png');
-      socket.emit('newbImg', {id: data, image: newbImage});
-      console.log('giving')
-    });
-
-    let con = this.state.context;
-    //let savedImage = new Image();
-    socket.on('newbImg', function (data) {
-      console.log('being given');
-      var currentImage = new Image();
-      currentImage.src = data;
-      ctx.drawImage(currentImage, 0, 0);
-    })
-
-    
   },
 
   handleOnMouseDown(e){
@@ -153,30 +123,29 @@ const CanvasDraw = React.createClass({
   draw(lX, lY, cX, cY, color){
     console.log(this.props.tool);
     if (this.props.tool==='pen'||this.props.tool==='fan'){
-      console.log('drawing')
+      //console.log('drawing')
       this.state.context.strokeStyle = color || this.props.brushColor;
       this.state.context.lineWidth = this.props.lineWidth;
       this.state.context.moveTo(lX,lY);
       this.state.context.lineTo(cX,cY);
       this.state.context.stroke();
-      this.state.context.beginPath();
       if(this.props.tool==='fan'){
-        ctx.fillRect(lX,lY,cX,cY);
+        ctx.beginPath();
+        ctx.arc(lX,lY,50,0,Math.PI*2,true);
+        ctx.stroke();
       }
     } else if(this.props.tool==='eraser') {
       //console.log('erasing');
       //this.state.context.globalCompositeOperation="destination-out";
       this.state.context.arc(lX,lY,8,0,Math.PI*2,false);
       this.state.context.clearRect(lX,lY,50, 50);
-    } else if (this.props.tool === 'donut' || 'circle') {
-      this.state.context.arc(lX,lY,100,0,Math.PI*2,true);
-      if (this.props.tool === 'tunnel'){
+    } else if (this.props.tool === 'donut'||'tunnel') {
+      if (this.props.tool==='donut'){
+        this.state.context.arc(lX,lY,100,0,Math.PI*2,true);
+      } else if (this.props.tool==='tunnel') {
         this.state.context.arc(lX,lY,lX,0,Math.PI*2,true);
       }
       this.state.context.stroke();
-      if (this.props.tool === 'circle') {
-        ctx.fillRect(lX,lY,cX,cY);
-      }
     }
   },
   // resetCanvas(){
