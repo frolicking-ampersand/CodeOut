@@ -154,7 +154,8 @@ class App extends Component {
     let savedImage = new Image()
     savedImage.src = newCanvas.toDataURL('image/png')
     axios.post('/api/boards', {
-        thing: savedImage.src
+        thing: savedImage.src,
+        name: 'saved'
       })
       .then(function (response) {
         that.updateData();

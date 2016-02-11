@@ -1,5 +1,6 @@
 var passport = require('passport');
 var Board = require('./db/db').Board;
+var User = require('./db/db').User
 
 module.exports = function (app, express) {
 
@@ -34,6 +35,7 @@ module.exports = function (app, express) {
 
   // get one board
 
+
   app.get('/', function(request, response) {
       var result = 'App is running'
       response.send(result);
@@ -51,24 +53,28 @@ module.exports = function (app, express) {
   });
 
   app.get('/api/allBoards', function (req, res) {
+    console.log('getting all boards')
     Board.findAll()
     .then(function(boards){
-      //filter out boards that don't have an image associated with them.
-      var arr = boards.filter(function (board){
-        return board.thing;
-      }).map(function (board) {
-        //convert the image to a string so that it can be drawn on the canvas
-        return {id: board.id, img:board.thing.toString()};
-      })
-      console.log(boards[boards.length-1].thing);
-      res.send(arr);
+      console.log('found allBoards');
+      var arr = boards.map(function (board) {
+       // console.log('boardname' + board.name);
+        return {
+          //image: board.thing.toString(),
+          name: board.name 
+        };
+      });
+
+      //console.log(req.user);
+      var userId = req.user.dataValues.id || 0;
+      res.send({boards: arr, userId: userId});
     })
   });
 
   app.get('/api/lastBoard', function (req, res) {
     Board.findAll()
     .then(function(boards){
-      console.log(boards[boards.length-1]);
+      console.log('*USER_DATA*****************', req.user);
       res.send(boards[boards.length-1].thing);
     })
   });
@@ -91,7 +97,7 @@ module.exports = function (app, express) {
        //convert the image to a string so that it can be drawn on the canvas
        return {id: board.id, img:board.thing.toString()};
      })
-     console.log(boards[boards.length-1].thing);
+     //console.log(boards[boards.length-1].thing);
      res.send(arr);
    })
  });
@@ -106,24 +112,36 @@ module.exports = function (app, express) {
   // });
 
   //create a board
-  app.post('/api/boards', function (req, res) {
-      console.log('creating board', req.body);
-      console.log(req.body.thing);
-      if (req.body.thing){
-        Board.create({
-          thing: req.body.thing
-        }).then(function(err, board, fields) {
-          if (err) {
-            res.send(err);
-          }
-          console.log(err);
-          console.log('sending back a board');
-          console.log(board);
-          res.send(board);
-        });
-      }
+  // app.post('/api/create', function (req, res) {
+  //   console.log('looking for user');
+  //   User.findOne({
+  //     where: { id: req.user.id }
+  //   })
+  //   .then(function (user) {
+  //     console.log('found a user');
+  //     Board.create({
+  //       name: req.body.name
+  //     }).setUsers(user);
+  //   });
 
+  // });
+
+  app.post('/api/boards', function (req, res) {
+    console.log('creating board');
+    console.log(req.body.name);
+    Board.create({
+      name: req.body.name,
+      thing: req.body.thing
+    }).then(function(err, board, fields) {
+      if (err) {
+        res.send(err);
+      }
+      console.log(err);
+      console.log('sending back a board');
+      //console.log(board);
+      res.send(board);
     });
+  });
 
 
   // =====================================
@@ -174,8 +192,7 @@ module.exports = function (app, express) {
     res.redirect('/');
   });
   // =====================================
-
-}
+};
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
@@ -186,4 +203,4 @@ function isLoggedIn(req, res, next) {
   }
   // if they aren't redirect them to the home page
   res.redirect('/login');
-}
+};
