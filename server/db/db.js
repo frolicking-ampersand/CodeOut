@@ -44,7 +44,7 @@ var Board = db.define('Board', {
 
 var Room = db.define('Room', {
   name: {type: Sequelize.STRING, unique: true }
-})
+});
 
 // var Users_Boards = db.define('Users_Boards', {});
 
