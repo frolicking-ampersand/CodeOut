@@ -66,7 +66,12 @@ module.exports = function (app, express) {
       });
 
       //console.log(req.user);
-      var userId = req.user.dataValues.id || 0;
+      var userId;
+      if(req.user){
+        userId = req.user.dataValues.id;
+      } else {
+        userId = 0;
+      }
       res.send({boards: arr, userId: userId});
     })
   });
