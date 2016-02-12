@@ -77,22 +77,11 @@
     "underscore": "^1.8.3",
     "youtube-api-search": "0.0.5"
   },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/jest/preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/."
-    ],
-    "testFileExtensions": [
-      "coffee",
-      "cjsx",
-      "js",
-      "jsx"
-    ],
-    "moduleFileExtensions": [
-      "coffee",
-      "cjsx",
-      "js",
-      "jsx"
-    ]
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0"
   }
 }

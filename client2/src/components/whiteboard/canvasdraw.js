@@ -117,11 +117,11 @@ export default class CanvasDraw extends Component {
     });
   }
 
-  draw(lX, lY, cX, cY, color, tool){
+  draw(lX, lY, cX, cY, color){
+    console.log(this.props.tool);
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
-    this.state.context.tool = tool || this.props.tool;
-    if (this.state.context.tool==='pen'||this.state.context.tool==='fan'){
+    if (this.props.tool==='pen'||this.props.tool==='fan'){
       this.state.context.moveTo(lX,lY);
       this.state.context.lineTo(cX,cY);
       this.state.context.stroke();
