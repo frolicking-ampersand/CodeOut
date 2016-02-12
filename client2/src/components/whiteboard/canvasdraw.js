@@ -48,17 +48,7 @@ export default class CanvasDraw extends Component {
     })
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps.clear){
-      this.resetCanvas();
-    }
-    if(nextProps.all){
-      this.giveMeAllBoards();
-    }
-    if(nextProps.restore){
-      this.restoreCanvas();
-    }
-  }
+  },
 
   handleOnMouseDown(e) {
     let rect = this.state.canvas.getBoundingClientRect();
