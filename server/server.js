@@ -35,62 +35,22 @@ io.on('connection', function (socket) {
   console.log('Socket connection has been made with id of:\n' + socket.id);
 
   socket.on('create board', function (boardName) {
-    console.log('creating board: ' + boardName.name);
-    socket.leave(socket.room);
     socket.join(boardName.name);
     socket.room = boardName.name;
+    Board.create({
+      name: boardName.name,
+      //thing: req.body.thing
+    }).then(function(err, board, fields) {
+      if (err) {
+        //res.send(err);
+        // console.log(err);
+      }
+    });
 
-    Room.create({
-      name: boardName.name
-    }).then();
-
-    // User.findOne({
-    //   where: { id: boardName.userId }
-    // })
-    // .then(function (user) {
-    //   console.log('found a user');
-    //   Board.create({
-    //     name: boardName.name
-    //   }).then(function (board) {
-    //     user.addBoard(board);
-    //   });
-      
-    // });
-
-
-    //Board.findOne()
-
-    // Board.create({
-    //   name: boardName,
-    // }).then(function(err, board, fields) {
-    //   if (err) {
-    //     //res.send(err);
-    //     // console.log(err);
-    //   }
-    //   //console.log(err);
-    //   //console.log('sending back a board');
-    //   console.log('saved board');
-    //   //res.send(board);
-    // });
+      socket.broadcast.to(socket.room).emit('newb', {name: socket.room, id: socket.id});
+      socket.to(socket.room).emit('newb2', {name: socket.room});
   });
 
-  socket.on('join board', function (boardName) {
-    socket.leave(socket.room);
-    socket.join(boardName.name);
-    socket.room = boardName.name;
-    console.log('joined board: ' + boardName.name);
-    console.log('outgoing socket id: ' + socket.id);
-    
-    var clientsCount = io.sockets.adapter.rooms[socket.room].length;
-    console.log(clientsCount);
-    // if (clientsCount > 1) {
-    socket.broadcast.to(socket.room).emit('newb', socket.id);
-    console.log('asking');
-    // } else {
-
-    // }
-    
-  });
 
   socket.on('newbImg', function (boardImg) {
     console.log('hearing back')
@@ -102,7 +62,38 @@ io.on('connection', function (socket) {
 
   socket.on('draw', function (data) {
     console.log('drawing');
+    console.log('socketroom', socket.room)
     socket.broadcast.to(socket.room).emit('draw', data);
+  });
+
+  socket.on('type', function(data){
+    socket.broadcast.to(socket.room).emit('write code', data)
+  });
+
+  socket.on('startSearch', function(data){
+    socket.broadcast.to(socket.room).emit('searchTyping', data)
+  });
+
+  socket.on('sendVideoSelect', function(data){
+    socket.to(socket.room).emit('getVid', data)
+    socket.broadcast.to(socket.room).emit('getVid', data);
+  });
+
+  socket.on('sendPlay', function(){
+    socket.broadcast.to(socket.room).emit('recievePlay');
+  });
+
+  socket.on('sendPause', function() {
+    socket.broadcast.to(socket.room).emit('recievePause');
+  });
+
+  socket.on('sendCodeProblem', function(data) {
+    socket.broadcast.to(socket.room).emit('receiveCodeProblem', data);
+  });
+
+  socket.on('getAnswer', function(data) {
+    console.log('THIS IS THE FUCKING DATA', data)
+    socket.broadcast.to(socket.room).emit('receiveAnswer', data);
   });
 
   socket.on('disconnect', function() {

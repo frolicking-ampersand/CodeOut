@@ -65,6 +65,15 @@ export default class CodeEditor extends Component {
     this.socket.on('write code', function (data) {
       this.setState({currentVal: data.currentVal});
     }.bind(this));
+
+    this.socket.on('receiveCodeProblem', function (data) {
+      this.setState({currentVal: data.currentVal})
+    }.bind(this));
+
+    this.socket.on('receiveAnswer', function (data) {
+      console.log(data);
+      this.setState({currentVal: data.currentVal});
+    }.bind(this));
   }
 
   codeChange (val) {
@@ -97,7 +106,9 @@ export default class CodeEditor extends Component {
                         "/*\nGiven two binary trees, write a function to check if they are equal or not.\nTwo binary trees are considered equal if they are structurally identical and the nodes have the same value.\n\nDefinition for a binary tree node. \n\nfunction TreeNode(val) {\n     this.val = val;\n     this.left = this.right = null; \n }*/\n\nvar isSameTree = function(p, q) {\n\n};",
                         "/*\nGiven a binary tree, find its maximum depth. \nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. \nDefinition for a binary tree node. \n\nfunction TreeNode(val) {\n     this.val = val;\n     this.left = this.right = null;\n }*/\n\nvar maxDepth = function(root) {\n\n};"
                         ]
+
     let randomNum = Math.floor(Math.random() * toyProblems.length);
+    this.socket.emit('sendCodeProblem', { currentVal: toyProblems[randomNum]});
     this.setState({currentVal: toyProblems[randomNum],
                    currentIndex: randomNum
     });
@@ -112,6 +123,7 @@ export default class CodeEditor extends Component {
                      "/*\nGiven a binary tree, find its maximum depth. \nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. \nDefinition for a binary tree node. \n\nfunction TreeNode(val) {\n     this.val = val;\n     this.left = this.right = null;\n } \n */\n\nvar maxDepth = function(root) {\n  //create a base case for the recursive function, saying if there is no root, return 0\n  if(root === null) return 0;\n\n  //call our function over again on the left and right side of the root, while adding one each time.\n  //Use Math.max to get the larger of the two sides.\n  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;\n};",
                     ]
     let solution = answers[this.state.currentIndex]
+    this.socket.emit('getAnswer', { currentVal: solution});
     this.setState({currentVal: solution});
   }
 

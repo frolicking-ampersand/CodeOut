@@ -17,7 +17,7 @@ export default class CodeEditorNavbar extends Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#"> Frolicking Ampersand Board </a>
+              <a> Frolicking Ampersand Board </a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

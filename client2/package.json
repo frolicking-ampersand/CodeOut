@@ -40,6 +40,7 @@
     "react-drawable-canvas": "^1.0.5",
     "react-drive-in": "^1.7.3",
     "react-dropdown": "^0.7.2",
+    "react-fullscreen": "^0.1.0",
     "react-input-color": "^1.7.2",
     "react-kit": "^0.1.14",
     "react-mixin": "^2.0.2",

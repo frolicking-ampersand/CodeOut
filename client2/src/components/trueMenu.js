@@ -55,8 +55,14 @@ class trueMenu extends Component {
 
     console.log(boardList);
 
+    var divStyle = {
+      backgroundImage: 'url(' + './images/collaboration.jpg' + ')',
+    };
+
+    console.log(divStyle)
+
     return (
-      <div>
+      <div style={divStyle}>
         <p>hello world</p>
         <ToggleDisplay show={ !this.state.displayCreateBoard && !this.state.displayJoin }>
           <button onClick={ this.handleOnCreate }>create</button>

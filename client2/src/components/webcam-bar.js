@@ -5,12 +5,15 @@ const Menu = require('./react-burger-menu').stack;
 export default class Webcambar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentRoom: 'main'
+    };
   }
 
   render () {
   	return (
     <div>
-      <Menu customIcon={'./images/webcam.svg'} right>
+      <Menu customIcon={'./images/webcam.svg'} right isOpen>
         <Webcams />
        </Menu>
     </div>

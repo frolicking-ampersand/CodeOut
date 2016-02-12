@@ -21,7 +21,7 @@ class Video extends Component {
       selectedVideo: null
     };
     this.sendVideoSelectData.bind(this);
-    this.videoSearch('college football')
+    this.videoSearch('javascript conference hd')
   }
 
   componentDidMount () {

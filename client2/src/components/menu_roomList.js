@@ -11,7 +11,6 @@ class RoomList extends Component {
       return <div> Loading... </div>
     }
 
-    console.log('INSIDE THE RoomList, THE this.props.rooms READS_____________________________________:', this.props.rooms);
     const roomItems = this.props.rooms.data.map(function (room) {
       return <li> {room.name} </li>;
     })

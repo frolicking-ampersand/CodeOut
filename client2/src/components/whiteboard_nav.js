@@ -24,14 +24,17 @@ export default class WhiteboardNavbar extends Component {
           <Navbar.Collapse>
             <Nav>
               <NavDropdown id="basic-nav-dropdown" title="Tools" noCaret>
-                <MenuItem eventKey={1}> Pencil </MenuItem>
+                <MenuItem eventKey={1} onSelect={this.pen}> Pen </MenuItem>
                 <MenuItem eventKey={2} onSelect={this.props.eraser}> Eraser </MenuItem>
+                <MenuItem eventKey={6} onSelect={this.props.donut}>Donut</MenuItem>
+                <MenuItem eventKey={7} onSelect={this.props.fan}>Fan</MenuItem>
+                <MenuItem eventKey={8} onSelect={this.props.tunnel}>Tunnel</MenuItem>
               </NavDropdown>
 
             <NavDropdown title="Options" id="basic-nav-dropdown" noCaret>
-              <MenuItem eventKey={3} onSelect={this.props.clear}>Clear</MenuItem>
+              <MenuItem eventKey={3} onSelect={this.props.destroy}>Clear</MenuItem>
               <MenuItem eventKey={4} onSelect={this.props.save}>Save</MenuItem>
-              <MenuItem eventKey={5} onSelect={this.props.restore}>restore</MenuItem>
+              <MenuItem eventKey={5} onSelect={this.props.bringBack}>Restore</MenuItem>
             </NavDropdown>
             </Nav>
             <Nav pullRight>

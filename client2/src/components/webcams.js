@@ -5,14 +5,16 @@ class Webcams extends Component {
 		super(props)
 	}
 	componentDidMount() {
+
 	let webrtc = new SimpleWebRTC({
 	  localVideoEl: 'localVideo',
 	  remoteVideosEl: 'remotesVideos',
-	  autoRequestMedia: true
+	  autoRequestMedia: true,
+	  audio: true
 	});
 
 		webrtc.on('readyToCall', function () {
-		  webrtc.joinRoom('webcamroom');
+		  webrtc.joinRoom(window.roomName);
 		});
 	}
 

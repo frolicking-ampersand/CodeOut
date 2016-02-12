@@ -32,9 +32,16 @@ class App extends Component {
     };
     this.saveAnImage = this.saveAnImage.bind(this);
     this.chooseBG = this.chooseBG.bind(this);
-    this.handleOnClickClear = this.handleOnClickClear.bind(this);
-    this.restoreBoard = this.restoreBoard.bind(this);
-    this.changeColors = this.changeColors.bind(this)
+    this.changeColors = this.changeColors.bind(this);
+    this.increaseSize = this.increaseSize.bind(this);
+    this.decreaseSize = this.decreaseSize.bind(this);
+    this.realEraser = this.realEraser.bind(this);
+    this.destroy = this.destroy.bind(this);
+    this.bringBack = this.bringBack.bind(this);
+    this.fan = this.fan.bind(this);
+    this.pen = this.pen.bind(this);
+    this.donut = this.donut.bind(this);
+    this.tunnel = this.tunnel.bind(this);
   }
 
   componentDidMount(){
@@ -108,7 +115,6 @@ class App extends Component {
     })
   }
 
-
   chooseBG(color) {
     let newstate = this.state;
     newstate.canvasStyle.backgroundColor = color.target.value;
@@ -117,8 +123,7 @@ class App extends Component {
     });
   }
 
-
-  Destroy() {
+  destroy() {
     let newCanvas = document.getElementById("canvas");
     let context = newCanvas.getContext("2d");
     let savedImage = new Image();
@@ -170,11 +175,6 @@ class App extends Component {
   }
 
   render() {
-    let popupPosition = {
-      position: 'absolute',
-      top: '12%',
-      left: '5%',
-    };
 
     let indent = {
       'margin-top': '10px'
@@ -187,11 +187,17 @@ class App extends Component {
       <Webcams />
 
       <WhiteboardNav
-        eraser={this.eraser}
+        pen={this.pen}
+        eraser={this.realEraser}
         clear={this.handleOnClickClear}
-        restore={this.restoreBoard}
+        bringBack={this.bringBack}
         save={this.saveAnImage}
-        restore={this.restoreBoard}
+        donut={this.donut}
+        tunnel={this.tunnel}
+        fan={this.fan}
+        increaseSize={this.increaseSize}
+        decreaseSize={this.decreaseSize}
+        destroy={this.destroy}
       />
 
       <PickColor
