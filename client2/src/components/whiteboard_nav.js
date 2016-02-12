@@ -24,7 +24,7 @@ export default class WhiteboardNavbar extends Component {
           <Navbar.Collapse>
             <Nav>
               <NavDropdown id="basic-nav-dropdown" title="Tools" noCaret>
-                <MenuItem eventKey={1} onSelect={this.pen}> Pen </MenuItem>
+                <MenuItem eventKey={1} onSelect={this.props.pen}> Pen </MenuItem>
                 <MenuItem eventKey={2} onSelect={this.props.eraser}> Eraser </MenuItem>
                 <MenuItem eventKey={6} onSelect={this.props.donut}>Donut</MenuItem>
                 <MenuItem eventKey={7} onSelect={this.props.fan}>Fan</MenuItem>
