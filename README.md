@@ -1,6 +1,6 @@
 # CodeOut
 
-Chat, Code, Learn Together!
+Whiteboard, Code, and Learn -- Together!
 
 ## Demo
 You can test a fully working live demo at https://peaceful-reef-52020.herokuapp.com
