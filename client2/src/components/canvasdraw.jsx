@@ -41,14 +41,6 @@ const CanvasDraw = React.createClass({
   componentDidMount(){
     let canvas = ReactDOM.findDOMNode(this);
 
-    var that = this;
-    this.socket = io();
-    this.socket.emit('create board', 'test');
-    this.socket.on('draw', function (data) {
-      //console.log("listening");
-      that.state.context.beginPath();
-      that.draw(data.lX, data.lY, data.cX, data.cY, data.color);
-    });
 
     canvas.style.width = '100%';
     canvas.style.height = '100%';
@@ -101,7 +93,7 @@ const CanvasDraw = React.createClass({
 
       this.draw(lastX, lastY, currentX, currentY);
       var that = this;
-      this.socket.emit('draw', {
+      socket.emit('draw', {
         lX: lastX,
         lY: lastY,
         cX: currentX,
