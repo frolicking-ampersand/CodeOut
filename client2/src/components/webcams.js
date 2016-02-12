@@ -14,7 +14,7 @@ class Webcams extends Component {
 	});
 
 		webrtc.on('readyToCall', function () {
-		  webrtc.joinRoom('main');
+		  webrtc.joinRoom(window.roomName);
 		});
 	}
 
