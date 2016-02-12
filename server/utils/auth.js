@@ -9,7 +9,8 @@ module.exports = {
   'googleAuth' : {
     'clientID'      : '325419413319-9mitreijemcisl81o8uvapekgruppu8b.apps.googleusercontent.com',
     'clientSecret'  : 'oGLU4WJd3yoI1KkFyxgsabuw',
-    'callbackURL'   : 'http://localhost:8080/auth/google/callback'
+    //'callbackURL'   : 'http://localhost:8080/auth/google/callback',
+    'callbackURL'   : 'https://aqueous-anchorage-65938.herokuapp.com/auth/google/callback',
   }
 
 };

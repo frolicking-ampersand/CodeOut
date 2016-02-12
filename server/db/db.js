@@ -1,8 +1,8 @@
 var Sequelize = require("sequelize");
 var db;
 if (process.env.PORT) {
-  db = new Sequelize("d85rqkr8v6isif", "cyovufgurynjkv", "5Ngw22AyNMlJMGkO2XFqOnt2pG", {
-    host: 'ec2-54-225-197-30.compute-1.amazonaws.com',
+  db = new Sequelize("d1s8u3jjhghe3m", "osauypbzfdegxp", "qJXdQrtFknLw4fB_VXbaZHeEdM", {
+    host: 'ec2-54-225-215-233.compute-1.amazonaws.com',
     dialect: 'postgres'
   });
 } else {
