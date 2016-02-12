@@ -74,5 +74,12 @@
     "underscore": "^1.8.3",
     "webpack": "^1.13.0",
     "youtube-api-search": "0.0.5"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0"
   }
 }
