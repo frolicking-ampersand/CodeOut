@@ -6,9 +6,9 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import Navbar from './components/video_navbar';
-import Webcams from '../webcam-bar';
-import auth from "../../auth-helper";
-import Login from "../login";
+import Webcams from '../webcams/webcam-bar';
+import auth from "./../auth/auth-helper";
+import Login from "./../auth/login";
 
 const API_KEY = 'AIzaSyACCRzAumvvEk2O2lCmS9CZTOVWfCJhaL0';
 

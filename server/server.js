@@ -16,9 +16,7 @@ var session = require('express-session');
 // Start server //
 //////////////////
 var port = process.env.PORT || 8080;
-console.log(port);
 var server = app.listen(port);
-console.log(port);
 //////////////////
 
 

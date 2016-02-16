@@ -29,7 +29,6 @@
     "lodash": "^3.10.1",
     "react": "^0.14.3",
     "react-ace": "^3.1.0",
-    "react-addons-css-transition-group": "^0.14.7",
     "react-addons-pure-render-mixin": "^0.14.7",
     "react-bootstrap": "^0.28.2",
     "react-canvas": "^1.1.0",
@@ -38,8 +37,6 @@
     "react-cookie": "^0.4.3",
     "react-dom": "^0.14.3",
     "react-drawable-canvas": "^1.0.5",
-    "react-drive-in": "^1.7.3",
-    "react-dropdown": "^0.7.2",
     "react-fullscreen": "^0.1.0",
     "react-input-color": "^1.7.2",
     "react-kit": "^0.1.14",
@@ -54,7 +51,6 @@
     "react-webcam": "0.0.8",
     "react-youtube": "^5.0.0",
     "reactcss": "^0.4.3",
-    "redux": "^3.0.4",
     "underscore": "^1.8.3",
     "youtube-api-search": "0.0.5"
   }

@@ -54,7 +54,7 @@ export default class VideoDetail extends Component {
 
 		if(!this.props.video){
 			return (
-			<img style={loadingStyles} src="./images/spinner.gif" />
+			<img style={loadingStyles} src="./media/spinner.gif" />
 			)
 		}
 
