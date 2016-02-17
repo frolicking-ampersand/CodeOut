@@ -1,4 +1,4 @@
-# Project Name
+# CodeOut
 
 CodeOut is a mix between Google Hangouts and Coding. Authenicated users are allowed to join a room, where they can whiteboard algorithms, pair program or watch video tutorials.
 
