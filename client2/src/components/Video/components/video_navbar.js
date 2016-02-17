@@ -24,6 +24,7 @@ export default class VideoNavbar extends Component {
             <Nav pullRight>
               <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>
               <NavItem eventKey={2} href="#/code">Code Editor</NavItem>
+              <NavItem eventKey={8} href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

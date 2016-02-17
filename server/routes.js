@@ -189,7 +189,7 @@ module.exports = function (app, express) {
   // LOGOUT ==============================
   // =====================================
   app.get('/logout', function(req, res) {
-    req.logout();
+    res.clearCookie('token');
     res.redirect('/');
   });
   // =====================================
