@@ -8,24 +8,6 @@
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "jest"
   },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "unmockedModulePathPatterns": [
-      "./node_modules/react",
-      "./node_modules/fbjs",
-      "./node_modules/react-dom",
-      "./node_modules/react-addons-test-utils"
-    ],
-    "scriptPreprocessor": "<rootDir>/jest/preprocessor.js",
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "jsx"
-    ],
-    "testFileExtensions": [
-      "js"
-    ]
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -75,5 +57,23 @@
     "reactcss": "^0.4.3",
     "underscore": "^1.8.3",
     "youtube-api-search": "0.0.5"
+  },
+    "jest": {
+    "scriptPreprocessor": "<rootDir>/jest/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/."
+    ],
+    "testFileExtensions": [
+      "coffee",
+      "cjsx",
+      "js",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "coffee",
+      "cjsx",
+      "js",
+      "jsx"
+    ]
   }
 }
