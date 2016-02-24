@@ -184,7 +184,6 @@ export default class Whiteboard extends Component {
       <div>
       {this.state.loggedIn ? (
       <div>
-      <Webcams />
 
       <WhiteboardNav
         pen={this.pen}
@@ -199,7 +198,6 @@ export default class Whiteboard extends Component {
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
       />
-
       <PickColor
         brushColor={this.state.brushColor}
         changeParentColor={this.changeColors}

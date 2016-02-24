@@ -143,7 +143,6 @@ export default class CodeEditor extends Component {
       {this.state.loggedIn ? (
       <div>
         <div>
-          <Webcams />
           <Navbar
             changeLang={mode => this.setState({mode})}
             changeTheme={theme => this.setState({theme})}

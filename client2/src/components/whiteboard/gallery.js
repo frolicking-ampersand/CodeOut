@@ -18,10 +18,10 @@ const Painting = React.createClass({
   },
   render(){
     const divStyle = {
-      'border-style': 'solid',
-      'border-width': '5px 5px 5px 5px',
-      'border-color': 'black',
-      'background-color': 'white',
+      'borderStyle': 'solid',
+      'borderWidth': '5px 5px 5px 5px',
+      'borderColor': 'black',
+      'backgroundColor': 'white',
     }
     return (
       <canvas style={divStyle} id ={this.props.id}></canvas>

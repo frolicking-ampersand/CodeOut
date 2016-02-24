@@ -5,6 +5,7 @@ import { Nav } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
+import Webcams from '../../webcams/webcam-bar';
 
 export default class VideoNavbar extends Component {
   constructor(props){
@@ -27,6 +28,7 @@ export default class VideoNavbar extends Component {
               <NavItem eventKey={8} href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
+          <Webcams />
         </Navbar>
       </div>
     )

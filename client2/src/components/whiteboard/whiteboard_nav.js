@@ -5,6 +5,7 @@ import { Nav } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
+import Webcams from './../webcams/webcam-bar';
 
 export default class WhiteboardNavbar extends Component {
   constructor(props){
@@ -12,6 +13,7 @@ export default class WhiteboardNavbar extends Component {
   }
 
   render() {
+
     return (
       <div>
         <Navbar inverse>
@@ -43,6 +45,7 @@ export default class WhiteboardNavbar extends Component {
               <NavItem href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
+        <Webcams />
         </Navbar>
       </div>
     )
