@@ -28,7 +28,7 @@ Greg Domorski, Ian Bulmer, Benny Zhang, Nikola Phipps
 
 ### Installing Dependencies
 
-1) Clone this repo to your desktop and run npm install at the root directory to install server dependencies.
+1) Clone this repo to your local machine and run npm install in the root directory to install all dependencies.
 
 2) Once the dependencies are installed, run node server/server.js
 
