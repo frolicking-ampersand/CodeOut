@@ -4,11 +4,11 @@ const VideoListItem = ({video, onVideoSelect}) => {
 	const imageUrl = video.snippet.thumbnails.default.url;
 
 	const divStyle = {
-	  'background-color': 'black',
-	  'border-radius': '0px',
-	  'border-width': '.5px 0px .5px 0px',
-	  'border-color': 'black',
-	  'border-style': 'solid',
+	  'backgroundColor': 'black',
+	  'borderRadius': '0px',
+	  'borderWidth': '.5px 0px .5px 0px',
+	  'borderColor': 'black',
+	  'borderStyle': 'solid',
 	};
 	return (
 	 <li style={divStyle} onClick={() => onVideoSelect(video)} className="list-group-item">

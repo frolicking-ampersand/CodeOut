@@ -41,6 +41,7 @@ class Video extends Component {
   }
 
   sendVideoSelectData (vid) {
+    console.log(vid);
     this.socket.emit('sendVideoSelect', { selectedVideo: vid});
   }
 
@@ -52,7 +53,7 @@ class Video extends Component {
         <div>
         <Navbar />
         <SearchBar onSearchTermChange={videoSearch} />
-        <VideoList onVideoSelect={
+        <VideoList onClick={
         selectedVideo => this.sendVideoSelectData({selectedVideo})}
         videos={this.state.videos} />
         <VideoDetail video={this.state.selectedVideo} />

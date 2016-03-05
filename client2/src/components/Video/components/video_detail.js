@@ -48,8 +48,8 @@ export default class VideoDetail extends Component {
 	render() {
 		let loadingStyles = {
 			'display': 'block',
-    	'margin-left': 'auto',
-    	'margin-right': 'auto'
+    	'marginLeft': 'auto',
+    	'marginRight': 'auto'
 		}
 
 		if(!this.props.video){
