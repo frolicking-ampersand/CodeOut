@@ -1,60 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import Slider from 'react-slick';
-import ReactCanvas from 'react-canvas';
-const Surface = ReactCanvas.Surface;
-const Imagine = ReactCanvas.Image;
-const Painting = React.createClass({
+import Painting from './painting';
 
-  componentDidMount() {
-    let canvas = ReactDOM.findDOMNode(this);
-    let context = canvas.getContext("2d");
-    let savedImage = new Image();
-    savedImage.src=this.props.url;
-    context.drawImage(savedImage,0,0,300,150);
-  },
-
-  render(){
-    const divStyle = {
-      'borderStyle': 'solid',
-      'borderWidth': '5px 5px 5px 5px',
-      'borderColor': 'black',
-      'backgroundColor': 'white',
-    }
-    return (
-      <canvas style={divStyle} id ={this.props.id}></canvas>
-    )
-  }
-})
-
-const Picture = React.createClass({
-  getInitialState () {
-    return {url:"src/components/images/road.png"};
-  },
-
-
-  render(){
-    const surfaceWidth = 300;
-    const surfaceHeight = 300;
-    const ImageStyle = {
-      'top': '0px',
-      'left': '0px',
-      'width': '350px',
-      'height': '300px'
-    }
-
-    return (
-      <Surface width={surfaceWidth}
-               height={surfaceHeight}
-               left={0}
-               top={0}>
-        <Image style={imageStyle}
-               src={this.props.url}
-        />
-      </Surface>
-    )
-  }
-})
 
 class Gallery extends Component {
   constructor (props){
