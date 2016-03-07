@@ -9,19 +9,26 @@ export default class BGColorbox extends Component {
     }
   }
 
+
+
   render() {
+
+  const texty = {
+      'color': 'white',
+      'marginRight': '5px',
+      'width': '150px'
+  };
+
     return (
       <div className="app">
-        Background Color:
-        <p>
+        <span style={texty}>Background Color:  </span>
+
         <input
           type="color"
           value={this.props.backgroundColor}
           defaultValue="#345678"
           onChange={this.props.chooseBGParentColor}
         />
-        </p>
-
       </div>
     );
   }

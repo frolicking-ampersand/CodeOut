@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
+import { Button, ButtonToolbar, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { ButtonGroup } from 'react-bootstrap';
-import { DropdownButton } from 'react-bootstrap';
-import { MenuItem } from 'react-bootstrap';
 import CanvasDraw from './canvasdraw';
 import Gallery from './gallery';
 import WhiteboardNav from './whiteboard_nav';
@@ -176,8 +172,8 @@ export default class Whiteboard extends Component {
 
   render() {
 
-    let indent = {
-      'margin-top': '10px'
+    const indent = {
+      'marginTop': '10px'
     }
 
    return (
@@ -198,6 +194,15 @@ export default class Whiteboard extends Component {
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
       />
+
+      <div style={indent}>
+	      <Gallery data={this.state.data} className="painting"/>
+      </div>
+
+      <div className='canvas-style'>
+        <CanvasDraw {...this.state}/>
+      </div>
+
       <PickColor
         brushColor={this.state.brushColor}
         changeParentColor={this.changeColors}
@@ -208,13 +213,6 @@ export default class Whiteboard extends Component {
         chooseBGParentColor={this.chooseBG}
       />
 
-      <div className='canvas-style'>
-        <CanvasDraw {...this.state}/>
-      </div>
-
-      <div style={indent}>
-      <Gallery data={this.state.data} className="painting"/>
-      </div>
       </div>
       ) : (
         <div>

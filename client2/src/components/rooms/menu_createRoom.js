@@ -34,7 +34,7 @@ class trueMenu extends Component {
 
   render() {
 
-    const searchStyle = {
+  const searchStyle = {
     'border': '2px solid #FF0000',
     'height': '45px',
     'width': '60%',
