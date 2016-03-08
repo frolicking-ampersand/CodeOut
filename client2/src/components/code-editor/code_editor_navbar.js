@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';;
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
+import Webcams from './../webcams/webcam-bar';
 
 export default class CodeEditorNavbar extends Component {
   constructor(props){
@@ -59,6 +60,7 @@ export default class CodeEditorNavbar extends Component {
               <NavItem href='/logout'>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
+          <Webcams />
         </Navbar>
       </div>
     )

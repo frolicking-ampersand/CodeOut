@@ -23,12 +23,12 @@ export default class SearchBar extends Component {
 		'border': '2px solid #FF0000',
 		'height': '50px',
 		'width': '100%',
-		'font-size': '30px',
-		'border-radius': '3px',
-		'color': 'navy',
-		'text-align': 'center',
-		'border-width': '1px',
-		'border-color': 'navy',
+		'fontSize': '30px',
+		'borderRadius': '3px',
+		'color': 'white',
+		'textAlign': 'center',
+		'borderWidth': '1px',
+		'borderColor': 'navy',
 		'background': 'black'
 	}
 	 return (

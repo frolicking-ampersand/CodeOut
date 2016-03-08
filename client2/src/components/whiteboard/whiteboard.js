@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
+import { Button, ButtonToolbar, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { ButtonGroup } from 'react-bootstrap';
-import { DropdownButton } from 'react-bootstrap';
-import { MenuItem } from 'react-bootstrap';
 import CanvasDraw from './canvasdraw';
 import Gallery from './gallery';
 import WhiteboardNav from './whiteboard_nav';
@@ -176,15 +172,14 @@ export default class Whiteboard extends Component {
 
   render() {
 
-    let indent = {
-      'margin-top': '10px'
+    const indent = {
+      'marginTop': '10px'
     }
 
    return (
       <div>
       {this.state.loggedIn ? (
       <div>
-      <Webcams />
 
       <WhiteboardNav
         pen={this.pen}
@@ -200,14 +195,14 @@ export default class Whiteboard extends Component {
         destroy={this.destroy}
       />
 
-      <PickColor
-        brushColor={this.state.brushColor}
-        changeParentColor={this.changeColors}
-      />
-
       <PickBackground
         backgroundColor={this.state.backgroundColor}
         chooseBGParentColor={this.chooseBG}
+      />
+
+      <PickColor
+        brushColor={this.state.brushColor}
+        changeParentColor={this.changeColors}
       />
 
       <div className='canvas-style'>
@@ -215,8 +210,9 @@ export default class Whiteboard extends Component {
       </div>
 
       <div style={indent}>
-      <Gallery data={this.state.data} className="painting"/>
+	      <Gallery data={this.state.data} className="painting"/>
       </div>
+
       </div>
       ) : (
         <div>

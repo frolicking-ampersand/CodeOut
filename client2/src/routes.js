@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import Menu from './components/rooms/menu';
 import Video from './components/video/'
 import Whiteboard from './components/whiteboard/whiteboard';

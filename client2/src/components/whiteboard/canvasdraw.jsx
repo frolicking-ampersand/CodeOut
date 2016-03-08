@@ -152,7 +152,6 @@ const CanvasDraw = React.createClass({
   },
 
   draw(lX, lY, cX, cY, color, tool){
-    console.log(this.props.tool);
     this.state.context.strokeStyle = color || this.props.brushColor;
     this.state.context.lineWidth = this.props.lineWidth;
     this.state.context.tool = tool || this.props.tool;
@@ -198,7 +197,7 @@ const CanvasDraw = React.createClass({
   getDefaultStyle(){
     return {
       backgroundColor: '#FFFFFF',
-      cursor: 'pointer'
+      cursor: 'crosshair'
     };
   },
   canvasStyle(){
