@@ -10,18 +10,22 @@ export default class Colorbox extends Component {
   }
 
   render() {
+
+  const texty = {
+      'color': 'white',
+      'marginRight': '5px',
+      'width': '150px'
+  };
+
     return (
       <div className="app">
-        Tool Color:
-        <p>
+        <span style={texty}>Tool Color:  </span>
         <input
           type="color"
           value={this.props.brushColor}
           defaultValue="#345678"
           onChange={this.props.changeParentColor}
         />
-        </p>
-
       </div>
     );
   }

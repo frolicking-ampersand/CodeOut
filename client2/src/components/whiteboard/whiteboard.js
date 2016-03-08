@@ -195,23 +195,23 @@ export default class Whiteboard extends Component {
         destroy={this.destroy}
       />
 
-      <div style={indent}>
-	      <Gallery data={this.state.data} className="painting"/>
-      </div>
-
-      <div className='canvas-style'>
-        <CanvasDraw {...this.state}/>
-      </div>
+      <PickBackground
+        backgroundColor={this.state.backgroundColor}
+        chooseBGParentColor={this.chooseBG}
+      />
 
       <PickColor
         brushColor={this.state.brushColor}
         changeParentColor={this.changeColors}
       />
 
-      <PickBackground
-        backgroundColor={this.state.backgroundColor}
-        chooseBGParentColor={this.chooseBG}
-      />
+      <div className='canvas-style'>
+        <CanvasDraw {...this.state}/>
+      </div>
+
+      <div style={indent}>
+	      <Gallery data={this.state.data} className="painting"/>
+      </div>
 
       </div>
       ) : (
