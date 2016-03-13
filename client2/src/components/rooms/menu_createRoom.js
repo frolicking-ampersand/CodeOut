@@ -20,6 +20,10 @@ class trueMenu extends Component {
   }
 
   handleJoination(e) {
+    if(this.state.name === ''){
+      this.setState({name: "Please enter a room name"})
+      return;
+    }
     socket = io();
     console.log(socket);
     socket.emit('create board', {name: this.state.name});
@@ -67,6 +71,7 @@ class trueMenu extends Component {
       placeholder="Join a room"
       value={this.state.name}
       onChange={this.handleName}
+      onEnter={this.handleJoination}
        />
       <p>
       <button style={buttonStyle} className="btn btn-primary" onClick={this.handleJoination}>Enter Room</button>
