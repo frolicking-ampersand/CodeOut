@@ -81,7 +81,6 @@ module.exports = function(passport) {
   // GOOGLE ==================================================================
   // =========================================================================
   passport.use(new GoogleStrategy({
-
     clientID        : configAuth.googleAuth.clientID,
     clientSecret    : configAuth.googleAuth.clientSecret,
     callbackURL     : configAuth.googleAuth.callbackURL,

@@ -23,6 +23,7 @@ class trueMenu extends Component {
     socket = io();
     console.log(socket);
     socket.emit('create board', {name: this.state.name});
+    window.location.assign('/#/canvas')
   }
 
   handleName(event) {
@@ -68,7 +69,7 @@ class trueMenu extends Component {
       onChange={this.handleName}
        />
       <p>
-      <button style={buttonStyle} onClick={this.handleJoination}><Link to="/canvas">Enter Room</Link></button>
+      <button style={buttonStyle} className="btn btn-primary" onClick={this.handleJoination}>Enter Room</button>
       </p>
       </div>
     )
