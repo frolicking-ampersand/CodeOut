@@ -8,12 +8,7 @@ import { NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 
 export default class WhiteboardNavbar extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
-
     return (
       <div>
         <Navbar inverse>

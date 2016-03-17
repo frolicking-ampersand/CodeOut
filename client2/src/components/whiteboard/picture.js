@@ -8,7 +8,6 @@ const Picture = React.createClass({
     return {url:"src/components/images/road.png"};
   },
 
-
   render(){
     const surfaceWidth = 300;
     const surfaceHeight = 300;

@@ -3,10 +3,6 @@ import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'rea
 import Webcams from './../webcams/webcam-bar';
 
 export default class CodeEditorNavbar extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div>

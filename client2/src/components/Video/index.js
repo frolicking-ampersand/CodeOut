@@ -11,9 +11,9 @@ import Login from "./../auth/login";
 
 const API_KEY = 'AIzaSyACCRzAumvvEk2O2lCmS9CZTOVWfCJhaL0';
 
-class Video extends Component {
+export default class Video extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       videos: [],
       loggedIn: auth.loggedIn(),
@@ -65,5 +65,3 @@ class Video extends Component {
     )
   }
 }
-
-export default Video

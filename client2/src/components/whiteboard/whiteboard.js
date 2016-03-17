@@ -12,9 +12,9 @@ import Login from "./../auth/login";
 
 export default class Whiteboard extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
-      brushColor: '#000000',
+      brushColor: '#32cd32',
       loggedIn: auth.loggedIn(),
       lineWidth: 4,
       canvasStyle: {

@@ -39,7 +39,7 @@ import 'brace/theme/terminal';
 
 export default class CodeEditor extends Component {
   constructor(props){
-    super(props);
+    super();
     this.state = {
       theme: 'twilight',
       loggedIn: auth.loggedIn(),
