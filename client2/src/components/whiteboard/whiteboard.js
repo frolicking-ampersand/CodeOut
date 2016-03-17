@@ -26,18 +26,6 @@ export default class Whiteboard extends Component {
       tool: "pen",
       data: [],
     };
-    this.saveAnImage = this.saveAnImage.bind(this);
-    this.chooseBG = this.chooseBG.bind(this);
-    this.changeColors = this.changeColors.bind(this);
-    this.increaseSize = this.increaseSize.bind(this);
-    this.decreaseSize = this.decreaseSize.bind(this);
-    this.realEraser = this.realEraser.bind(this);
-    this.destroy = this.destroy.bind(this);
-    this.bringBack = this.bringBack.bind(this);
-    this.fan = this.fan.bind(this);
-    this.pen = this.pen.bind(this);
-    this.donut = this.donut.bind(this);
-    this.tunnel = this.tunnel.bind(this);
   }
 
   componentDidMount(){
@@ -182,27 +170,27 @@ export default class Whiteboard extends Component {
       <div>
 
       <WhiteboardNav
-        pen={this.pen}
-        eraser={this.realEraser}
-        clear={this.handleOnClickClear}
-        bringBack={this.bringBack}
-        save={this.saveAnImage}
-        donut={this.donut}
+        pen={() => this.pen}
+        eraser={() => this.realEraser}
+        clear={() => this.handleOnClickClear}
+        bringBack={() => this.bringBack}
+        save={() => this.saveAnImage}
+        donut={() => this.donut}
         tunnel={this.tunnel}
-        fan={this.fan}
-        increaseSize={this.increaseSize}
-        decreaseSize={this.decreaseSize}
-        destroy={this.destroy}
+        fan={() => this.fan}
+        increaseSize={() => this.increaseSize}
+        decreaseSize={() => this.decreaseSize}
+        destroy={() => this.destroy}
       />
 
       <PickBackground
         backgroundColor={this.state.backgroundColor}
-        chooseBGParentColor={this.chooseBG}
+        chooseBGParentColor={() => this.chooseBG}
       />
 
       <PickColor
         brushColor={this.state.brushColor}
-        changeParentColor={this.changeColors}
+        changeParentColor={() => this.changeColors}
       />
 
       <div className='canvas-style'>

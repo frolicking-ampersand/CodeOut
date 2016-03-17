@@ -25,7 +25,6 @@ class Video extends Component {
 
   componentDidMount () {
     this.socket = io();
-    console.log(this.socket);
     this.socket.on('getVid', function (data) {
       this.setState({selectedVideo: data.selectedVideo.selectedVideo});
     }.bind(this));

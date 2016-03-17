@@ -50,14 +50,9 @@ export default class CodeEditor extends Component {
       codeResult: "You have not ran any code yet",
       index: 0
     }
-    this.changeTheme = this.changeTheme.bind(this);
-    this.changeLang = this.changeLang.bind(this);
-    this.increaseSize = this.increaseSize.bind(this);
-    this.decreaseSize = this.decreaseSize.bind(this);
+    // this.changeTheme = this.changeTheme.bind(this);
+    // this.changeLang = this.changeLang.bind(this);
     this.codeChange = this.codeChange.bind(this);
-    this.evaluateCode = this.evaluateCode.bind(this);
-    this.findToyProblem = this.findToyProblem.bind(this);
-    this.findSolution = this.findSolution.bind(this);
   }
 
   componentDidMount() {
@@ -71,7 +66,6 @@ export default class CodeEditor extends Component {
     }.bind(this));
 
     this.socket.on('receiveAnswer', function (data) {
-      console.log(data);
       this.setState({currentVal: data.currentVal});
     }.bind(this));
   }
@@ -146,12 +140,12 @@ export default class CodeEditor extends Component {
           <Navbar
             changeLang={mode => this.setState({mode})}
             changeTheme={theme => this.setState({theme})}
-            increaseSize={this.increaseSize}
-            decreaseSize={this.decreaseSize}
-            evaluateCode={this.evaluateCode}
-            findToyProblem={this.findToyProblem}
-            findSolution={this.findSolution}
-            logout={this.logout}
+            increaseSize={() => this.increaseSize}
+            decreaseSize={() => this.decreaseSize}
+            evaluateCode={() => this.evaluateCode}
+            findToyProblem={() => findToyProblem}
+            findSolution={() => this.findSolution}
+            logout={() => this.logout}
           />
 
         </div>
