@@ -1,5 +1,5 @@
 //DEPENDENCIES
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactAce from 'react-ace';
 import brace from 'brace';
 import { Col } from 'react-bootstrap';
@@ -50,29 +50,26 @@ export default class CodeEditor extends Component {
       codeResult: "You have not ran any code yet",
       index: 0
     }
-    // this.changeTheme = this.changeTheme.bind(this);
-    // this.changeLang = this.changeLang.bind(this);
     this.codeChange = this.codeChange.bind(this);
   }
 
   componentDidMount() {
-    this.socket = io();
-    this.socket.on('write code', function (data) {
+    socket.on('write code', function (data) {
       this.setState({currentVal: data.currentVal});
     }.bind(this));
 
-    this.socket.on('receiveCodeProblem', function (data) {
+    socket.on('receiveCodeProblem', function (data) {
       this.setState({currentVal: data.currentVal})
     }.bind(this));
 
-    this.socket.on('receiveAnswer', function (data) {
+    socket.on('receiveAnswer', function (data) {
       this.setState({currentVal: data.currentVal});
     }.bind(this));
   }
 
   codeChange (val) {
     this.setState({currentVal: val});
-    this.socket.emit('type', { currentVal: val});
+    socket.emit('type', { currentVal: val});
   }
 
   changeTheme (e) {
@@ -102,7 +99,7 @@ export default class CodeEditor extends Component {
                         ]
 
     let randomNum = Math.floor(Math.random() * toyProblems.length);
-    this.socket.emit('sendCodeProblem', { currentVal: toyProblems[randomNum]});
+    socket.emit('sendCodeProblem', { currentVal: toyProblems[randomNum]});
     this.setState({currentVal: toyProblems[randomNum],
                    currentIndex: randomNum
     });
@@ -117,7 +114,7 @@ export default class CodeEditor extends Component {
                      "/*\nGiven a binary tree, find its maximum depth. \nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. \nDefinition for a binary tree node. \n\nfunction TreeNode(val) {\n     this.val = val;\n     this.left = this.right = null;\n } \n */\n\nvar maxDepth = function(root) {\n  //create a base case for the recursive function, saying if there is no root, return 0\n  if(root === null) return 0;\n\n  //call our function over again on the left and right side of the root, while adding one each time.\n  //Use Math.max to get the larger of the two sides.\n  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;\n};",
                     ]
     let solution = answers[this.state.currentIndex]
-    this.socket.emit('getAnswer', { currentVal: solution});
+    socket.emit('getAnswer', { currentVal: solution});
     this.setState({currentVal: solution});
   }
 

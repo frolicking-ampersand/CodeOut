@@ -24,8 +24,7 @@ class Video extends Component {
   }
 
   componentDidMount () {
-    this.socket = io();
-    this.socket.on('getVid', function (data) {
+    socket.on('getVid', function (data) {
       this.setState({selectedVideo: data.selectedVideo.selectedVideo});
     }.bind(this));
   }
@@ -40,7 +39,7 @@ class Video extends Component {
   }
 
   sendVideoSelectData (vid) {
-    this.socket.emit('sendVideoSelect', { selectedVideo: vid});
+    socket.emit('sendVideoSelect', { selectedVideo: vid});
     this.setState({selectedVideo: vid})
   }
 
