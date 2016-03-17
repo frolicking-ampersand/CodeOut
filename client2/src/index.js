@@ -5,4 +5,4 @@ import routes from './routes';
 window.socket = io();
 window.roomName;
 
-ReactDOM.render(<Router history={hashHistory} routes={routes} />, document.body);
+ReactDOM.render(<Router history={hashHistory} routes={routes} />, document.getElementById('container'));
