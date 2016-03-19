@@ -7,7 +7,7 @@ export default class Webcambar extends Component {
     super()
     this.state = {
       currentRoom: 'main'
-    };
+    }
   }
   render () {
   	return (

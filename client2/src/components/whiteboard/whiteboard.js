@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, ButtonToolbar, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import axios from 'axios';
 import CanvasDraw from './canvasdraw';
 import Gallery from './gallery';
@@ -12,9 +11,9 @@ import Login from "./../auth/login";
 
 export default class Whiteboard extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      brushColor: '#32cd32',
+      brushColor: '#000000',
       loggedIn: auth.loggedIn(),
       lineWidth: 4,
       canvasStyle: {
@@ -26,6 +25,13 @@ export default class Whiteboard extends Component {
       tool: "pen",
       data: [],
     };
+    this.saveAnImage = this.saveAnImage.bind(this);
+    this.chooseBG = this.chooseBG.bind(this);
+    this.changeColors = this.changeColors.bind(this);
+    this.increaseSize = this.increaseSize.bind(this);
+    this.decreaseSize = this.decreaseSize.bind(this);
+    this.destroy = this.destroy.bind(this);
+    this.bringBack = this.bringBack.bind(this);
   }
 
   componentDidMount(){
@@ -67,36 +73,6 @@ export default class Whiteboard extends Component {
         lineWidth: this.state.lineWidth-=1
       })
     }
-  }
-
-  fan(){
-    this.setState({
-      tool: 'fan',
-    })
-  }
-
-  pen() {
-    this.setState({
-      tool: 'pen',
-    })
-  }
-
-  donut() {
-    this.setState({
-      tool: 'donut',
-    })
-  }
-
-  tunnel() {
-    this.setState({
-      tool: 'tunnel',
-    })
-  }
-
-  realEraser() {
-    this.setState({
-      tool: 'eraser',
-    })
   }
 
   chooseBG(color) {
@@ -170,27 +146,27 @@ export default class Whiteboard extends Component {
       <div>
 
       <WhiteboardNav
-        pen={() => this.pen}
-        eraser={() => this.realEraser}
-        clear={() => this.handleOnClickClear}
-        bringBack={() => this.bringBack}
-        save={() => this.saveAnImage}
-        donut={() => this.donut}
-        tunnel={this.tunnel}
-        fan={() => this.fan}
-        increaseSize={() => this.increaseSize}
-        decreaseSize={() => this.decreaseSize}
-        destroy={() => this.destroy}
+        pen={() => this.setState({tool: 'pen'})}
+        eraser={() => this.setState({tool: 'eraser'})}
+        donut={() => this.setState({tool: 'donut'})}
+        tunnel={() => this.setState({tool: 'tunnel'})}
+        fan={() => this.setState({tool: 'fan'})}
+        clear={this.handleOnClickClear}
+        bringBack={this.bringBack}
+        save={this.saveAnImage}
+        increaseSize={this.increaseSize}
+        decreaseSize={this.decreaseSize}
+        destroy={this.destroy}
       />
 
       <PickBackground
         backgroundColor={this.state.backgroundColor}
-        chooseBGParentColor={() => this.chooseBG}
+        chooseBGParentColor={this.chooseBG}
       />
 
       <PickColor
         brushColor={this.state.brushColor}
-        changeParentColor={() => this.changeColors}
+        changeParentColor={this.changeColors}
       />
 
       <div className='canvas-style'>
@@ -198,7 +174,7 @@ export default class Whiteboard extends Component {
       </div>
 
       <div style={indent}>
-	      <Gallery data={this.state.data} className="painting"/>
+        <Gallery data={this.state.data} className="painting"/>
       </div>
 
       </div>
@@ -211,4 +187,3 @@ export default class Whiteboard extends Component {
     )
   }
 };
-

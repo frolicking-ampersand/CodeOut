@@ -1,10 +1,5 @@
-import React, { Component, PropTypes } from 'react';;
-import { DropdownButton } from 'react-bootstrap';
-import { MenuItem } from 'react-bootstrap';
-import { Nav } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
-import { NavItem } from 'react-bootstrap';
-import { NavDropdown } from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 
 export default class WhiteboardNavbar extends Component {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Router, Link, browserHistory } from 'react-router';
+import { Router, Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 
-class trueMenu extends Component {
+export default class trueMenu extends Component {
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       displayCreateBoard: false,
@@ -21,16 +21,15 @@ class trueMenu extends Component {
 
   handleJoination(e) {
     if(this.state.name === ''){
-      this.setState({name: "Please enter a room name"})
+      this.setState({name: "Please enter room name"})
       return;
     }
-    socket = io();
-    console.log(socket);
     socket.emit('create board', {name: this.state.name});
     window.location.assign('/#/canvas')
   }
 
   handleName(event) {
+    console.log(event)
     window.roomName = event.target.value;
     this.setState({
       name: event.target.value
@@ -70,9 +69,9 @@ class trueMenu extends Component {
       style={searchStyle}
       placeholder="Join a room"
       value={this.state.name}
-      onChange={this.handleName}
-      onEnter={this.handleJoination}
-       />
+      onChange={(e) => this.handleName(e)}
+      onKeyPress={(e) => this.handleName(e)}
+      />
       <p>
       <button style={buttonStyle} className="btn btn-primary" onClick={this.handleJoination}>Enter Room</button>
       </p>
@@ -87,5 +86,3 @@ trueMenu.contextTypes = {
   }
 };
 
-
-export default trueMenu;
