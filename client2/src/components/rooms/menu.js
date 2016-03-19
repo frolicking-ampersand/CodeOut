@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import CreateRoom from "./menu_createRoom";
-import RoomList from "./menu_roomList";
 import auth from './../auth/auth-helper';
 import Login from './../auth/login';
 

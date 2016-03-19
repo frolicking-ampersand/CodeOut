@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';;
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 
-export default class CodeEditorNavbar extends Component {
-  render() {
+const CodeEditorNavbar = (props) => {
     return (
       <div>
         <Navbar inverse>
@@ -15,7 +14,7 @@ export default class CodeEditorNavbar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavDropdown onSelect={(e, key) => this.props.changeTheme(key)} eventKey={1} title="Style" id="basic-nav-dropdown" noCaret>
+              <NavDropdown onSelect={(e, key) => props.changeTheme(key)} eventKey={1} title="Style" id="basic-nav-dropdown" noCaret>
                 <MenuItem eventKey="monokai"> Monokai </MenuItem>
                 <MenuItem eventKey="github">Github</MenuItem>
                 <MenuItem eventKey="tomorrow">Tomorrow</MenuItem>
@@ -27,7 +26,7 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="solarized_light"> Solarized Light </MenuItem>
                 <MenuItem eventKey="terminal"> Terminal </MenuItem>
               </NavDropdown>
-              <NavDropdown onSelect={(e, key) => this.props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" noCaret>
+              <NavDropdown onSelect={(e, key) => props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" noCaret>
                 <MenuItem eventKey="javascript"> JavaScript </MenuItem>
                 <MenuItem eventKey="java"> Java </MenuItem>
                 <MenuItem eventKey="python"> Python </MenuItem>
@@ -44,11 +43,11 @@ export default class CodeEditorNavbar extends Component {
                 <MenuItem eventKey="coffee"> Coffee </MenuItem>
                 <MenuItem eventKey="css"> CSS </MenuItem>
               </NavDropdown>
-              <NavItem onClick={this.props.increaseSize}>Enhance</NavItem>
-              <NavItem onClick={this.props.decreaseSize}>Dehance</NavItem>
-              <NavItem onClick={this.props.evaluateCode}>Run Code</NavItem>
-              <NavItem onClick={this.props.findToyProblem}>Generate Toy Problem</NavItem>
-              <NavItem onClick={this.props.findSolution}>Find Solution</NavItem>
+              <NavItem onClick={props.increaseSize}>Enhance</NavItem>
+              <NavItem onClick={props.decreaseSize}>Dehance</NavItem>
+              <NavItem onClick={props.evaluateCode}>Run Code</NavItem>
+              <NavItem onClick={props.findToyProblem}>Generate Toy Problem</NavItem>
+              <NavItem onClick={props.findSolution}>Find Solution</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem href="#/canvas">Whiteboard</NavItem>
@@ -60,5 +59,7 @@ export default class CodeEditorNavbar extends Component {
         </Navbar>
       </div>
     )
-  }
 }
+
+
+export default CodeEditorNavbar
