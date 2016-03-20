@@ -27,7 +27,7 @@ export default class Whiteboard extends Component {
     };
     this.saveAnImage = this.saveAnImage.bind(this);
     this.chooseBG = this.chooseBG.bind(this);
-    this.changeColors = this.changeColors.bind(this);
+    // this.changeColors = this.changeColors.bind(this);
     this.increaseSize = this.increaseSize.bind(this);
     this.decreaseSize = this.decreaseSize.bind(this);
     this.destroy = this.destroy.bind(this);
@@ -53,9 +53,9 @@ export default class Whiteboard extends Component {
       });
   }
 
-  changeColors (color) {
-    this.setState({brushColor: color.target.value })
-  }
+  // changeColors (color) {
+  //   this.setState({brushColor: color.target.value })
+  // }
 
   increaseSize() {
     if (this.state.lineWidth<15){
@@ -166,7 +166,7 @@ export default class Whiteboard extends Component {
 
       <PickColor
         brushColor={this.state.brushColor}
-        changeParentColor={this.changeColors}
+        changeParentColor={event => this.setState({brushColor: event.target.value })}
       />
 
       <div className='canvas-style'>

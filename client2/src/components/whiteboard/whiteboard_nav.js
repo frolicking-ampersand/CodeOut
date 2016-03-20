@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 
-const WhiteboardNavbar = (props) => {
+export default (props) => {
     return (
       <div>
         <Navbar inverse>
@@ -39,5 +39,3 @@ const WhiteboardNavbar = (props) => {
       </div>
     )
 }
-
-export default WhiteboardNavbar

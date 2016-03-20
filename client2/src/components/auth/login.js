@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-const Login = () => {
+export default () => {
     return (
     <div>
       <video autoPlay id="bgvid" loop>
@@ -16,5 +16,3 @@ const Login = () => {
     </div>
   );
 }
-
-export default Login;
