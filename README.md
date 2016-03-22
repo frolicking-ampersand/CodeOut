@@ -20,7 +20,7 @@ Greg Domorski, Ian Bulmer, Benny Zhang, Nikola Phipps
 - Node 0.10.x
 - Express
 - Postgresql 9.1.x
-- Sequalize
+- Sequelize
 - React
 - Socket.io
 - WebRTC (Developmental Mode)
