@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
 export default class Webcams extends Component {
-	constructor(props){
-		super(props)
-	}
 	componentDidMount() {
 
 	let webrtc = new SimpleWebRTC({

@@ -3,13 +3,12 @@ import Webcams from './webcams'
 const Menu = require('../react-burger-menu').stack;
 
 export default class Webcambar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
       currentRoom: 'main'
-    };
+    }
   }
-
   render () {
   	return (
     <div>

@@ -10,13 +10,11 @@ export default class Colorbox extends Component {
   }
 
   render() {
-
   const texty = {
       'color': 'white',
       'marginRight': '5px',
       'width': '150px'
   };
-
     return (
       <div className="app">
         <span style={texty}>Tool Color:  </span>

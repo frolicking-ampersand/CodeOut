@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import InputColor from 'react-input-color'
 
 export default class BGColorbox extends Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super(...arguments);
     this.state = {
       color: this.props.color
     }
   }
 
-
-
   render() {
-
   const texty = {
       'color': 'white',
       'marginRight': '5px',

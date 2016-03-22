@@ -51,9 +51,6 @@ io.on('connection', function (socket) {
 
 
   socket.on('newbImg', function (boardImg) {
-    console.log('hearing back')
-    console.log('incomeing socket id: ' + boardImg.id);
-    console.log('current socket id: ' + socket.id);
     socket.to(boardImg.id).emit('newbImg', boardImg.image);
 
   });
@@ -131,7 +128,8 @@ app.use(session({
   saveUninitialized: false
 })); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(passport.session(
+// )); // persistent login sessions
 ////////////////////////////////////////
 
 ///////////////////

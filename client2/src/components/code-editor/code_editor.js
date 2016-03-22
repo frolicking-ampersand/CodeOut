@@ -50,8 +50,6 @@ export default class CodeEditor extends Component {
       codeResult: "You have not ran any code yet",
       index: 0
     }
-    this.changeTheme = this.changeTheme.bind(this);
-    this.changeLang = this.changeLang.bind(this);
     this.increaseSize = this.increaseSize.bind(this);
     this.decreaseSize = this.decreaseSize.bind(this);
     this.codeChange = this.codeChange.bind(this);
@@ -79,14 +77,6 @@ export default class CodeEditor extends Component {
   codeChange (val) {
     this.setState({currentVal: val});
     this.socket.emit('type', { currentVal: val});
-  }
-
-  changeTheme (e) {
-    this.setState({theme: e.target.value});
-  }
-
-  changeLang (e) {
-    this.setState({mode: e.target.value});
   }
 
   increaseSize () {
@@ -179,5 +169,4 @@ export default class CodeEditor extends Component {
     )
   }
 }
-
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, ButtonToolbar, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import axios from 'axios';
 import CanvasDraw from './canvasdraw';
 import Gallery from './gallery';
@@ -28,16 +27,11 @@ export default class Whiteboard extends Component {
     };
     this.saveAnImage = this.saveAnImage.bind(this);
     this.chooseBG = this.chooseBG.bind(this);
-    this.changeColors = this.changeColors.bind(this);
+    // this.changeColors = this.changeColors.bind(this);
     this.increaseSize = this.increaseSize.bind(this);
     this.decreaseSize = this.decreaseSize.bind(this);
-    this.realEraser = this.realEraser.bind(this);
     this.destroy = this.destroy.bind(this);
     this.bringBack = this.bringBack.bind(this);
-    this.fan = this.fan.bind(this);
-    this.pen = this.pen.bind(this);
-    this.donut = this.donut.bind(this);
-    this.tunnel = this.tunnel.bind(this);
   }
 
   componentDidMount(){
@@ -59,9 +53,9 @@ export default class Whiteboard extends Component {
       });
   }
 
-  changeColors (color) {
-    this.setState({brushColor: color.target.value })
-  }
+  // changeColors (color) {
+  //   this.setState({brushColor: color.target.value })
+  // }
 
   increaseSize() {
     if (this.state.lineWidth<15){
@@ -79,36 +73,6 @@ export default class Whiteboard extends Component {
         lineWidth: this.state.lineWidth-=1
       })
     }
-  }
-
-  fan(){
-    this.setState({
-      tool: 'fan',
-    })
-  }
-
-  pen() {
-    this.setState({
-      tool: 'pen',
-    })
-  }
-
-  donut() {
-    this.setState({
-      tool: 'donut',
-    })
-  }
-
-  tunnel() {
-    this.setState({
-      tool: 'tunnel',
-    })
-  }
-
-  realEraser() {
-    this.setState({
-      tool: 'eraser',
-    })
   }
 
   chooseBG(color) {
@@ -182,14 +146,14 @@ export default class Whiteboard extends Component {
       <div>
 
       <WhiteboardNav
-        pen={this.pen}
-        eraser={this.realEraser}
+        pen={() => this.setState({tool: 'pen'})}
+        eraser={() => this.setState({tool: 'eraser'})}
+        donut={() => this.setState({tool: 'donut'})}
+        tunnel={() => this.setState({tool: 'tunnel'})}
+        fan={() => this.setState({tool: 'fan'})}
         clear={this.handleOnClickClear}
         bringBack={this.bringBack}
         save={this.saveAnImage}
-        donut={this.donut}
-        tunnel={this.tunnel}
-        fan={this.fan}
         increaseSize={this.increaseSize}
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
@@ -202,7 +166,7 @@ export default class Whiteboard extends Component {
 
       <PickColor
         brushColor={this.state.brushColor}
-        changeParentColor={this.changeColors}
+        changeParentColor={event => this.setState({brushColor: event.target.value })}
       />
 
       <div className='canvas-style'>
@@ -210,7 +174,7 @@ export default class Whiteboard extends Component {
       </div>
 
       <div style={indent}>
-	      <Gallery data={this.state.data} className="painting"/>
+        <Gallery data={this.state.data} className="painting"/>
       </div>
 
       </div>
@@ -223,4 +187,3 @@ export default class Whiteboard extends Component {
     )
   }
 };
-

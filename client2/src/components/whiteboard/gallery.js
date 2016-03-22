@@ -3,15 +3,13 @@ import Slider from 'react-slick';
 import Painting from './painting';
 
 
-class Gallery extends Component {
-  constructor (props){
-    super(props);
-
+export default class Gallery extends Component {
+  constructor (){
+    super(...arguments);
     this.state = {
       data: this.props.data,
     }
   }
-
   componentWillReceiveProps(nextProps){
     this.setState({
       data:nextProps.data
@@ -23,7 +21,6 @@ class Gallery extends Component {
   }
 
   render () {
-
     let settings = {
       dots: true,
       speed: 500,
@@ -32,8 +29,6 @@ class Gallery extends Component {
       autoplay: true,
       autoplaySpeed: 10000
     }
-    let x=0;
-
 
     let paintingCollection = this.props.data.map(function(where){
       return (
@@ -55,5 +50,3 @@ class Gallery extends Component {
     );
   }
 };
-
-module.exports = Gallery;

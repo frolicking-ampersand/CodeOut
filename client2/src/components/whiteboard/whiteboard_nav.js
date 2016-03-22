@@ -1,19 +1,8 @@
-import React, { Component, PropTypes } from 'react';;
-import { DropdownButton } from 'react-bootstrap';
-import { MenuItem } from 'react-bootstrap';
-import { Nav } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
-import { NavItem } from 'react-bootstrap';
-import { NavDropdown } from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 
-export default class WhiteboardNavbar extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render() {
-
+export default (props) => {
     return (
       <div>
         <Navbar inverse>
@@ -26,17 +15,17 @@ export default class WhiteboardNavbar extends Component {
           <Navbar.Collapse>
             <Nav>
               <NavDropdown id="basic-nav-dropdown" title="Tools" noCaret>
-                <MenuItem onSelect={this.props.pen}> Pen </MenuItem>
-                <MenuItem onSelect={this.props.eraser}> Eraser </MenuItem>
-                <MenuItem onSelect={this.props.donut}>Donut</MenuItem>
-                <MenuItem onSelect={this.props.fan}>Fan</MenuItem>
-                <MenuItem onSelect={this.props.tunnel}>Tunnel</MenuItem>
+                <MenuItem onSelect={props.pen}> Pen </MenuItem>
+                <MenuItem onSelect={props.eraser}> Eraser </MenuItem>
+                <MenuItem onSelect={props.donut}>Donut</MenuItem>
+                <MenuItem onSelect={props.fan}>Fan</MenuItem>
+                <MenuItem onSelect={props.tunnel}>Tunnel</MenuItem>
               </NavDropdown>
 
             <NavDropdown title="Options" id="basic-nav-dropdown" noCaret>
-              <MenuItem onSelect={this.props.destroy}>Clear</MenuItem>
-              <MenuItem onSelect={this.props.save}>Save</MenuItem>
-              <MenuItem onSelect={this.props.bringBack}>Restore</MenuItem>
+              <MenuItem onSelect={props.destroy}>Clear</MenuItem>
+              <MenuItem onSelect={props.save}>Save</MenuItem>
+              <MenuItem onSelect={props.bringBack}>Restore</MenuItem>
             </NavDropdown>
             </Nav>
             <Nav pullRight>
@@ -49,5 +38,4 @@ export default class WhiteboardNavbar extends Component {
         </Navbar>
       </div>
     )
-  }
 }

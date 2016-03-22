@@ -62,7 +62,7 @@ module.exports = function (app, express) {
        // console.log('boardname' + board.name);
         return {
           //image: board.thing.toString(),
-          name: board.name 
+          name: board.name
         };
       });
 
@@ -180,7 +180,7 @@ module.exports = function (app, express) {
     }), function (req, res) {
       console.log(req.user.dataValues);
       console.log(req.user.dataValues.google_token);
-      res.cookie('token', JSON.stringify(req.user.dataValues.google_token));
+      res.cookie('token', JSON.stringify(req.user.dataValues.google_token), {maxAge: 1200000});
       res.redirect('/');
     });
   // =====================================
