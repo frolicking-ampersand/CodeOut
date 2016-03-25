@@ -46,15 +46,10 @@ export default class VideoDetail extends Component {
   }
 
 	render() {
-		let loadingStyles = {
-			'display': 'block',
-    	'marginLeft': 'auto',
-    	'marginRight': 'auto'
-		}
 
 		if(!this.props.video){
 			return (
-			<img style={loadingStyles} src="./media/spinner.gif" />
+			<img className="loading-styles" src="./media/spinner.gif" />
 			)
 		}
 
@@ -68,10 +63,7 @@ export default class VideoDetail extends Component {
 					onPause={this.sendPauseData}
 					/>
 				</div>
-
 			</div>
 		);
 		}
 };
-
-export default VideoDetail;

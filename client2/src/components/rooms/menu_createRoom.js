@@ -29,7 +29,6 @@ export default class trueMenu extends Component {
   }
 
   handleName(event) {
-    console.log(event)
     window.roomName = event.target.value;
     this.setState({
       name: event.target.value
@@ -37,52 +36,23 @@ export default class trueMenu extends Component {
   }
 
   render() {
-
-  const searchStyle = {
-    'border': '2px solid #FF0000',
-    'height': '45px',
-    'width': '60%',
-    'fontSize': '30px',
-    'borderRadius': '3px',
-    'color': 'white',
-    'textAlign': 'center',
-    'borderWidth': '1px',
-    'borderColor': 'navy',
-    'background': 'black',
-    'marginTop': '14%'
-  }
-
-  const buttonStyle = {
-    'marginTop': '15px'
-  }
-
-  const imgUrl = './images/collaboration.jpg'
-  const centerMe = {
-    'textAlign': 'center',
-    'height': '100%',
-  }
-
     return (
-      <div style={centerMe}>
-      <img src='./media/collaboration.jpg' id="bgvid" />
-      <input
-      style={searchStyle}
-      placeholder="Join a room"
-      value={this.state.name}
-      onChange={(e) => this.handleName(e)}
-      onKeyPress={(e) => this.handleName(e)}
-      />
-      <p>
-      <button style={buttonStyle} className="btn btn-primary" onClick={this.handleJoination}>Enter Room</button>
-      </p>
+      <div className="center-roomselect">
+        <img src='./media/collaboration.jpg' id="bgvid" />
+        <input
+        className="search-style"
+        placeholder="Join a room"
+        value={this.state.name}
+        onChange={(e) => this.handleName(e)}
+        onKeyPress={(e) => this.handleName(e)}
+        />
+        <p>
+          <button className="btn btn-primary button-spacing" onClick={this.handleJoination}>Enter Room</button>
+        </p>
       </div>
     )
   };
 };
 
-trueMenu.contextTypes = {
-  router: function(){
-    return React.PropTypes.func.isRequired
-  }
-};
+
 
