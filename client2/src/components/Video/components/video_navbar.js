@@ -4,6 +4,7 @@ import Webcams from '../../webcams/webcam-bar';
 import Header from '../../common/navheader'
 
 export default () => {
+<<<<<<< HEAD
 
     const navStyle = {
       position: 'fixed',
@@ -16,6 +17,8 @@ export default () => {
     const wrapper = {
       'height': '60px'
     }
+=======
+>>>>>>> refactor css
     return (
       <div style={wrapper}>
       <div style={navStyle}>

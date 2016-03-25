@@ -17,6 +17,10 @@ header h1 {
 header div {
   text-align: center;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> refactor css
 
 .search-bar {
     margin: 20px;
@@ -186,6 +190,10 @@ header div {
     border-width: 1px;
     border-color: navy;
     background: black;
+<<<<<<< HEAD
+=======
+    margin-top: 14%;
+>>>>>>> refactor css
 }
 
 .button-spacing {

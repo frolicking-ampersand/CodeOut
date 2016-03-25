@@ -45,6 +45,7 @@ export default class trueMenu extends Component {
 
 
   render() {
+<<<<<<< HEAD
 
   const logoStyle = {
     'marginTop': '14%'
@@ -73,6 +74,21 @@ export default class trueMenu extends Component {
           </button>
         </p>
         </form>
+=======
+    return (
+      <div className="center-roomselect">
+        <img src='./media/collaboration.jpg' id="bgvid" />
+        <input
+        className="search-style"
+        placeholder="Join a room"
+        value={this.state.name}
+        onChange={(e) => this.handleName(e)}
+        onKeyPress={(e) => this.handleName(e)}
+        />
+        <p>
+          <button className="btn btn-primary button-spacing" onClick={this.handleJoination}>Enter Room</button>
+        </p>
+>>>>>>> refactor css
       </div>
     )
   };
