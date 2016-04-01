@@ -13,7 +13,7 @@ export default class Whiteboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      brushColor: '#000000',
+      brushColor: '#ffaff5',
       loggedIn: auth.loggedIn(),
       lineWidth: 4,
       canvasStyle: {
@@ -27,7 +27,6 @@ export default class Whiteboard extends Component {
     };
     this.saveAnImage = this.saveAnImage.bind(this);
     this.chooseBG = this.chooseBG.bind(this);
-    // this.changeColors = this.changeColors.bind(this);
     this.increaseSize = this.increaseSize.bind(this);
     this.decreaseSize = this.decreaseSize.bind(this);
     this.destroy = this.destroy.bind(this);
@@ -52,10 +51,6 @@ export default class Whiteboard extends Component {
         console.log(response);
       });
   }
-
-  // changeColors (color) {
-  //   this.setState({brushColor: color.target.value })
-  // }
 
   increaseSize() {
     if (this.state.lineWidth<15){
@@ -164,10 +159,11 @@ export default class Whiteboard extends Component {
         increaseSize={this.increaseSize}
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
+        chooseBGParentColor={this.chooseBG}
       />
 
       <PickBackground
-        backgroundColor={this.state.backgroundColor}
+        backgrounde={this.state.canvasStyle.backgroundColor}
         chooseBGParentColor={this.chooseBG}
       />
 

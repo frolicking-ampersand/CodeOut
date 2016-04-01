@@ -11,8 +11,10 @@ export default class trueMenu extends Component {
       displayCreateBoard: false,
       displayJoin: false,
       name: '',
+      placeholder: 'Join a room',
       userId: 0,
-      list: []
+      list: [],
+      isValid: true
     };
     this.handleName = this.handleName.bind(this);
     this.handleJoination = this.handleJoination.bind(this);
@@ -21,7 +23,13 @@ export default class trueMenu extends Component {
   handleJoination(e) {
     e.preventDefault();
     if(this.state.name === ''){
-      this.setState({name: "Please enter a room name"})
+      this.setState({placeholder: "Please enter a room name", isValid: false})
+      return;
+    } else if (this.state.name.indexOf(' ') !== -1){
+      this.setState({placeholder: "Room names can not contain spaces", name: '', isValid: false})
+      return;
+    }else if (/[^a-zA-Z0-9\-\/]/.test(this.state.name)) {
+      this.setState({placeholder: "Special characters are not allowed", name: '', isValid: false})
       return;
     }
     socket.emit('create board', {name: this.state.name});
@@ -41,10 +49,10 @@ export default class trueMenu extends Component {
         <img src='./media/collaboration.jpg' id="bgvid" />
         <form className="animated fadeInUp" onSubmit={this.handleJoination}>
         <input
-        className="search-style"
-        placeholder="Join a room"
+        placeholder={this.state.placeholder}
         value={this.state.name}
         onChange={(e) => this.handleName(e)}
+        className={!this.state.isValid ? 'animated shake search-style' : 'search-style'}
         />
         <p>
           <button className="btn btn-primary button-spacing"

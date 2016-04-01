@@ -154,7 +154,8 @@ export default class CodeEditor extends Component {
             fontSize={this.state.fontSize}
             width="100%"
             height="800px"
-            float="inline" />
+            float="inline"
+             />
         </Col>
         <Col xs={6} md={4}>
           <b> Result: </b> {this.state.codeResult}
@@ -169,4 +170,6 @@ export default class CodeEditor extends Component {
     )
   }
 }
+
+
 
