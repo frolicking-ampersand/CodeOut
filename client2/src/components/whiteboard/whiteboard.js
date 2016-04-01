@@ -150,7 +150,7 @@ export default class Whiteboard extends Component {
    return (
       <div>
       {this.state.loggedIn ? (
-      <div>
+      <div className="animated fadeIn">
 
       <WhiteboardNav
         pen={() => this.setState({tool: 'pen'})}

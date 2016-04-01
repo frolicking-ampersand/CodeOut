@@ -131,7 +131,7 @@ export default class CodeEditor extends Component {
     return (
       <div>
       {this.state.loggedIn ? (
-      <div>
+      <div className="animated fadeIn">
         <div>
           <Navbar
             changeLang={mode => this.setState({mode})}
