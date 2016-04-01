@@ -7,7 +7,6 @@ export default class trueMenu extends Component {
 
   constructor(props) {
     super();
-
     this.state = {
       displayCreateBoard: false,
       displayJoin: false,

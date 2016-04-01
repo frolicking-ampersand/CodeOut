@@ -3,8 +3,21 @@ import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'rea
 import Webcams from '../../webcams/webcam-bar';
 
 export default () => {
+
+    const navStyle = {
+      position: 'fixed',
+      display: "block",
+      width: '100%',
+      top: '0px',
+      zIndex: '20'
+    }
+
+    const wrapper = {
+      'height': '60px'
+    }
     return (
-      <div>
+      <div style={wrapper}>
+      <div style={navStyle}>
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
@@ -21,6 +34,7 @@ export default () => {
           </Navbar.Collapse>
           <Webcams />
         </Navbar>
+      </div>
       </div>
     )
 }
