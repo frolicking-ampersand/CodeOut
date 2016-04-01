@@ -136,9 +136,16 @@ export default class Whiteboard extends Component {
 
   render() {
 
-    const indent = {
-      'marginTop': '10px'
-    }
+  const indent = {
+    'marginTop': '10px'
+  }
+
+
+  const painting = {
+    borderWidth: '500px',
+    height: '500px',
+    left: '500px'
+  }
 
    return (
       <div>

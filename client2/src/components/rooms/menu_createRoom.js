@@ -20,8 +20,9 @@ export default class trueMenu extends Component {
   }
 
   handleJoination(e) {
+    e.preventDefault();
     if(this.state.name === ''){
-      this.setState({name: "Please enter room name"})
+      this.setState({name: "Please enter a room name"})
       return;
     }
     socket.emit('create board', {name: this.state.name});
@@ -39,16 +40,19 @@ export default class trueMenu extends Component {
     return (
       <div className="center-roomselect">
         <img src='./media/collaboration.jpg' id="bgvid" />
+        <form onSubmit={this.handleJoination}>
         <input
         className="search-style"
         placeholder="Join a room"
         value={this.state.name}
         onChange={(e) => this.handleName(e)}
-        onKeyPress={(e) => this.handleName(e)}
         />
         <p>
-          <button className="btn btn-primary button-spacing" onClick={this.handleJoination}>Enter Room</button>
+          <button className="btn btn-primary button-spacing"
+                  onClick={this.handleJoination}>Enter Room
+          </button>
         </p>
+        </form>
       </div>
     )
   };

@@ -120,12 +120,12 @@ header div {
   border-style: solid;
 }
 
-.painting {
+/*.painting {
   border-width: 500px;
   height: 500px
   left: 500px;
 }
-
+*/
 .editor {
   float: left;
 }
