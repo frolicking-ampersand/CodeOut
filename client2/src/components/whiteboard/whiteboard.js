@@ -158,6 +158,7 @@ export default class Whiteboard extends Component {
         increaseSize={this.increaseSize}
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
+        chooseBGParentColor={this.chooseBG}
       />
 
       <PickBackground

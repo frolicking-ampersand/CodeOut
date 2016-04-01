@@ -155,6 +155,7 @@ export default class CodeEditor extends Component {
             height="800px"
             float="inline"
             />
+
         </Col>
         <Col xs={6} md={4}>
           <b> Result: </b> {this.state.codeResult}

@@ -17,7 +17,6 @@ export default (props) => {
     const wrapper = {
       'height': '80px'
     }
-
     return (
       <div style={wrapper}>
       <div style={navStyle} >
