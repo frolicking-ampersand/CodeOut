@@ -23,6 +23,7 @@ export default class trueMenu extends Component {
   handleJoination(e) {
     e.preventDefault();
     if(this.state.name === ''){
+<<<<<<< HEAD
       this.setState({placeholder: "Please enter a room name", isValid: false})
       return;
     } else if (this.state.name.indexOf(' ') !== -1){
@@ -30,6 +31,9 @@ export default class trueMenu extends Component {
       return;
     }else if (/[^a-zA-Z0-9\-\/]/.test(this.state.name)) {
       this.setState({placeholder: "Special characters are not allowed", name: '', isValid: false})
+=======
+      this.setState({name: "Please enter a room name"})
+>>>>>>> Add animate CSS and made form element for creating rooms
       return;
     }
     socket.emit('create board', {name: this.state.name});
@@ -78,17 +82,23 @@ export default class trueMenu extends Component {
     return (
       <div className="center-roomselect">
         <img src='./media/collaboration.jpg' id="bgvid" />
+        <form onSubmit={this.handleJoination}>
         <input
         className="search-style"
         placeholder="Join a room"
         value={this.state.name}
         onChange={(e) => this.handleName(e)}
-        onKeyPress={(e) => this.handleName(e)}
         />
         <p>
-          <button className="btn btn-primary button-spacing" onClick={this.handleJoination}>Enter Room</button>
+          <button className="btn btn-primary button-spacing"
+                  onClick={this.handleJoination}>Enter Room
+          </button>
         </p>
+<<<<<<< HEAD
 >>>>>>> refactor css
+=======
+        </form>
+>>>>>>> Add animate CSS and made form element for creating rooms
       </div>
     )
   };
