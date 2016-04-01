@@ -19,10 +19,7 @@ export default class SearchBar extends Component {
 	}
 
 	render() {
-<<<<<<< HEAD
-=======
 
->>>>>>> refactor css
 	 return (
 		<div className="search-bar animated slideInDown">
 			<input
