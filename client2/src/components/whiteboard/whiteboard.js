@@ -56,7 +56,7 @@ export default class Whiteboard extends Component {
     if (this.state.lineWidth<15){
       this.setState({
         clear: false,
-        lineWidth: this.state.lineWidth+=1
+        lineWidth: this.state.lineWidth += 1
       });
     }
   }
@@ -65,7 +65,7 @@ export default class Whiteboard extends Component {
     if(this.state.lineWidth>1){
       this.setState({
         clear: false,
-        lineWidth: this.state.lineWidth-=1
+        lineWidth: this.state.lineWidth -= 1
       })
     }
   }
@@ -79,20 +79,20 @@ export default class Whiteboard extends Component {
   }
 
   destroy() {
-    let newCanvas = document.getElementById("canvas");
-    let context = newCanvas.getContext("2d");
-    let savedImage = new Image();
-    let width = newCanvas.width;
-    let height = newCanvas.height;
+    let newCanvas = document.getElementById("canvas"),
+        context = newCanvas.getContext("2d"),
+        savedImage = new Image(),
+        width = newCanvas.width,
+        height = newCanvas.height;
     context.clearRect(0, 0, width, height);
   }
 
   bringBack() {
-    let newCanvas = document.getElementById("canvas");
-    let context = newCanvas.getContext("2d");
-    let savedImage = new Image();
-    let width = newCanvas.width;
-    let height = newCanvas.height;
+    let newCanvas = document.getElementById("canvas"),
+        context = newCanvas.getContext("2d"),
+        savedImage = new Image(),
+        width = newCanvas.width,
+        height = newCanvas.height;
 
     axios.get('api/lastBoard')
       .then(function (response) {
@@ -112,9 +112,10 @@ export default class Whiteboard extends Component {
 
   saveAnImage () {
 
-    let that = this;
-    let newCanvas = document.getElementById("canvas")
-    let savedImage = new Image()
+    let that = this,
+        newCanvas = document.getElementById("canvas"),
+        savedImage = new Image();
+
     savedImage.src = newCanvas.toDataURL('image/png')
     axios.post('/api/boards', {
         thing: savedImage.src,

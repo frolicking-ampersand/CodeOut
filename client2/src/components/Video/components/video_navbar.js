@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';;
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from '../../webcams/webcam-bar';
+import Header from '../../common/navheader'
 
 export default () => {
 
@@ -19,12 +20,7 @@ export default () => {
       <div style={wrapper}>
       <div style={navStyle}>
         <Navbar inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              Theater
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+          <Header title="Video"/>
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem eventKey={1} href="#/canvas">Whiteboard</NavItem>

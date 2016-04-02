@@ -69,7 +69,6 @@ export default class CodeEditor extends Component {
     }.bind(this));
 
     this.socket.on('receiveAnswer', function (data) {
-      console.log(data);
       this.setState({currentVal: data.currentVal});
     }.bind(this));
   }
@@ -155,7 +154,7 @@ export default class CodeEditor extends Component {
             width="100%"
             height="800px"
             float="inline"
-             />
+            />
         </Col>
         <Col xs={6} md={4}>
           <b> Result: </b> {this.state.codeResult}

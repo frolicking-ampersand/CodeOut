@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';;
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
+import Header from '../common/navheader'
 
 export default (props) => {
     const navStyle = {
@@ -19,12 +20,7 @@ export default (props) => {
       <div style={wrapper}>
       <div style={navStyle}>
         <Navbar inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              Code Editor
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+            <Header title="Code Editor" />
           <Navbar.Collapse>
             <Nav>
               <NavDropdown onSelect={(e, key) => props.changeTheme(key)} eventKey={1} title="Style" id="basic-nav-dropdown" noCaret>
@@ -56,11 +52,11 @@ export default (props) => {
                 <MenuItem eventKey="coffee"> Coffee </MenuItem>
                 <MenuItem eventKey="css"> CSS </MenuItem>
               </NavDropdown>
-              <NavItem onClick={props.increaseSize}>Enhance</NavItem>
-              <NavItem onClick={props.decreaseSize}>Dehance</NavItem>
+              <NavItem onClick={props.increaseSize}>+</NavItem>
+              <NavItem onClick={props.decreaseSize}>-</NavItem>
               <NavItem onClick={props.evaluateCode}>Run Code</NavItem>
-              <NavItem onClick={props.findToyProblem}>Generate Toy Problem</NavItem>
-              <NavItem onClick={props.findSolution}>Find Solution</NavItem>
+              <NavItem onClick={props.findToyProblem}>Find Toy Problem</NavItem>
+              <NavItem onClick={props.findSolution}>Get Solution</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem href="#/canvas">Whiteboard</NavItem>

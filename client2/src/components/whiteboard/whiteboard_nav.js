@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
 import PickBackground from './bgcolorbox';
+import Header from '../common/navheader'
 
 export default (props) => {
     const navStyle = {
@@ -15,16 +16,12 @@ export default (props) => {
     const wrapper = {
       'height': '80px'
     }
+
     return (
       <div style={wrapper}>
       <div style={navStyle} >
         <Navbar inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              Whiteboard
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+          <Header title="Whiteboard"/>
           <Navbar.Collapse>
             <Nav>
               <NavDropdown id="basic-nav-dropdown" title="Tools" noCaret>
