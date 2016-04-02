@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 export default class Webcams extends Component {
 	componentDidMount() {
-
 	let webrtc = new SimpleWebRTC({
 	  localVideoEl: 'localVideo',
 	  remoteVideosEl: 'remotesVideos',
