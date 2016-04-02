@@ -57,6 +57,11 @@ export default (props) => {
               <NavItem onClick={props.evaluateCode} className="animated slideInRight">Run Code</NavItem>
               <NavItem onClick={props.findToyProblem} className="animated slideInRight">Find Problem</NavItem>
               <NavItem onClick={props.findSolution} className="animated slideInRight" >Get Solution</NavItem>
+              <NavItem onClick={props.increaseSize}>+</NavItem>
+              <NavItem onClick={props.decreaseSize}>-</NavItem>
+              <NavItem onClick={props.evaluateCode}>Run Code</NavItem>
+              <NavItem onClick={props.findToyProblem}>Find Toy Problem</NavItem>
+              <NavItem onClick={props.findSolution}>Get Solution</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem href="#/canvas" className="animated slideInRight">Whiteboard</NavItem>

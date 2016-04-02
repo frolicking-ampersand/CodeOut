@@ -5,6 +5,7 @@ import PickBackground from './bgcolorbox';
 import Header from '../common/navheader'
 import InputColor from 'react-input-color'
 
+
 export default (props) => {
     const navStyle = {
       position: 'fixed',
@@ -17,6 +18,7 @@ export default (props) => {
     const wrapper = {
       'height': '80px'
     }
+
     return (
       <div style={wrapper}>
       <div style={navStyle} >

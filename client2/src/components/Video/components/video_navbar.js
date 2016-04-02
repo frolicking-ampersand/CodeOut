@@ -22,6 +22,7 @@ export default () => {
       <div style={navStyle}>
         <Navbar inverse>
           <Header title="Video" className="animated slideInRight"/>
+
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem eventKey={1} href="#/canvas" className="animated slideInRight">Whiteboard</NavItem>

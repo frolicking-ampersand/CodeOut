@@ -48,6 +48,17 @@ export default class CanvasDraw extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(nextProps.clear){
+      this.resetCanvas();
+    }
+    if(nextProps.all){
+      this.giveMeAllBoards();
+    }
+    if(nextProps.restore){
+      this.restoreCanvas();
+    }
+  }
 
   handleOnMouseDown(e) {
     let rect = this.state.canvas.getBoundingClientRect();
@@ -167,10 +178,14 @@ export default class CanvasDraw extends Component {
   }
   render() {
     return (
+<<<<<<< HEAD:client2/src/components/whiteboard/canvasdraw.js
       <canvas
         className="animated slideInUp"
         id="canvas"
         style={this.canvasStyle()}
+=======
+      <canvas id="canvas" style = {this.canvasStyle()}
+>>>>>>> change some es5 to es6:client2/src/components/whiteboard/canvasdraw.js
         onMouseDown = {this.handleOnMouseDown.bind(this)}
         onTouchStart = {this.handleOnMouseDown.bind(this)}
         onMouseMove = {this.handleOnMouseMove.bind(this)}
