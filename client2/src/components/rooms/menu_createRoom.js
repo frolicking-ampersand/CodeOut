@@ -76,7 +76,8 @@ export default class trueMenu extends Component {
     return (
       <div className="center-roomselect">
         <img src='./media/collaboration.jpg' id="bgvid" />
-        <form onSubmit={this.handleJoination}>
+        <form className="animated fadeInUp" onSubmit={this.handleJoination}>
+        <h1>CodeOutfsfsafasafs</h1>
         <input
         placeholder={this.state.placeholder}
         value={this.state.name}
