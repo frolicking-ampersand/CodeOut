@@ -23,7 +23,7 @@ export default (props) => {
       <div style={wrapper}>
       <div style={navStyle} >
         <Navbar inverse>
-          <Header title="Whiteboard"/>
+          <Header className="animated slideInRight" title="Whiteboard"/>
           <Navbar.Collapse>
             <Nav>
               <NavDropdown className="animated slideInRight" id="basic-nav-dropdown" title="Tools" noCaret>
