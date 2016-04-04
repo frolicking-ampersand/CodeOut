@@ -45,7 +45,6 @@ export default class trueMenu extends Component {
 
 
   render() {
-<<<<<<< HEAD
 
   const logoStyle = {
     'marginTop': '14%'
@@ -74,7 +73,6 @@ export default class trueMenu extends Component {
           </button>
         </p>
         </form>
-=======
     return (
       <div className="center-roomselect">
         <img src='./media/collaboration.jpg' id="bgvid" />
@@ -90,11 +88,6 @@ export default class trueMenu extends Component {
                   onClick={this.handleJoination}>Enter Room
           </button>
         </p>
-<<<<<<< HEAD
->>>>>>> refactor css
-=======
-        </form>
->>>>>>> Add animate CSS and made form element for creating rooms
       </div>
     )
   };
