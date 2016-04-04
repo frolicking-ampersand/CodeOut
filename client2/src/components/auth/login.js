@@ -8,7 +8,6 @@ export default () => {
         <source src="./media/codea.mp4" type="video/mp4" />
       </video>
       <header id="header">
-        <h1 className="animated fadeInUp">CodeOut</h1>
         <div className="buttons">
           <a href="/auth/google" className="btn btn-danger"><span className="fa fa-google-plus"></span>Login with Google</a>
         </div>
