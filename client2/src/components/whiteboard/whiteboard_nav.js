@@ -5,7 +5,6 @@ import PickBackground from './bgcolorbox';
 import Header from '../common/navheader'
 import InputColor from 'react-input-color'
 
-
 export default (props) => {
     const navStyle = {
       position: 'fixed',
@@ -23,7 +22,7 @@ export default (props) => {
       <div style={wrapper}>
       <div style={navStyle} >
         <Navbar inverse>
-          <Header className="animated slideInRight" title="Whiteboard"/>
+          <Header title="Whiteboard"/>
           <Navbar.Collapse>
             <Nav>
               <NavDropdown className="animated slideInRight" id="basic-nav-dropdown" title="Tools" noCaret>

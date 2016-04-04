@@ -159,6 +159,8 @@ export default class Whiteboard extends Component {
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
         chooseBGParentColor={this.chooseBG}
+        backgrounde={this.state.canvasStyle.backgroundColor}
+        changeParentColor={event => this.setState({brushColor: event.target.value })}
       />
 
       <PickBackground

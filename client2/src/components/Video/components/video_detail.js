@@ -46,10 +46,6 @@ export default class VideoDetail extends Component {
   }
 
 	render() {
-<<<<<<< HEAD
-=======
-
->>>>>>> refactor css
 		if(!this.props.video){
 			return (
 			<img className="loading-styles" src="./media/spinner.gif" />
