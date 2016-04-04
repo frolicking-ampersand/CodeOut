@@ -46,7 +46,6 @@ export default class VideoDetail extends Component {
   }
 
 	render() {
-
 		if(!this.props.video){
 			return (
 			<img className="loading-styles" src="./media/spinner.gif" />
@@ -54,7 +53,7 @@ export default class VideoDetail extends Component {
 		}
 
 		return (
-			<div className="video-detail col-md-12">
+			<div className="video-detail col-md-12 animated slideInUp">
 				<div className="embed-responsive embed-responsive-16by9">
 					<Youtube
 					videoId={this.props.video.id.videoId}

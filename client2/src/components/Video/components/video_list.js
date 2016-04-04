@@ -44,7 +44,7 @@ export default (props) => {
   };
 
 	return (
-		<Slider {...settings}>
+		<Slider {...settings} className="animated slideInDown">
 		    <div>{videoItems[0]}</div>
 		    <div>{videoItems[1]}</div>
 		    <div>{videoItems[2]}</div>

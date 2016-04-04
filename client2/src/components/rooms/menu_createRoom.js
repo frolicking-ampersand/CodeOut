@@ -33,7 +33,7 @@ export default class trueMenu extends Component {
       return;
     }
     socket.emit('create board', {name: this.state.name});
-    window.location.assign('/#/canvas')
+    window.location.assign('/#/code')
   }
 
   handleName(event) {

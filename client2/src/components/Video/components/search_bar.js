@@ -20,7 +20,7 @@ export default class SearchBar extends Component {
 
 	render() {
 	 return (
-		<div className="search-bar">
+		<div className="search-bar animated slideInDown">
 			<input
 			className="video-search"
 			placeholder="Search for a video with a friend!"

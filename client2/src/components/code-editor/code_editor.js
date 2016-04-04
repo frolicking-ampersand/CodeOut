@@ -144,7 +144,7 @@ export default class CodeEditor extends Component {
           />
 
         </div>
-        <Col xs={12} md={8} className="editor">
+        <Col xs={12} md={8} className="editor animated slideInLeft">
           <ReactAce
             value={this.state.currentVal}
             onChange={this.codeChange}

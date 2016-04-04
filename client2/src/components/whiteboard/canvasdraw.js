@@ -178,7 +178,10 @@ export default class CanvasDraw extends Component {
   }
   render() {
     return (
-      <canvas id="canvas" style = {this.canvasStyle()}
+      <canvas
+        className="animated slideInUp"
+        id="canvas"
+        style={this.canvasStyle()}
         onMouseDown = {this.handleOnMouseDown.bind(this)}
         onTouchStart = {this.handleOnMouseDown.bind(this)}
         onMouseMove = {this.handleOnMouseMove.bind(this)}

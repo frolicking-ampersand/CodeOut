@@ -55,7 +55,7 @@ export default class Gallery extends Component {
     });
 
     return (
-      <Slider {...settings} style={gallery}>
+      <Slider {...settings} style={gallery} className='animated slideInUp'>
         {paintingCollection}
       </Slider>
     );

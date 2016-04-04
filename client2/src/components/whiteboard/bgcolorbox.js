@@ -17,8 +17,8 @@ export default class BGColorbox extends Component {
   };
 
     return (
-      <div className="app">
-        <span style={texty}>Background Color:  </span>
+      <div className="app animated slideInLeft">
+        <span style={texty}>Background:  </span>
         <input
           type="color"
           defaultValue="#345678"

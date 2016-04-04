@@ -55,7 +55,7 @@ export default (props) => {
               <NavItem onClick={props.increaseSize} className="animated slideInRight">+</NavItem>
               <NavItem onClick={props.decreaseSize} className="animated slideInRight">-</NavItem>
               <NavItem onClick={props.evaluateCode} className="animated slideInRight">Run Code</NavItem>
-              <NavItem onClick={props.findToyProblem} className="animated slideInRight">Find Toy Problem</NavItem>
+              <NavItem onClick={props.findToyProblem} className="animated slideInRight">Find Problem</NavItem>
               <NavItem onClick={props.findSolution} className="animated slideInRight" >Get Solution</NavItem>
             </Nav>
             <Nav pullRight>

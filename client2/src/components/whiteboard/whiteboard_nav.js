@@ -3,6 +3,7 @@ import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'rea
 import Webcams from './../webcams/webcam-bar';
 import PickBackground from './bgcolorbox';
 import Header from '../common/navheader'
+import InputColor from 'react-input-color'
 
 export default (props) => {
     const navStyle = {
@@ -21,7 +22,7 @@ export default (props) => {
       <div style={wrapper}>
       <div style={navStyle} >
         <Navbar inverse>
-          <Header className="animated slideInRight" title="Whiteboard"/>
+          <Header title="Whiteboard"/>
           <Navbar.Collapse>
             <Nav>
               <NavDropdown className="animated slideInRight" id="basic-nav-dropdown" title="Tools" noCaret>
