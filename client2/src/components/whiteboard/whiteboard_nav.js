@@ -38,6 +38,8 @@ export default (props) => {
               <MenuItem onSelect={props.save}>Save</MenuItem>
               <MenuItem onSelect={props.bringBack}>Restore</MenuItem>
             </NavDropdown>
+            <NavItem onClick={props.increaseSize} className="animated slideInRight">+</NavItem>
+            <NavItem onClick={props.decreaseSize} className="animated slideInRight">-</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem className="animated slideInRight" href="#/code">Code Editor</NavItem>

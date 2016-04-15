@@ -47,8 +47,7 @@ export default class Whiteboard extends Component {
         this.setState({data: response.data});
       }.bind(this))
       .catch(function (response) {
-        console.log("error getting data");
-        console.log(response);
+        console.log("error getting data", response);
       });
   }
 
@@ -79,7 +78,7 @@ export default class Whiteboard extends Component {
   }
 
   destroy() {
-    let newCanvas = document.getElementById("canvas"),
+    const newCanvas = document.getElementById("canvas"),
         context = newCanvas.getContext("2d"),
         savedImage = new Image(),
         width = newCanvas.width,
@@ -88,7 +87,7 @@ export default class Whiteboard extends Component {
   }
 
   bringBack() {
-    let newCanvas = document.getElementById("canvas"),
+    const newCanvas = document.getElementById("canvas"),
         context = newCanvas.getContext("2d"),
         savedImage = new Image(),
         width = newCanvas.width,
@@ -147,7 +146,6 @@ export default class Whiteboard extends Component {
       <div>
       {this.state.loggedIn ? (
       <div className="animated fadeIn">
-
       <WhiteboardNav
         pen={() => this.setState({tool: 'pen'})}
         eraser={() => this.setState({tool: 'eraser'})}
@@ -160,9 +158,6 @@ export default class Whiteboard extends Component {
         increaseSize={this.increaseSize}
         decreaseSize={this.decreaseSize}
         destroy={this.destroy}
-        chooseBGParentColor={this.chooseBG}
-        backgrounde={this.state.canvasStyle.backgroundColor}
-        changeParentColor={event => this.setState({brushColor: event.target.value })}
       />
 
       <PickBackground

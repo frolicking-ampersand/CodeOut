@@ -43,11 +43,24 @@ export default class trueMenu extends Component {
     });
   }
 
+
   render() {
+
+  const logoStyle = {
+    'marginTop': '14%'
+  }
+  const imageSize = {
+    width: '400px'
+  }
+
+
+
+
     return (
-      <div className="center-roomselect">
-        <img src='./media/collaboration.jpg' id="bgvid" />
-        <form className="animated fadeInUp" onSubmit={this.handleJoination}>
+      <div className="center-roomselect" id="createroom">
+        <form style={logoStyle} className="animated fadeInUp" onSubmit={this.handleJoination}>
+        <img style={imageSize} src="./media/codeout.png" />
+        <br />
         <input
         placeholder={this.state.placeholder}
         value={this.state.name}
