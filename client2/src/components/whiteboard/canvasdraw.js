@@ -48,7 +48,6 @@ export default class CanvasDraw extends Component {
     })
   }
 
-  },
 
   handleOnMouseDown(e) {
     let rect = this.state.canvas.getBoundingClientRect();
