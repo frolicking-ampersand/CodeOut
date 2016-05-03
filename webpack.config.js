@@ -12,9 +12,9 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel'
     }],
-    postLoaders: [
-    { loader: "transform?brfs" }
-    ]
+  //   postLoaders: [
+  //   { loader: "transform?brfs" }
+  //   ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
