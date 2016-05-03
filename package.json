@@ -4,25 +4,19 @@
   "description": "Mix between Google Hangouts and Coding",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "jest"
+    "start": "node server/server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.2.1",
-    "babel-jest": "^6.0.1",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "brfs": "^1.4.3",
-    "jest-webpack-alias": "^2.2.0",
-    "transform-loader": "^0.2.3",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0"
   },
   "dependencies": {
     "axios": "^0.9.1",
+    "babel": "^6.5.2",
     "babel-preset-stage-1": "^6.1.18",
     "body-parser": "~1.5.2",
     "bootstrap": "^3.3.6",
@@ -76,12 +70,5 @@
     "transform": "^1.1.2",
     "underscore": "^1.8.3",
     "youtube-api-search": "0.0.5"
-  },
-  "scripts": {
-    "start": "node server/server.js"
-  },
-  "devDependencies": {
-    "chai": "^3.2.0",
-    "chai-http": "^1.0.0"
   }
 }
