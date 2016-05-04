@@ -9,7 +9,7 @@ module.exports = {
   'googleAuth' : {
     'clientID'      : '325419413319-9mitreijemcisl81o8uvapekgruppu8b.apps.googleusercontent.com',
     'clientSecret'  : 'oGLU4WJd3yoI1KkFyxgsabuw',
-    'callbackURL'   : 'http://http://peaceful-reef-52020.herokuapp.com/auth/google/callback'
+    'callbackURL'   : 'https://http://peaceful-reef-52020.herokuapp.com/auth/google/callback'
   }
 
 };
