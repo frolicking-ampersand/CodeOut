@@ -1,3 +1,5 @@
+var webpack = require("webpack");
+
 module.exports = {
   entry: [
     './client2/src/index.js'
@@ -5,8 +7,11 @@ module.exports = {
   output: {
     path: __dirname + '/client2/',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.min.js'
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({minimize: true})
+  ],
   module: {
     loaders: [{
       exclude: /node_modules/,
