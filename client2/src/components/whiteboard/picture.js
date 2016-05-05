@@ -9,14 +9,14 @@ const Picture = React.createClass({
   },
 
   render(){
-    const surfaceWidth = 300;
-    const surfaceHeight = 300;
-    const ImageStyle = {
-      'top': '0px',
-      'left': '0px',
-      'width': '350px',
-      'height': '300px'
-    }
+    const surfaceWidth = 300,
+          surfaceHeight = 300,
+          ImageStyle = {
+            'top': '0px',
+            'left': '0px',
+            'width': '350px',
+            'height': '300px'
+          };
 
     return (
       <Surface width={surfaceWidth}

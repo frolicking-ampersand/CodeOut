@@ -69,7 +69,6 @@ export default class CodeEditor extends Component {
     }.bind(this));
 
     this.socket.on('receiveAnswer', function (data) {
-      console.log(data);
       this.setState({currentVal: data.currentVal});
     }.bind(this));
   }
@@ -131,7 +130,7 @@ export default class CodeEditor extends Component {
     return (
       <div>
       {this.state.loggedIn ? (
-      <div>
+      <div className="animated fadeIn">
         <div>
           <Navbar
             changeLang={mode => this.setState({mode})}
@@ -145,7 +144,7 @@ export default class CodeEditor extends Component {
           />
 
         </div>
-        <Col xs={12} md={8} className="editor">
+        <Col xs={12} md={8} className="editor animated slideInLeft">
           <ReactAce
             value={this.state.currentVal}
             onChange={this.codeChange}
@@ -154,7 +153,9 @@ export default class CodeEditor extends Component {
             fontSize={this.state.fontSize}
             width="100%"
             height="800px"
-            float="inline" />
+            float="inline"
+            />
+
         </Col>
         <Col xs={6} md={4}>
           <b> Result: </b> {this.state.codeResult}
@@ -169,4 +170,6 @@ export default class CodeEditor extends Component {
     )
   }
 }
+
+
 

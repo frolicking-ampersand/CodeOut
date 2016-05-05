@@ -10,6 +10,7 @@ export default class Gallery extends Component {
       data: this.props.data,
     }
   }
+
   componentWillReceiveProps(nextProps){
     this.setState({
       data:nextProps.data
@@ -30,6 +31,16 @@ export default class Gallery extends Component {
       autoplaySpeed: 10000
     }
 
+    const gallery = {
+       position: 'fixed',
+       textAlign: 'center',
+       padding: '0px',
+       margin: '0px',
+       color: 'blue',
+       borderWidth: '2px',
+       borderStyle: 'inset',
+    }
+
     let paintingCollection = this.props.data.map(function(where){
       return (
         <div>
@@ -44,7 +55,7 @@ export default class Gallery extends Component {
     });
 
     return (
-      <Slider {...settings} className="gallery">
+      <Slider {...settings} style={gallery} className='animated slideInUp'>
         {paintingCollection}
       </Slider>
     );

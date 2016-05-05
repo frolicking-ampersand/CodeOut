@@ -37,18 +37,17 @@ module.exports = function (app, express) {
   // get one board
 
 
-  app.get('/', function(request, response) {
-      var result = 'App is running'
-      response.send(result);
-  }).listen(app.get('port'), function() {
-      console.log('App is running, server is listening on port ', app.get('port'));
-  });
+  // app.get('/', function(request, response) {
+  //     var result = 'App is running'
+  //     response.send(result);
+  // }).listen(app.get('port'), function() {
+  //     console.log('App is running, server is listening on port ', app.get('port'));
+  // });
 
   app.get('/api/boards', function (req, res) {
     Board.findOne()
       .then(function(board) {
         console.log(board);
-        //we are hardcoding in number in the row[number]. This should be changed to whatever the current board to be gotten is.
         res.send(board.thing);
       });
   });
@@ -67,7 +66,12 @@ module.exports = function (app, express) {
       });
 
       //console.log(req.user);
-      var userId = req.user.dataValues.id || 0;
+      var userId;
+      if(req.user){
+        userId = req.user.dataValues.id;
+      } else {
+        userId = 0;
+      }
       res.send({boards: arr, userId: userId});
     })
   });
@@ -87,7 +91,6 @@ module.exports = function (app, express) {
     })
   });
 
-
  app.get('/api/allZeeBoards', function (req, res) {
    Board.findAll()
    .then(function(boards){
@@ -102,30 +105,6 @@ module.exports = function (app, express) {
      res.send(arr);
    })
  });
-
-  // app.get('/api/boards', function(req, res) {
-  //   'SELECT * FROM board', function(err, rows){
-  //     if (err){
-  //       res.send(err)
-  //     }
-  //     res.send(rows);
-  //   }
-  // });
-
-  //create a board
-  // app.post('/api/create', function (req, res) {
-  //   console.log('looking for user');
-  //   User.findOne({
-  //     where: { id: req.user.id }
-  //   })
-  //   .then(function (user) {
-  //     console.log('found a user');
-  //     Board.create({
-  //       name: req.body.name
-  //     }).setUsers(user);
-  //   });
-
-  // });
 
   app.post('/api/boards', function (req, res) {
     console.log('creating board');

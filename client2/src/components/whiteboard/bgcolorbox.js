@@ -17,12 +17,10 @@ export default class BGColorbox extends Component {
   };
 
     return (
-      <div className="app">
-        <span style={texty}>Background Color:  </span>
-
+      <div className="app animated slideInLeft">
+        <span style={texty}>Background:  </span>
         <input
           type="color"
-          value={this.props.backgroundColor}
           defaultValue="#345678"
           onChange={this.props.chooseBGParentColor}
         />

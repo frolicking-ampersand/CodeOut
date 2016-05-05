@@ -21,7 +21,6 @@ var User = db.define('User', {
   facebook_id: Sequelize.STRING,
   facebook_token: Sequelize.STRING,
   facebook_name: Sequelize.STRING,
-  //BoardId: Sequelize.INTEGER
 });
 
 // puts a UserId column on each Message instance
@@ -44,12 +43,7 @@ var Board = db.define('Board', {
 
 var Room = db.define('Room', {
   name: {type: Sequelize.STRING, unique: true }
-})
-
-// var Users_Boards = db.define('Users_Boards', {});
-
-// User.belongsToMany(Board, { through: 'Users_Boards' } );
-// Board.belongsToMany(User, { through: 'Users_Boards' } );
+});
 
 Room.sync()
   .then(function() {
@@ -65,17 +59,6 @@ Board.sync()
   .then(function() {
     console.log('Board Table has is definitely in our Postgres Database');
   });
-
-// Users_Boards.sync()
-//   .then(function() {
-//     console.log('Users_Boards Table has is definitely in our Database');
-//   })
-// Board.hasMany(User);
-// User.hasMany(Board);
-// Users_Boards = db.define('Users_Boards', {
-//   board_id,
-//   user_id
-// });
 
 module.exports = {
   User: User,

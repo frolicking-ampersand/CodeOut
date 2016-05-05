@@ -7,82 +7,92 @@ export default class trueMenu extends Component {
 
   constructor(props) {
     super();
-
     this.state = {
       displayCreateBoard: false,
       displayJoin: false,
       name: '',
+      placeholder: 'Join a room',
       userId: 0,
-      list: []
+      list: [],
+      isValid: true
     };
     this.handleName = this.handleName.bind(this);
     this.handleJoination = this.handleJoination.bind(this);
   }
 
   handleJoination(e) {
+    e.preventDefault();
     if(this.state.name === ''){
-      this.setState({name: "Please enter room name"})
+      this.setState({placeholder: "Please enter a room name", isValid: false})
       return;
+    } else if (this.state.name.indexOf(' ') !== -1){
+      this.setState({placeholder: "Room names can not contain spaces", name: '', isValid: false})
+      return;
+    }else if (/[^a-zA-Z0-9\-\/]/.test(this.state.name)) {
+      this.setState({placeholder: "Special characters are not allowed", name: '', isValid: false})
+     return;
     }
     socket.emit('create board', {name: this.state.name});
-    window.location.assign('/#/canvas')
+    window.location.assign('/#/code')
   }
 
   handleName(event) {
-    console.log(event)
     window.roomName = event.target.value;
     this.setState({
       name: event.target.value
     });
   }
 
+
   render() {
 
-  const searchStyle = {
-    'border': '2px solid #FF0000',
-    'height': '45px',
-    'width': '60%',
-    'fontSize': '30px',
-    'borderRadius': '3px',
-    'color': 'white',
-    'textAlign': 'center',
-    'borderWidth': '1px',
-    'borderColor': 'navy',
-    'background': 'black',
+  const logoStyle = {
     'marginTop': '14%'
   }
-
-  const buttonStyle = {
-    'marginTop': '15px'
+  const imageSize = {
+    width: '400px'
   }
 
-  const imgUrl = './images/collaboration.jpg'
-  const centerMe = {
-    'textAlign': 'center',
-    'height': '100%',
-  }
+
+
 
     return (
-      <div style={centerMe}>
-      <img src='./media/collaboration.jpg' id="bgvid" />
-      <input
-      style={searchStyle}
-      placeholder="Join a room"
-      value={this.state.name}
-      onChange={(e) => this.handleName(e)}
-      onKeyPress={(e) => this.handleName(e)}
-      />
-      <p>
-      <button style={buttonStyle} className="btn btn-primary" onClick={this.handleJoination}>Enter Room</button>
-      </p>
+      <div className="center-roomselect" id="createroom">
+        <form style={logoStyle} className="animated fadeInUp" onSubmit={this.handleJoination}>
+        <img style={imageSize} src="./media/codeout.png" />
+        <br />
+        <input
+        placeholder={this.state.placeholder}
+        value={this.state.name}
+        onChange={(e) => this.handleName(e)}
+        className={!this.state.isValid ? 'animated shake search-style' : 'search-style'}
+        />
+        <p>
+          <button className="btn btn-primary button-spacing"
+                  onClick={this.handleJoination}>Enter Room
+          </button>
+        </p>
+        </form>
+    return (
+      <div className="center-roomselect" id="createroom">
+        <form style={logoStyle} className="animated fadeInUp" onSubmit={this.handleJoination}>
+        <img style={imageSize} src="./media/codeout.png" />
+        <br />
+        <input
+        placeholder={this.state.placeholder}
+        value={this.state.name}
+        onChange={(e) => this.handleName(e)}
+        className={!this.state.isValid ? 'animated shake search-style' : 'search-style'}
+        />
+        <p>
+          <button className="btn btn-primary button-spacing"
+                  onClick={this.handleJoination}>Enter Room
+          </button>
+        </p>
       </div>
     )
   };
 };
 
-trueMenu.contextTypes = {
-  router: function(){
-    return React.PropTypes.func.isRequired
-  }
-};
+
 
