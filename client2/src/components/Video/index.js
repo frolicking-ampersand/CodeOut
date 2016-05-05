@@ -20,7 +20,7 @@ export default class Video extends Component {
       selectedVideo: null
     };
     this.sendVideoSelectData.bind(this);
-    this.videoSearch('javascript conference hd')
+    this.videoSearch('react tutorial')
   }
 
   componentDidMount () {
@@ -48,7 +48,7 @@ export default class Video extends Component {
     return (
      <div>
       {this.state.loggedIn ? (
-        <div>
+        <div className="animated fadeIn">
         <Navbar />
         <SearchBar onSearchTermChange={videoSearch} />
         <VideoList onVideoSelect={

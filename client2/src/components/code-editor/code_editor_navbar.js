@@ -1,20 +1,29 @@
 import React, { Component, PropTypes } from 'react';;
 import { DropdownButton, MenuItem, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
 import Webcams from './../webcams/webcam-bar';
+import Header from '../common/navheader'
 
 export default (props) => {
+    const navStyle = {
+      position: 'fixed',
+      display: "block",
+      width: '100%',
+      top: '0px',
+      zIndex: '20'
+    }
+
+    const wrapper = {
+      height: '80px'
+    }
+
     return (
-      <div>
+      <div style={wrapper}>
+      <div style={navStyle}>
         <Navbar inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              Code Editor
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+            <Header className="animated slideInRight" title="Code Editor" />
           <Navbar.Collapse>
             <Nav>
-              <NavDropdown onSelect={(e, key) => props.changeTheme(key)} eventKey={1} title="Style" id="basic-nav-dropdown" noCaret>
+              <NavDropdown onSelect={(e, key) => props.changeTheme(key)} eventKey={1} title="Style" id="basic-nav-dropdown" className="animated slideInRight" noCaret>
                 <MenuItem eventKey="monokai"> Monokai </MenuItem>
                 <MenuItem eventKey="github">Github</MenuItem>
                 <MenuItem eventKey="tomorrow">Tomorrow</MenuItem>
@@ -26,7 +35,7 @@ export default (props) => {
                 <MenuItem eventKey="solarized_light"> Solarized Light </MenuItem>
                 <MenuItem eventKey="terminal"> Terminal </MenuItem>
               </NavDropdown>
-              <NavDropdown onSelect={(e, key) => props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" noCaret>
+              <NavDropdown onSelect={(e, key) => props.changeLang(key)} eventKey={2} title="Language" id="basic-nav-dropdown" className="animated slideInRight" noCaret>
                 <MenuItem eventKey="javascript"> JavaScript </MenuItem>
                 <MenuItem eventKey="java"> Java </MenuItem>
                 <MenuItem eventKey="python"> Python </MenuItem>
@@ -43,20 +52,26 @@ export default (props) => {
                 <MenuItem eventKey="coffee"> Coffee </MenuItem>
                 <MenuItem eventKey="css"> CSS </MenuItem>
               </NavDropdown>
-              <NavItem onClick={props.increaseSize}>Enhance</NavItem>
-              <NavItem onClick={props.decreaseSize}>Dehance</NavItem>
+              <NavItem onClick={props.increaseSize} className="animated slideInRight">+</NavItem>
+              <NavItem onClick={props.decreaseSize} className="animated slideInRight">-</NavItem>
+              <NavItem onClick={props.evaluateCode} className="animated slideInRight">Run Code</NavItem>
+              <NavItem onClick={props.findToyProblem} className="animated slideInRight">Find Problem</NavItem>
+              <NavItem onClick={props.findSolution} className="animated slideInRight" >Get Solution</NavItem>
+              <NavItem onClick={props.increaseSize}>+</NavItem>
+              <NavItem onClick={props.decreaseSize}>-</NavItem>
               <NavItem onClick={props.evaluateCode}>Run Code</NavItem>
-              <NavItem onClick={props.findToyProblem}>Generate Toy Problem</NavItem>
-              <NavItem onClick={props.findSolution}>Find Solution</NavItem>
+              <NavItem onClick={props.findToyProblem}>Find Toy Problem</NavItem>
+              <NavItem onClick={props.findSolution}>Get Solution</NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem href="#/canvas">Whiteboard</NavItem>
-              <NavItem href="#/video">Video</NavItem>
-              <NavItem href='/logout'>Logout</NavItem>
+              <NavItem href="#/canvas" className="animated slideInRight">Whiteboard</NavItem>
+              <NavItem href="#/video" className="animated slideInRight">Video</NavItem>
+              <NavItem href='/logout' className="animated slideInRight">Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
           <Webcams />
         </Navbar>
+      </div>
       </div>
     )
 }

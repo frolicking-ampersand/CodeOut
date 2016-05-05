@@ -13,7 +13,7 @@ export default class Whiteboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      brushColor: '#000000',
+      brushColor: '#ffaff5',
       loggedIn: auth.loggedIn(),
       lineWidth: 4,
       canvasStyle: {
@@ -27,7 +27,6 @@ export default class Whiteboard extends Component {
     };
     this.saveAnImage = this.saveAnImage.bind(this);
     this.chooseBG = this.chooseBG.bind(this);
-    // this.changeColors = this.changeColors.bind(this);
     this.increaseSize = this.increaseSize.bind(this);
     this.decreaseSize = this.decreaseSize.bind(this);
     this.destroy = this.destroy.bind(this);
@@ -48,20 +47,15 @@ export default class Whiteboard extends Component {
         this.setState({data: response.data});
       }.bind(this))
       .catch(function (response) {
-        console.log("error getting data");
-        console.log(response);
+        console.log("error getting data", response);
       });
   }
-
-  // changeColors (color) {
-  //   this.setState({brushColor: color.target.value })
-  // }
 
   increaseSize() {
     if (this.state.lineWidth<15){
       this.setState({
         clear: false,
-        lineWidth: this.state.lineWidth+=1
+        lineWidth: this.state.lineWidth += 1
       });
     }
   }
@@ -70,7 +64,7 @@ export default class Whiteboard extends Component {
     if(this.state.lineWidth>1){
       this.setState({
         clear: false,
-        lineWidth: this.state.lineWidth-=1
+        lineWidth: this.state.lineWidth -= 1
       })
     }
   }
@@ -84,20 +78,20 @@ export default class Whiteboard extends Component {
   }
 
   destroy() {
-    let newCanvas = document.getElementById("canvas");
-    let context = newCanvas.getContext("2d");
-    let savedImage = new Image();
-    let width = newCanvas.width;
-    let height = newCanvas.height;
+    const newCanvas = document.getElementById("canvas"),
+        context = newCanvas.getContext("2d"),
+        savedImage = new Image(),
+        width = newCanvas.width,
+        height = newCanvas.height;
     context.clearRect(0, 0, width, height);
   }
 
   bringBack() {
-    let newCanvas = document.getElementById("canvas");
-    let context = newCanvas.getContext("2d");
-    let savedImage = new Image();
-    let width = newCanvas.width;
-    let height = newCanvas.height;
+    const newCanvas = document.getElementById("canvas"),
+        context = newCanvas.getContext("2d"),
+        savedImage = new Image(),
+        width = newCanvas.width,
+        height = newCanvas.height;
 
     axios.get('api/lastBoard')
       .then(function (response) {
@@ -117,9 +111,10 @@ export default class Whiteboard extends Component {
 
   saveAnImage () {
 
-    let that = this;
-    let newCanvas = document.getElementById("canvas")
-    let savedImage = new Image()
+    let that = this,
+        newCanvas = document.getElementById("canvas"),
+        savedImage = new Image();
+
     savedImage.src = newCanvas.toDataURL('image/png')
     axios.post('/api/boards', {
         thing: savedImage.src,
@@ -136,15 +131,21 @@ export default class Whiteboard extends Component {
 
   render() {
 
-    const indent = {
-      'marginTop': '10px'
-    }
+  const indent = {
+    'marginTop': '10px'
+  }
+
+
+  const painting = {
+    borderWidth: '500px',
+    height: '500px',
+    left: '500px'
+  }
 
    return (
       <div>
       {this.state.loggedIn ? (
-      <div>
-
+      <div className="animated fadeIn">
       <WhiteboardNav
         pen={() => this.setState({tool: 'pen'})}
         eraser={() => this.setState({tool: 'eraser'})}
@@ -160,7 +161,7 @@ export default class Whiteboard extends Component {
       />
 
       <PickBackground
-        backgroundColor={this.state.backgroundColor}
+        backgrounde={this.state.canvasStyle.backgroundColor}
         chooseBGParentColor={this.chooseBG}
       />
 

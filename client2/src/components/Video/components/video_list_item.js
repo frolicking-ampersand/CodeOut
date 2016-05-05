@@ -1,8 +1,7 @@
 import React from 'react';
 
-const VideoListItem = ({video, onVideoSelect}) => {
+export default ({video, onVideoSelect}) => {
 	const imageUrl = video.snippet.thumbnails.default.url;
-
 	const divStyle = {
 	  'backgroundColor': 'black',
 	  'borderRadius': '0px',
@@ -11,7 +10,7 @@ const VideoListItem = ({video, onVideoSelect}) => {
 	  'borderStyle': 'solid',
 	};
 	return (
-	 <li style={divStyle} onClick={() => onVideoSelect(video)} className="list-group-item">
+	 <li style={divStyle} className="list-group-item" onClick={() => onVideoSelect(video)}>
 		<div>
 			<div className="media-left">
 				<img className="media-object" src={imageUrl} />
@@ -23,5 +22,3 @@ const VideoListItem = ({video, onVideoSelect}) => {
 	 </li>
 	);
 };
-
-export default VideoListItem;

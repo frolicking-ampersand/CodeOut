@@ -46,20 +46,14 @@ export default class VideoDetail extends Component {
   }
 
 	render() {
-		let loadingStyles = {
-			'display': 'block',
-    	'marginLeft': 'auto',
-    	'marginRight': 'auto'
-		}
-
 		if(!this.props.video){
 			return (
-			<img style={loadingStyles} src="./media/spinner.gif" />
+			<img className="loading-styles" src="./media/spinner.gif" />
 			)
 		}
 
 		return (
-			<div className="video-detail col-md-12">
+			<div className="video-detail col-md-12 animated slideInUp">
 				<div className="embed-responsive embed-responsive-16by9">
 					<Youtube
 					videoId={this.props.video.id.videoId}
@@ -68,10 +62,7 @@ export default class VideoDetail extends Component {
 					onPause={this.sendPauseData}
 					/>
 				</div>
-
 			</div>
 		);
 		}
 };
-
-export default VideoDetail;

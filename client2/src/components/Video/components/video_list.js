@@ -2,7 +2,7 @@ import React from 'react';
 import VideoListItem from './video_list_item';
 import Slider from 'react-slick'
 
-const VideoList = (props) => {
+export default (props) => {
 	const videoItems = props.videos.map((video) => {
 		return (
 					<VideoListItem
@@ -44,7 +44,7 @@ const VideoList = (props) => {
   };
 
 	return (
-		<Slider {...settings}>
+		<Slider {...settings} className="animated slideInDown">
 		    <div>{videoItems[0]}</div>
 		    <div>{videoItems[1]}</div>
 		    <div>{videoItems[2]}</div>
@@ -54,9 +54,5 @@ const VideoList = (props) => {
         <div>{videoItems[1]}</div>
         <div>{videoItems[2]}</div>
      </Slider>
-
 	);
 };
-
-export default VideoList;
-
